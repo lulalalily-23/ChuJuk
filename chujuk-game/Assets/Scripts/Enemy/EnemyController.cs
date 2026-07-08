@@ -4,6 +4,7 @@ public class EnemyController : MonoBehaviour
 {
     // 몬스터의 상태(Idle/Chase/Attack)를 거리 기반으로 판단하고,
     // 상태가 바뀔 때만 해당 행동 스크립트를 활성화/비활성화하는 컨트롤러
+    // Attack 상태에는 attackExitRange를 적용해 경계선에서 상태 떨림을 방지하도록 수정함(쿨타임 없는 무한 공격 방지용).
     enum EnemyState {Idle, Chase, Attack};
     EnemyState currentState = EnemyState.Idle;
     EnemyState newState;
@@ -17,28 +18,55 @@ public class EnemyController : MonoBehaviour
     public float detectRange; 
     [Tooltip("플레이어에게 공격을 시작하는 거리. detectRange보다 작은 값이어야 함")]
     public float attackRange; 
+    private float attackExitRange; //Attack 상태에서 벗어나는 거리. attackRange보다 0.5크게 설정됨 (경계선에서 상태가 떨리는 것 방지)
 
     void Start()
     {
         chaseScript = GetComponent<EnemyChase>();
         attackScript = GetComponent<EnemyAttack>();
         idleScript = GetComponent<EnemyIdle>();
+        attackExitRange = attackRange + 0.5f;
+
+        // 씬 시작 시 인스펙터의 enabled 상태와 currentState가 불일치할 수 있으므로,
+        // 강제로 모든 행동 스크립트를 끄고 Idle만 켜서 안전하게 수정함.
+        chaseScript.enabled = false;
+        attackScript.enabled = false;
+        idleScript.enabled = false;
+        idleScript.enabled = true;
+
+        currentState = EnemyState.Idle;
     }
 
     // Update is called once per frame
     void Update()
     {   
         float distance = Vector2.Distance(player.position, transform.position); //몬스터와 플레이어간의 거리
-
-        if (distance < attackRange){ //공격거리보다 가까울 경우 Attack 상태로 변환
-            newState = EnemyState.Attack;
+        
+        if (currentState == EnemyState.Attack)
+        // 이미 Attack 중이면 "나가는 기준(attackExitRange)"으로 판단.
+        // attackRange와 attackExitRange 사이에 여유 구간을 두어 플레이어가 경계선 근처에서 미세하게 움직일 때 상태 떨림을 막도록 수정 (쿨타임 없는 무한 공격 방지)
+        {
+            if (distance > attackExitRange)
+            {
+                newState = (distance < detectRange) ? EnemyState.Chase : EnemyState.Idle;
+            }
+            else
+            {
+                newState = EnemyState.Attack;
+            }
         }
-        else if (distance < detectRange){ //공격거리보다는 멀고 감지거리보다 가까울 경우 Chase 상태로 변환
-            newState = EnemyState.Chase;
+        else
+        {
+            if (distance < attackRange){
+                newState = EnemyState.Attack;
+            }
+            else if (distance < detectRange){
+                newState = EnemyState.Chase;
+            }
+            else {
+                newState = EnemyState.Idle;
+            }
         }
-        else { //둘 다 아닐경우 Idle 상태.
-            newState = EnemyState.Idle;
-        }       
 
         if (newState != currentState){   
             chaseScript.enabled = false;
