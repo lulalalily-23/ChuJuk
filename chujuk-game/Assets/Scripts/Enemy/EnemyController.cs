@@ -88,4 +88,16 @@ public class EnemyController : MonoBehaviour
 
         currentState = newState;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            // 플레이어 쪽으로 튕겨나가게 방향 설정
+            Vector2 dir = (collision.transform.position - transform.position).normalized * 5f;
+
+            // 플레이어의 TakeDamage 호출
+            collision.gameObject.GetComponent<PlayerController>().TakeDamage(10, dir);
+        }
+    }
 }
