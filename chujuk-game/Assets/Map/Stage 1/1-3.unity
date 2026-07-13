@@ -677,7 +677,7 @@ GameObject:
   - component: {fileID: 714385940}
   - component: {fileID: 714385939}
   - component: {fileID: 714385941}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23608,7 +23608,7 @@ Transform:
   m_GameObject: {fileID: 945156120}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: -1.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23729,7 +23729,8 @@ GameObject:
   - component: {fileID: 1225367075}
   - component: {fileID: 1225367074}
   - component: {fileID: 1225367076}
-  m_Layer: 7
+  - component: {fileID: 1225367077}
+  m_Layer: 3
   m_Name: Tilemap (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24422,13 +24423,32 @@ TilemapCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!251 &1225367077
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225367072}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1424852057
 GameObject:
   m_ObjectHideFlags: 0
@@ -24764,16 +24784,16 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ad3b6174f2f70ed41bcd1e5a1d492143, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &1544417718
 SpriteRenderer:
@@ -24860,24 +24880,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1544417715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35dd834afd377d94dba6ee4c5377e521, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ef0a45319639434b9b4e4d0c369e535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 5
-  jumpForce: 10
-  dashSpeed: 5
-  dashDuration: 0.2
-  dashKey: 120
+  moveSpeed: 8
+  jumpForce: 13
+  dashSpeed: 15
+  moveTime: 0.5
+  maxHp: 100
+  currentHp: 0
   groundCheck: {fileID: 945156121}
   groundCheckRadius: 0.2
   groundLayer:
     serializedVersion: 2
-    m_Bits: 384
-  platformLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  playerCollider: {fileID: 0}
-  dropDuration: 0.4
+    m_Bits: 8
 --- !u!114 &1544417721
 MonoBehaviour:
   m_ObjectHideFlags: 0
