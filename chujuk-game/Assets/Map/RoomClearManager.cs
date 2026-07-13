@@ -8,7 +8,7 @@ public class RoomClearManager : MonoBehaviour
 
     private void Start()
     {
-        enemyCount = FindObjectsOfType<EnemyDeath>().Length;
+        enemyCount = FindObjectsByType<EnemyDeath>(FindObjectsSortMode.None).Length;
 
         portal.SetActive(false);
     }

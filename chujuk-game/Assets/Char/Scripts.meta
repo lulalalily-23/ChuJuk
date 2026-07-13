@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:chujuk-game/Assets/Char/Scripts.meta
 guid: f36a4267038f5544fb5558231f540e39
 folderAsset: yes
 DefaultImporter:
+=======
+guid: 7eb286a7aa3d16245a6a334fa83c9eb7
+PrefabImporter:
+>>>>>>> Stashed changes:chujuk-game/Assets/Prefabs/Player.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
