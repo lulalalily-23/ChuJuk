@@ -6,7 +6,11 @@ public class PlayerController : MonoBehaviour
     // 애니메이션
     private Animator animator;
     // 시작 상태 칼 모드
+    public event Action<bool> OnWeaponChanged;  // 외부에서 무기 변경 이벤트 구독 -> UI에서 사용
+
     private bool IsGunMode = false;
+    public bool IsUsingGun => IsGunMode; // 외부에서 총 모드 사용 여부 확인 -> UI에서 사용
+
     [Header("Movement")]
     public float moveSpeed = 5f;
     public float jumpForce = 6f;
@@ -73,6 +77,8 @@ public class PlayerController : MonoBehaviour
             IsGunMode = !IsGunMode;
             animator.SetBool("IsGunMode", IsGunMode);
             animator.SetTrigger("Change");
+
+            OnWeaponChanged?.Invoke(IsGunMode); // 외부에 무기 변경 이벤트 전달
         }
 
         // 바닥 감지
