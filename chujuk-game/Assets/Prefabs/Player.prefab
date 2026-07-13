@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 6652792526700538899}
   - component: {fileID: 4685530026745583193}
   - component: {fileID: 4264945420691732802}
-  - component: {fileID: 104203058717786184}
-  - component: {fileID: 99646945140368729}
+  - component: {fileID: 9092113457886577951}
+  - component: {fileID: 7075801544019833523}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -186,7 +186,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
---- !u!114 &104203058717786184
+--- !u!114 &9092113457886577951
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,12 +195,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 945398973208176618}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da1bb580e9c64de45ac3cecfdbc8e0ed, type: 3}
+  m_Script: {fileID: 11500000, guid: 091139f3075758246a0113ce507fc533, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  maxHp: 100
-  currentHp: 100
---- !u!114 &99646945140368729
+  m_EditorClassIdentifier: Assembly-CSharp::HealthManager
+  data: {fileID: 11400000, guid: f210a5d938ed2124ab7d3f8c52ca8bd5, type: 2}
+  currentHealth: 100
+--- !u!114 &7075801544019833523
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -209,10 +209,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 945398973208176618}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cd7b7133d782b5458008d439e2550ca, type: 3}
+  m_Script: {fileID: 11500000, guid: c6d4de284331694488c0eb5167127a59, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerWeapon
-  currentWeaponName: sword
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDeathHandler
 --- !u!1 &5009771841921816990
 GameObject:
   m_ObjectHideFlags: 0
