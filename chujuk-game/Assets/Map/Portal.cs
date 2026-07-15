@@ -8,7 +8,7 @@ public class Portal : MonoBehaviour
 
     private void Update()
     {
-        if (playerInPortal && Input.GetKeyDown(KeyCode.E))
+        if (playerInPortal && Input.GetKeyDown(KeyCode.F))
         {
             SceneManager.LoadScene(nextSceneName);
         }

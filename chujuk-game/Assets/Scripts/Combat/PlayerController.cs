@@ -3,6 +3,14 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
+    // 애니메이션
+    private Animator animator;
+    // 시작 상태 칼 모드
+    public event Action<bool> OnWeaponChanged;  // 외부에서 무기 변경 이벤트 구독 -> UI에서 사용
+
+    private bool IsGunMode = false;
+    public bool IsUsingGun => IsGunMode; // 외부에서 총 모드 사용 여부 확인 -> UI에서 사용
+
     [Header("Movement")]
     public float moveSpeed = 5f;
     public float jumpForce = 6f;
@@ -24,33 +32,61 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
     private bool jumpRequested;
+    private float h;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         currentSpeed = moveSpeed;
         currentHp = maxHp;
+        animator = GetComponentInChildren<Animator>();
+        animator.SetBool("IsGunMode", IsGunMode);
     }
 
     void Update()
     {
+        h = Input.GetAxisRaw("Horizontal");
+
+        animator.SetFloat("Speed", Mathf.Abs(h));
+
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
+        // 점프
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             jumpRequested = true;
+            animator.SetTrigger("Jump");
         }
 
-        if (Input.GetKeyDown(KeyCode.X) && dashTime <= 0)
+        // 대쉬
+        if (Input.GetKeyDown(KeyCode.Z) && dashTime <= 0)
         {
             dashTime = moveTime;
             currentSpeed = dashSpeed;
         }
+
+        // 공격
+        if (Input.GetMouseButtonDown(0))
+        {
+            animator.SetTrigger("Attack");
+        }
+
+        // 무기 교체
+        if (Input.GetMouseButtonDown(1))
+        {
+            IsGunMode = !IsGunMode;
+            animator.SetBool("IsGunMode", IsGunMode);
+            animator.SetTrigger("Change");
+
+            OnWeaponChanged?.Invoke(IsGunMode); // 외부에 무기 변경 이벤트 전달
+        }
+
+        // 바닥 감지
+        animator.SetBool("IsGrounded", isGrounded);
     }
 
     void FixedUpdate()
     {
-        float h = Input.GetAxis("Horizontal");
         rb.linearVelocity = new Vector2(h * currentSpeed, rb.linearVelocity.y);
 
         if (jumpRequested)
@@ -67,6 +103,12 @@ public class PlayerController : MonoBehaviour
                 currentSpeed = moveSpeed;
             }
         }
+
+        // 캐릭터 방향 전환
+        if (h > 0)
+            transform.localScale = new Vector3(1, 1, 1);
+        else if (h < 0)
+            transform.localScale = new Vector3(-1, 1, 1);
     }
 
     // 체력 및 피격
