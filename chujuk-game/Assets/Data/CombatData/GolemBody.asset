@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6c1a7516d4ba8442b8cc7d8d1d27d97, type: 3}
-  m_Name: PlayerTest
+  m_Name: GolemBody
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
-  maxHealth: 100
-  attackPower: 10
-  defense: 5
-  soulReward: 0
+  maxHealth: 300
+  attackPower: 20
+  defense: 8
+  soulReward: 100
