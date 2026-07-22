@@ -35,6 +35,7 @@ public class GolemSkill_WideSlam : MonoBehaviour
     public Transform leftArmPivot;
     [Tooltip("오른팔 회전축 (어깨 위치)")]
     public Transform rightArmPivot;
+    public Transform groundReference;
 
     private GolemController golemController;
     private ICombatStats myStats;
@@ -88,7 +89,7 @@ public class GolemSkill_WideSlam : MonoBehaviour
 
         for (int hitIndex = 0; hitIndex < hitCount; hitIndex++)
         {
-            Vector2 hitPos = new Vector2(currentX, player.position.y);
+            Vector2 hitPos = new Vector2(currentX, groundReference.position.y);
 
             TelegraphIndicator.Instance.ShowCircle(hitPos, slamRadius, holdDuration);
             yield return new WaitForSeconds(holdDuration);
