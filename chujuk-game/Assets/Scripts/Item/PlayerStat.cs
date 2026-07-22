@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 
-public class PlayerStat : MonoBehaviour
+public class PlayerStat : MonoBehaviour, ICombatStats //연동을 위한 수정
 {
     public static PlayerStat Instance;
 
@@ -129,4 +129,10 @@ public class PlayerStat : MonoBehaviour
             bonusStats[type] = 0;
         }
     }
+
+    public float AttackPower => GetStat(StatType.Attack);
+    public float Defense => GetStat(StatType.Defense);
+    public float AttackMultiplier => 1f;   
+    public float DefenseMultiplier => 1f;
+    // 플레이어 - 적 공격 시스템 연결하기위해 추가 (업데이트)
 }

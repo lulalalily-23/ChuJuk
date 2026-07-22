@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharacterStats : MonoBehaviour
+public class CharacterStats : MonoBehaviour, ICombatStats 
 {
     //Awake에서 CharacterStats를 받아 실시간으로 관리하는 스크립트
     //CharacterData가 원본 수치면 각 프리팹의 데이터를 저장함
@@ -10,6 +10,11 @@ public class CharacterStats : MonoBehaviour
     public int currentDefense;
     public float attackMultiplier = 1f;
     public float defenseMultiplier = 1f;
+
+    public float AttackPower => currentAttackPower;  // int → float 자동 변환
+    public float Defense => currentDefense;
+    public float AttackMultiplier => attackMultiplier;
+    public float DefenseMultiplier => defenseMultiplier;
 
     void Awake()
     {

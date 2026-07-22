@@ -9,9 +9,16 @@ public class EnemyDeath : MonoBehaviour
     {
         hp -= damage;
 
+        Debug.Log("Enemy HP : " + hp);
+
         if (hp <= 0)
         {
-            roomClearManager.EnemyKilled();
+
+            if (roomClearManager != null)
+            {
+                roomClearManager.EnemyKilled();
+            }
+
             Destroy(gameObject);
         }
     }

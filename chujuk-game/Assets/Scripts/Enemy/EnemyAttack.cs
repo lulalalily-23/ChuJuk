@@ -11,7 +11,7 @@ public class EnemyAttack : MonoBehaviour
     public LayerMask targetLayer;
     [Tooltip("공격 쿨타임(초)")]
     public float coolTime;
-    private CharacterStats stats; //공격자 자기 자신의 능력치
+    private ICombatStats stats; //공격자 자기 자신의 능력치
     private float lastAttackTime; //마지막 공격 시점 (쿨타임 계산용)
 
     void OnEnable()
@@ -24,7 +24,7 @@ public class EnemyAttack : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        stats = GetComponent<CharacterStats>();
+        stats = GetComponent<ICombatStats>();
     }
 
     // Update is called once per frame
@@ -34,7 +34,7 @@ public class EnemyAttack : MonoBehaviour
         Collider2D hit = Physics2D.OverlapCircle(transform.position, attackDistance, targetLayer); 
         if (hit == null) return; //공격 범위 내에 대상이 없으면 스킵 처리함
         HealthManager targetHealth = hit.GetComponent<HealthManager>();
-        CharacterStats targetStats = hit.GetComponent<CharacterStats>();
+        ICombatStats targetStats = hit.GetComponent<ICombatStats>();
         if (targetHealth == null) return; // 대상에 HealthManager가 없으면 스킵함 (안전장치)
         targetHealth.TakeDamage(DamageCalculator.CalculateDamage(stats, targetStats));
         lastAttackTime = Time.time;

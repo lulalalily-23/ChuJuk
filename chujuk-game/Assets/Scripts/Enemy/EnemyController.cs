@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
     EnemyChase chaseScript;
     EnemyAttack attackScript;
     EnemyIdle idleScript;
+    private SpriteRenderer sr;
 
     [Tooltip("player Transform값 참조 변수, 현재는 플레이어 오브젝트와 연결 필요 (나중에 연결구조 수정 가능)")]
     public Transform player; 
@@ -22,6 +23,7 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
+        sr = GetComponent<SpriteRenderer>();
         chaseScript = GetComponent<EnemyChase>();
         attackScript = GetComponent<EnemyAttack>();
         idleScript = GetComponent<EnemyIdle>();
@@ -39,7 +41,16 @@ public class EnemyController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   
+    {
+        Vector3 scale = transform.localScale;
+
+        if (player.position.x > transform.position.x)
+            scale.x = Mathf.Abs(scale.x);
+        else
+            scale.x = -Mathf.Abs(scale.x);
+
+        transform.localScale = scale;
+
         float distance = Vector2.Distance(player.position, transform.position); //몬스터와 플레이어간의 거리
         
         if (currentState == EnemyState.Attack)
