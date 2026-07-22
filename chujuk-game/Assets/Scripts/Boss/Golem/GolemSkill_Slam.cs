@@ -29,6 +29,7 @@ public class GolemSkill_Slam : MonoBehaviour
     public Transform leftArmPivot;
     [Tooltip("오른팔 회전축 (어깨 위치)")]
     public Transform rightArmPivot;
+    public Transform groundReference;
 
     private GolemController golemController;
     private ICombatStats myStats;
@@ -73,7 +74,7 @@ public class GolemSkill_Slam : MonoBehaviour
         Quaternion leftSlamRot = leftArmOriginalRot * Quaternion.Euler(0f, 0f, slamAmount * side);
         Quaternion rightSlamRot = rightArmOriginalRot * Quaternion.Euler(0f, 0f, slamAmount * side);
 
-        Vector2 slamPos = player.position;
+        Vector2 slamPos = new Vector2(player.position.x, groundReference.position.y);
 
         // 1단계: 팔을 들어올림
         yield return RotateArms(leftArmOriginalRot, leftRaisedRot, rightArmOriginalRot, rightRaisedRot, raiseDuration);

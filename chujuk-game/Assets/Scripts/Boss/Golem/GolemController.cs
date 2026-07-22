@@ -1,6 +1,6 @@
 using UnityEngine;
 
-//골렘의 체력에따른 페이즈 관리와 한 패턴이 끝날때마다 5%의 데미지를 입도록 함
+//골렘의 체력에따른 페이즈 관리와 한 패턴 세트가 끝날때마다 5%의 데미지를 입도록 함
 public class GolemController : MonoBehaviour
 {
     enum BossPhase {Phase1, Phase2, Phase3};
@@ -38,12 +38,18 @@ public class GolemController : MonoBehaviour
         }
     }
 
+    // 스킬 하나가 끝날 때마다 각 GolemSkill에서 호출됨.
+    // GolemPatternManager에게 다음 패턴 선택 및 세트 완료 여부 판단을 맡김.
     public void OnPatternExecuted()
     {
-        // 패턴(스킬) 하나가 끝날 때마다 호출됨.
-        // 현재체력의 5%씩 자해딜 들어감.
-        int selfDamage = Mathf.RoundToInt(healthManager.currentHealth * 0.05f);
-        healthManager.TakeDamage(selfDamage);
         patternManager.NotifyPatternFinished();
+    }
+
+    // GolemPatternManager가 "스킬 세트를 한 바퀴 다 썼다"고 판단했을 때만 호출.
+    // 최대체력(고정값) 기준 5% 고정 데미지 
+    public void ApplySelfDamage()
+    {
+        int selfDamage = Mathf.RoundToInt(healthManager.data.maxHealth * 0.05f);
+        healthManager.TakeDamage(selfDamage);
     }
 }

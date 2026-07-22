@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7000613022867588483}
   - component: {fileID: 6228067267472494072}
+  - component: {fileID: 6614527732966000687}
   m_Layer: 6
   m_Name: GolemRightFoot
   m_TagString: Untagged
@@ -91,6 +92,98 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!61 &6614527732966000687
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173449392467974235}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!1 &279177999642867466
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4297818752044612030}
+  - component: {fileID: 2716872195301002758}
+  m_Layer: 0
+  m_Name: TelegraphManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4297818752044612030
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279177999642867466}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.6459, y: 3.1897502, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5808551255244389858}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2716872195301002758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279177999642867466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dcb2bced9db32e42abf3b86622b1e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TelegraphIndicator
+  squarePrefab: {fileID: 8191634556824312278, guid: 01634dad4baa1fe4a81dfaea4cb6354f, type: 3}
+  circlePrefab: {fileID: 4195890071009630769, guid: cf2c72a062ffb984382ea37d49fbaf07, type: 3}
 --- !u!1 &2376488887715854251
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,6 +432,7 @@ GameObject:
   - component: {fileID: 5783950907305195765}
   - component: {fileID: 2433835085907058131}
   - component: {fileID: 7794560336870438132}
+  - component: {fileID: 394611293633989919}
   m_Layer: 6
   m_Name: GolemBoss
   m_TagString: Untagged
@@ -359,6 +453,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4297818752044612030}
   - {fileID: 9106625371761563114}
   - {fileID: 6475106140072295608}
   - {fileID: 7374576805413477664}
@@ -441,11 +536,11 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 1.6}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -455,7 +550,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.3, y: 3.8}
   m_EdgeRadius: 0
 --- !u!114 &5396002583017741066
 MonoBehaviour:
@@ -479,6 +574,9 @@ MonoBehaviour:
   player: {fileID: 0}
   leftFoot: {fileID: 2398365571415601825}
   rightFoot: {fileID: 7000613022867588483}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &3544122445490092962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,6 +604,7 @@ MonoBehaviour:
   player: {fileID: 0}
   leftArmPivot: {fileID: 7374576805413477664}
   rightArmPivot: {fileID: 8855816659149952134}
+  groundReference: {fileID: 2398365571415601825}
 --- !u!114 &8271390122388512934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,6 +634,7 @@ MonoBehaviour:
   player: {fileID: 0}
   leftArmPivot: {fileID: 7374576805413477664}
   rightArmPivot: {fileID: 8855816659149952134}
+  groundReference: {fileID: 2398365571415601825}
 --- !u!114 &5783950907305195765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,6 +699,33 @@ MonoBehaviour:
   wideSlam: {fileID: 8271390122388512934}
   roar: {fileID: 5783950907305195765}
   laser: {fileID: 2433835085907058131}
+--- !u!50 &394611293633989919
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5362734951960301543}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &5921297677702300645
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,7 +1046,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -945,6 +1072,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2398365571415601825}
   - component: {fileID: 4783512635714980298}
+  - component: {fileID: 8080371241455111149}
   m_Layer: 6
   m_Name: GolemLeftFoot
   m_TagString: Untagged
@@ -1026,6 +1154,52 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!61 &8080371241455111149
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8556895084121374325}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &9179564050823758393
 GameObject:
   m_ObjectHideFlags: 0
