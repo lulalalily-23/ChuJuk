@@ -20,16 +20,33 @@ public class HealthManager : MonoBehaviour
         OnHealthChanged?.Invoke(currentHealth, data.maxHealth); // 초기 UI 동기화
     }
 
+    //void LateUpdate()
+    //{
+    //    OnHealthChanged?.Invoke(currentHealth, data.maxHealth);
+    //}
+
     // 외부에서 호출하여 데미지를 적용하는 함수.
     // 이미 사망한 상태면 무시. 체력이 0 이하가 되면 OnDeath 이벤트 발행
     public void TakeDamage(int amount)
     {
-        if (isDead) return;
-        currentHealth -= amount;
+        if (isDead || data == null)
+        {
+            return;
+        }
 
-        OnHealthChanged?.Invoke(currentHealth, data.maxHealth); // 데이터 변경 시 알림
+        currentHealth = Mathf.Clamp(
+            currentHealth - amount,
+            0,
+            data.maxHealth
+        );
 
-        Debug.Log($"{gameObject.name} 이(가) {amount} 데미지를 입음. 남은 체력: {currentHealth}/{data.maxHealth}"); //디버그용 로그, 추후 삭제 필요함.
+        Debug.Log($"데미지 적용: {currentHealth}/{data.maxHealth}");
+
+        OnHealthChanged?.Invoke(
+            currentHealth,
+            data.maxHealth
+        );
+
         if (currentHealth <= 0)
         {
             isDead = true;

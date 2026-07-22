@@ -3,31 +3,104 @@ using UnityEngine.UI;
 
 public class HealthUI : MonoBehaviour
 {
-    public HealthManager targetHealth; // 인스펙터에서 플레이어/몬스터의 HealthManager를 연결
-    public Slider hpSlider;
+    [SerializeField] private HealthManager targetHealth;
+    [SerializeField] private Slider hpSlider;
+
+    private void Awake()
+    {
+        if (hpSlider == null)
+        {
+            hpSlider = GetComponent<Slider>();
+        }
+
+        if (targetHealth == null)
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+            if (player != null)
+            {
+                targetHealth = player.GetComponent<HealthManager>();
+            }
+        }
+    }
+
+    private void OnEnable()
+    {
+        if (targetHealth == null)
+        {
+            Debug.LogError(
+                "HealthUI가 Player의 HealthManager를 찾지 못했습니다.",
+                gameObject
+            );
+
+            return;
+        }
+
+        if (hpSlider == null)
+        {
+            Debug.LogError(
+                "HealthUI가 Slider를 찾지 못했습니다.",
+                gameObject
+            );
+
+            return;
+        }
+
+        targetHealth.OnHealthChanged += UpdateHpBar;
+    }
 
     private void Start()
     {
-        if (targetHealth != null)
+        if (targetHealth == null || hpSlider == null)
         {
-            // 이벤트 구독
-            targetHealth.OnHealthChanged += UpdateHpBar;
-            // 초기값 설정
-            UpdateHpBar(targetHealth.currentHealth, targetHealth.data.maxHealth);
+            return;
         }
+
+        if (targetHealth.data == null)
+        {
+            Debug.LogError(
+                "HealthManager에 CharacterData가 연결되지 않았습니다.",
+                targetHealth.gameObject
+            );
+
+            return;
+        }
+
+        hpSlider.minValue = 0f;
+        hpSlider.maxValue = 1f;
+
+        UpdateHpBar(
+            targetHealth.currentHealth,
+            targetHealth.data.maxHealth
+        );
     }
 
     private void UpdateHpBar(int currentHp, int maxHp)
     {
-        if (hpSlider != null)
+        if (hpSlider == null)
         {
-            hpSlider.value = (float)currentHp / maxHp;
+            Debug.LogError("UpdateHpBar: Slider가 없습니다.");
+            return;
         }
+
+        if (maxHp <= 0)
+        {
+            Debug.LogError($"UpdateHpBar: 최대 체력이 잘못됐습니다. maxHp = {maxHp}");
+            return;
+        }
+
+        float hpRatio = (float)currentHp / maxHp;
+
+        hpSlider.value = hpRatio;
+
+        Debug.Log(
+            $"HP Bar 갱신: {currentHp}/{maxHp}, Slider Value: {hpSlider.value}",
+            gameObject
+        );
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
-        // 구독 해제
         if (targetHealth != null)
         {
             targetHealth.OnHealthChanged -= UpdateHpBar;
