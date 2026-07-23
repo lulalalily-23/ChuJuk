@@ -11,17 +11,13 @@ public class PlayerController : MonoBehaviour
 
     private bool IsGunMode = false;
     public bool IsUsingGun => IsGunMode; // 외부에서 총 모드 사용 여부 확인 -> UI에서 사용
+    private HealthManager healthManager; // HealthManager 참조
 
     [Header("Movement")]
     public float moveSpeed = 5f;
     public float jumpForce = 6f;
     public float dashSpeed = 15f;
     public float moveTime = 0.5f;
-
-    [Header("Health")]
-    public int maxHp = 100;
-    public int currentHp;
-    public event Action<int, int> OnHealthChanged;
 
     [Header("Ground Check")]
     public Transform groundCheck;
@@ -39,10 +35,12 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         currentSpeed = moveSpeed;
-        currentHp = maxHp;
 
         animator = GetComponentInChildren<Animator>();
         animator.SetBool("IsGunMode", IsGunMode);
+
+        healthManager = GetComponent<HealthManager>();
+        healthManager.OnDeath += Die;
     }
 
     void Update()
@@ -131,28 +129,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // 체력 및 피격
-    public void TakeDamage(int damage, Vector2 knockbackDirection)
-    {
-        currentHp -= damage;
-        currentHp = Mathf.Clamp(currentHp, 0, maxHp);
-
-        OnHealthChanged?.Invoke(currentHp, maxHp);
-
-        // 피격 시 밀려남
-        rb.linearVelocity = Vector2.zero;
-        rb.AddForce(knockbackDirection, ForceMode2D.Impulse);
-
-        if (currentHp <= 0)
-        {
-            Die();
-        }
-    }
-
     private void Die()
     {
         // 사망 처리
         gameObject.SetActive(false);
         Debug.Log("플레이어 사망");
+    }
+
+    void OnDestroy()
+    {
+        if (healthManager != null)
+            healthManager.OnDeath -= Die;
     }
 }

@@ -104,11 +104,18 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            // 플레이어의 HealthManager 가져오기
+            HealthManager health = collision.gameObject.GetComponent<HealthManager>();
+
+
+            // 테스트용 몬스터 충돌 데미지 10
+            if (health != null)
+            {
+                health.TakeDamage(10);
+            }
+
             // 플레이어 쪽으로 튕겨나가게 방향 설정
             Vector2 dir = (collision.transform.position - transform.position).normalized * 5f;
-
-            // 플레이어의 TakeDamage 호출
-            collision.gameObject.GetComponent<PlayerController>().TakeDamage(10, dir);
         }
     }
 }
