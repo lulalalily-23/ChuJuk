@@ -2,24 +2,30 @@ using UnityEngine;
 
 public class EnemyDeath : MonoBehaviour
 {
-    public int hp = 30;
     public RoomClearManager roomClearManager;
+    private HealthManager healthManager;
 
-    public void TakeDamage(int damage)
+    void Awake()
     {
-        hp -= damage;
+        healthManager = GetComponent<HealthManager>();
+        healthManager.OnDeath += Die;
+    }
 
-        Debug.Log("Enemy HP : " + hp);
-
-        if (hp <= 0)
+    private void Die()
+    {
+        if (roomClearManager != null)
         {
+            roomClearManager.EnemyKilled();
+        }
 
-            if (roomClearManager != null)
-            {
-                roomClearManager.EnemyKilled();
-            }
+        Destroy(gameObject);
+    }
 
-            Destroy(gameObject);
+    void OnDestroy()
+    {
+        if (healthManager != null)
+        {
+            healthManager.OnDeath -= Die;
         }
     }
 }

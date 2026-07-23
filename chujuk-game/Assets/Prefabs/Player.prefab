@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 4264945420691732802}
   - component: {fileID: 9092113457886577951}
   - component: {fileID: 7075801544019833523}
-  m_Layer: 6
+  - component: {fileID: -3319070350019745742}
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -179,8 +180,6 @@ MonoBehaviour:
   jumpForce: 13
   dashSpeed: 15
   moveTime: 0.5
-  maxHp: 100
-  currentHp: 0
   groundCheck: {fileID: 5355368809597796912}
   groundCheckRadius: 0.2
   groundLayer:
@@ -212,6 +211,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6d4de284331694488c0eb5167127a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDeathHandler
+--- !u!114 &-3319070350019745742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945398973208176618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6d4de284331694488c0eb5167127a59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDeathHandler
 --- !u!1 &5009771841921816990
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +235,7 @@ GameObject:
   - component: {fileID: 1977032556115751864}
   - component: {fileID: 7343660230658650596}
   - component: {fileID: 2467259497980294204}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -360,7 +371,7 @@ GameObject:
   - component: {fileID: 5654051367412193061}
   - component: {fileID: 8913484712208215435}
   - component: {fileID: 5279664244116457434}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -472,7 +483,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5355368809597796912}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: GroundCheck
   m_TagString: Player
   m_Icon: {fileID: 0}
