@@ -10,5 +10,8 @@ public enum ItemTag
     Pursuit, //추격
     Treasure, //보화
     Relic, // 유믈
-    Swiftness //신속
+    Swiftness, // 신속
+    HeadHunter, // 헤드 헌터
+    Explosion, // 폭발
+
 }
