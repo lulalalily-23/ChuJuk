@@ -11,9 +11,7 @@ public enum StatType
 
     GoldGain,        // 골드 획득량
 
-    DamageIncrease   // 전체 피해 증가
-
-    // 치명타 추가는 논의 사항 / 전체 데미지에 곱연산?
-    // CriticalChance,  // 치명타 확률
-    // CriticalDamage,  // 치명타 피해
+    DamageIncrease,   // 전체 피해 증가
+    CriticalChance,  // 치명타 확률
+    CriticalDamage // 치명타 피해
 }

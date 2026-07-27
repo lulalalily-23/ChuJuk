@@ -15,6 +15,8 @@ public class CharacterStats : MonoBehaviour, ICombatStats
     public float Defense => currentDefense;
     public float AttackMultiplier => attackMultiplier;
     public float DefenseMultiplier => defenseMultiplier;
+    public float CriticalChance => 0f;     
+    public float CriticalDamage => 1f;      
 
     void Awake()
     {

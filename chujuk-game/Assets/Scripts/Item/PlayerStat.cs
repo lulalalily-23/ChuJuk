@@ -13,6 +13,8 @@ public class PlayerStat : MonoBehaviour, ICombatStats //연동을 위한 수정
     public float baseMaxHP = 100f;
     public float baseAttackSpeed = 1f;
     public float baseMoveSpeed = 5f;
+    public float baseCriticalChance = 0.1f;
+    public float baseCriticalDamage = 1.5f;
 
 
     // 아이템 및 버프로 추가되는 능력치
@@ -78,6 +80,15 @@ public class PlayerStat : MonoBehaviour, ICombatStats //연동을 위한 수정
             case StatType.MoveSpeed:
                 baseValue = baseMoveSpeed;
                 break;
+
+            case StatType.CriticalChance:
+                baseValue = baseCriticalChance;
+                break;
+
+
+            case StatType.CriticalDamage:
+                baseValue = baseCriticalDamage;
+                break;
         }
 
 
@@ -134,5 +145,7 @@ public class PlayerStat : MonoBehaviour, ICombatStats //연동을 위한 수정
     public float Defense => GetStat(StatType.Defense);
     public float AttackMultiplier => 1f;   
     public float DefenseMultiplier => 1f;
+    public float CriticalChance => GetStat(StatType.CriticalChance);
+    public float CriticalDamage => GetStat(StatType.CriticalDamage);
     // 플레이어 - 적 공격 시스템 연결하기위해 추가 (업데이트)
 }
