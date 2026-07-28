@@ -72,7 +72,14 @@ public class PlayerController : MonoBehaviour
         // ����
         h = Input.GetAxisRaw("Horizontal");
 
-        animator.SetFloat("Speed", Mathf.Abs(h));
+        if (isGrounded)
+        {
+            animator.SetFloat("Speed", Mathf.Abs(h));
+        }
+        else
+        {
+            animator.SetFloat("Speed", 0f);
+        }
 
         isGrounded = Physics2D.OverlapCircle(
             groundCheck.position,

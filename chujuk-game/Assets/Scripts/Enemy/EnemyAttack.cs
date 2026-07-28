@@ -13,6 +13,7 @@ public class EnemyAttack : MonoBehaviour
     public float coolTime;
     private ICombatStats stats; //공격자 자기 자신의 능력치
     private float lastAttackTime; //마지막 공격 시점 (쿨타임 계산용)
+    private Animator animator;
 
     void OnEnable()
     {
@@ -25,14 +26,21 @@ public class EnemyAttack : MonoBehaviour
     void Start()
     {
         stats = GetComponent<ICombatStats>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {   
         if (Time.time - lastAttackTime < coolTime) return; // 쿨타임 경과되지 않을 시 스킵 처리 구문.
-        Collider2D hit = Physics2D.OverlapCircle(transform.position, attackDistance, targetLayer); 
-        if (hit == null) return; //공격 범위 내에 대상이 없으면 스킵 처리함
+
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, attackDistance, targetLayer);
+
+        if (hit == null) {
+            Debug.Log("공격 대상 없음");
+            return; //공격 범위 내에 대상이 없으면 스킵 처리함
+        }
+        animator.SetTrigger("Attack");
         HealthManager targetHealth = hit.GetComponent<HealthManager>();
         ICombatStats targetStats = hit.GetComponent<ICombatStats>();
         if (targetHealth == null) return; // 대상에 HealthManager가 없으면 스킵함 (안전장치)
