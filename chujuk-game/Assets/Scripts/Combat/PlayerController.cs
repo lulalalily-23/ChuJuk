@@ -3,11 +3,22 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
+    // 애니메이션
+    private Animator animator;
+    // 시작 상태 칼 모드
+    public event Action<bool> OnWeaponChanged;  // 외부에서 무기 변경 이벤트 구독 -> UI에서 사용
+
+    private bool IsGunMode = false;
+    public bool IsUsingGun => IsGunMode; // 외부에서 총 모드 사용 여부 확인 -> UI에서 사용
+
     [Header("Movement")]
     public float moveSpeed = 5f;
-    public float jumpForce = 6f;
+    public float jumpForce = 4f; // 점프 높이 세팅
     public float dashSpeed = 15f;
-    public float moveTime = 0.5f;
+    public float moveTime = 0.2f; // 대쉬 지속 시간
+
+    [Header("Jump Physics")]
+    public float fallMultiplier = 2.5f; // 떨어질 때 가속도
 
     [Header("Health")]
     public int maxHp = 100;
@@ -20,57 +31,110 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
 
     private float dashTime;
-    private float currentSpeed;
     private Rigidbody2D rb;
     private bool isGrounded;
     private bool jumpRequested;
+    private float h;
+
+    private bool isDashing;
+    private float originalGravity;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        currentSpeed = moveSpeed;
+        originalGravity = rb.gravityScale; // 시작할 때 원래 중력값 장부에 기록
         currentHp = maxHp;
+        animator = GetComponentInChildren<Animator>();
+        animator.SetBool("IsGunMode", IsGunMode);
     }
 
     void Update()
     {
+        // 대쉬 중일 때는 방향키 등 다른 행동 무시
+        if (isDashing) return;
+
+        h = Input.GetAxisRaw("Horizontal");
+        animator.SetFloat("Speed", Mathf.Abs(h));
+
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
+        // 점프
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             jumpRequested = true;
+            animator.SetTrigger("Jump");
         }
 
-        if (Input.GetKeyDown(KeyCode.X) && dashTime <= 0)
+        // 대쉬 (Z키 누르면 발동)
+        if (Input.GetKeyDown(KeyCode.Z) && !isDashing)
         {
+            isDashing = true;
             dashTime = moveTime;
-            currentSpeed = dashSpeed;
+            rb.gravityScale = 0f; // 대쉬 시작 시 중력 해제
         }
+
+        // 공격
+        if (Input.GetMouseButtonDown(0))
+        {
+            animator.SetTrigger("Attack");
+        }
+
+        // 무기 교체
+        if (Input.GetMouseButtonDown(1))
+        {
+            IsGunMode = !IsGunMode;
+            animator.SetBool("IsGunMode", IsGunMode);
+            animator.SetTrigger("Change");
+
+            OnWeaponChanged?.Invoke(IsGunMode);
+        }
+
+        // 바닥 감지
+        animator.SetBool("IsGrounded", isGrounded);
     }
 
     void FixedUpdate()
     {
-        float h = Input.GetAxis("Horizontal");
-        rb.linearVelocity = new Vector2(h * currentSpeed, rb.linearVelocity.y);
+        // 대쉬 상태일 때의 물리 처리
+        if (isDashing)
+        {
+            dashTime -= Time.fixedDeltaTime;
 
+            // 바라보는 방향으로 중력 없이 직진
+            rb.linearVelocity = new Vector2(transform.localScale.x * dashSpeed, 0f);
+
+            if (dashTime <= 0)
+            {
+                isDashing = false;
+                rb.gravityScale = originalGravity; // 대쉬 끝나면 중력 복구
+            }
+            return;
+        }
+
+        // 일반 이동
+        rb.linearVelocity = new Vector2(h * moveSpeed, rb.linearVelocity.y);
+
+        // 일정 높이 점프
         if (jumpRequested)
         {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             jumpRequested = false;
         }
 
-        if (dashTime > 0)
+        // 떨어질 때 중력 가속도 추가
+        if (rb.linearVelocity.y < 0)
         {
-            dashTime -= Time.fixedDeltaTime;
-            if (dashTime <= 0)
-            {
-                currentSpeed = moveSpeed;
-            }
+            rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
         }
+
+        // 캐릭터 방향 전환
+        if (h > 0)
+            transform.localScale = new Vector3(1, 1, 1);
+        else if (h < 0)
+            transform.localScale = new Vector3(-1, 1, 1);
     }
 
     // 체력 및 피격
-
     public void TakeDamage(int damage, Vector2 knockbackDirection)
     {
         currentHp -= damage;
@@ -79,8 +143,11 @@ public class PlayerController : MonoBehaviour
         OnHealthChanged?.Invoke(currentHp, maxHp);
 
         // 피격 시 밀려남
-        rb.linearVelocity = Vector2.zero;
-        rb.AddForce(knockbackDirection, ForceMode2D.Impulse);
+        if (!isDashing)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.AddForce(knockbackDirection, ForceMode2D.Impulse);
+        }
 
         if (currentHp <= 0)
         {
