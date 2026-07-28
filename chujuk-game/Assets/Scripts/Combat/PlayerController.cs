@@ -3,27 +3,31 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
-    // ¾Ö´Ï¸ŞÀÌ¼Ç
+    // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½
     private Animator animator;
-    // ½ÃÀÛ »óÅÂ Ä® ¸ğµå
-    public event Action<bool> OnWeaponChanged;  // ¿ÜºÎ¿¡¼­ ¹«±â º¯°æ ÀÌº¥Æ® ±¸µ¶ -> UI¿¡¼­ »ç¿ë
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä® ï¿½ï¿½ï¿½
+    public event Action<bool> OnWeaponChanged;  // ï¿½ÜºÎ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½ -> UIï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
     private bool IsGunMode = false;
-    public bool IsUsingGun => IsGunMode; // ¿ÜºÎ¿¡¼­ ÃÑ ¸ğµå »ç¿ë ¿©ºÎ È®ÀÎ -> UI¿¡¼­ »ç¿ë
+    public bool IsUsingGun => IsGunMode; // ï¿½ÜºÎ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ -> UIï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+    // ì• ë‹ˆë©”ì´ì…˜
+    private Animator animator;
+
+    // ì‹œì‘ ìƒíƒœ ì¹¼ ëª¨ë“œ
+    public event Action<bool> OnWeaponChanged; // ì™¸ë¶€ì—ì„œ ë¬´ê¸° ë³€ê²½ ì´ë²¤íŠ¸ êµ¬ë… -> UIì—ì„œ ì‚¬ìš©
+
+    private bool IsGunMode = false;
+    public bool IsUsingGun => IsGunMode; // ì™¸ë¶€ì—ì„œ ì´ ëª¨ë“œ ì‚¬ìš© ì—¬ë¶€ í™•ì¸ -> UIì—ì„œ ì‚¬ìš©
+    private HealthManager healthManager; // HealthManager ì°¸ì¡°
 
     [Header("Movement")]
     public float moveSpeed = 5f;
-    public float jumpForce = 4f; // Á¡ÇÁ ³ôÀÌ ¼¼ÆÃ
+    public float jumpForce = 4f; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public float dashSpeed = 15f;
-    public float moveTime = 0.2f; // ´ë½¬ Áö¼Ó ½Ã°£
+    public float moveTime = 0.2f; // ï¿½ë½¬ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
 
     [Header("Jump Physics")]
-    public float fallMultiplier = 2.5f; // ¶³¾îÁú ¶§ °¡¼Óµµ
-
-    [Header("Health")]
-    public int maxHp = 100;
-    public int currentHp;
-    public event Action<int, int> OnHealthChanged;
+    public float fallMultiplier = 2.5f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Óµï¿½
 
     [Header("Ground Check")]
     public Transform groundCheck;
@@ -42,15 +46,22 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        originalGravity = rb.gravityScale; // ½ÃÀÛÇÒ ¶§ ¿ø·¡ Áß·Â°ª ÀåºÎ¿¡ ±â·Ï
+        originalGravity = rb.gravityScale; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß·Â°ï¿½ ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½
         currentHp = maxHp;
         animator = GetComponentInChildren<Animator>();
         animator.SetBool("IsGunMode", IsGunMode);
+        currentSpeed = moveSpeed;
+
+        animator = GetComponentInChildren<Animator>();
+        animator.SetBool("IsGunMode", IsGunMode);
+
+        healthManager = GetComponent<HealthManager>();
+        healthManager.OnDeath += Die;
     }
 
     void Update()
     {
-        // ´ë½¬ ÁßÀÏ ¶§´Â ¹æÇâÅ° µî ´Ù¸¥ Çàµ¿ ¹«½Ã
+        // ï¿½ë½¬ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å° ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½àµ¿ ï¿½ï¿½ï¿½ï¿½
         if (isDashing) return;
 
         h = Input.GetAxisRaw("Horizontal");
@@ -58,28 +69,41 @@ public class PlayerController : MonoBehaviour
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        // Á¡ÇÁ
+        // ï¿½ï¿½ï¿½ï¿½
+        h = Input.GetAxisRaw("Horizontal");
+
+        animator.SetFloat("Speed", Mathf.Abs(h));
+
+        isGrounded = Physics2D.OverlapCircle(
+            groundCheck.position,
+            groundCheckRadius,
+            groundLayer
+        );
+
+        // ì í”„
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             jumpRequested = true;
             animator.SetTrigger("Jump");
         }
 
-        // ´ë½¬ (ZÅ° ´©¸£¸é ¹ßµ¿)
+        // ï¿½ë½¬ (ZÅ° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ßµï¿½)
         if (Input.GetKeyDown(KeyCode.Z) && !isDashing)
+        // ëŒ€ì‰¬
+        if (Input.GetKeyDown(KeyCode.Z) && dashTime <= 0)
         {
             isDashing = true;
             dashTime = moveTime;
-            rb.gravityScale = 0f; // ´ë½¬ ½ÃÀÛ ½Ã Áß·Â ÇØÁ¦
+            rb.gravityScale = 0f; // ï¿½ë½¬ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ß·ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
 
-        // °ø°İ
+        // ï¿½ï¿½ï¿½ï¿½
         if (Input.GetMouseButtonDown(0))
         {
             animator.SetTrigger("Attack");
         }
 
-        // ¹«±â ±³Ã¼
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼
         if (Input.GetMouseButtonDown(1))
         {
             IsGunMode = !IsGunMode;
@@ -89,52 +113,80 @@ public class PlayerController : MonoBehaviour
             OnWeaponChanged?.Invoke(IsGunMode);
         }
 
-        // ¹Ù´Ú °¨Áö
+        // ï¿½Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // ê³µê²©
+        if (Input.GetMouseButtonDown(0))
+        {
+            animator.SetTrigger("Attack");
+        }
+
+        // ë¬´ê¸° êµì²´
+        if (Input.GetMouseButtonDown(1))
+        {
+            IsGunMode = !IsGunMode;
+
+            animator.SetBool("IsGunMode", IsGunMode);
+            animator.SetTrigger("Change");
+
+            // ì™¸ë¶€(UI)ì— ë¬´ê¸° ë³€ê²½ ì´ë²¤íŠ¸ ì „ë‹¬
+            OnWeaponChanged?.Invoke(IsGunMode);
+        }
+
+        // ë°”ë‹¥ ê°ì§€
         animator.SetBool("IsGrounded", isGrounded);
     }
 
     void FixedUpdate()
     {
-        // ´ë½¬ »óÅÂÀÏ ¶§ÀÇ ¹°¸® Ã³¸®
+        // ï¿½ë½¬ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
         if (isDashing)
         {
             dashTime -= Time.fixedDeltaTime;
+        rb.linearVelocity = new Vector2(
+            h * currentSpeed,
+            rb.linearVelocity.y
+        );
 
-            // ¹Ù¶óº¸´Â ¹æÇâÀ¸·Î Áß·Â ¾øÀÌ Á÷Áø
+            // ï¿½Ù¶óº¸´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             rb.linearVelocity = new Vector2(transform.localScale.x * dashSpeed, 0f);
 
             if (dashTime <= 0)
             {
                 isDashing = false;
-                rb.gravityScale = originalGravity; // ´ë½¬ ³¡³ª¸é Áß·Â º¹±¸
+                rb.gravityScale = originalGravity; // ï¿½ë½¬ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß·ï¿½ ï¿½ï¿½ï¿½ï¿½
             }
             return;
         }
 
-        // ÀÏ¹İ ÀÌµ¿
+        // ï¿½Ï¹ï¿½ ï¿½Ìµï¿½
         rb.linearVelocity = new Vector2(h * moveSpeed, rb.linearVelocity.y);
 
-        // ÀÏÁ¤ ³ôÀÌ Á¡ÇÁ
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (jumpRequested)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            rb.AddForce(
+                Vector2.up * jumpForce,
+                ForceMode2D.Impulse
+            );
+
             jumpRequested = false;
         }
 
-        // ¶³¾îÁú ¶§ Áß·Â °¡¼Óµµ Ãß°¡
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ß·ï¿½ ï¿½ï¿½ï¿½Óµï¿½ ï¿½ß°ï¿½
         if (rb.linearVelocity.y < 0)
         {
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
         }
 
-        // Ä³¸¯ÅÍ ¹æÇâ ÀüÈ¯
+        // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
         if (h > 0)
             transform.localScale = new Vector3(1, 1, 1);
         else if (h < 0)
             transform.localScale = new Vector3(-1, 1, 1);
     }
 
-    // Ã¼·Â ¹× ÇÇ°İ
+    // Ã¼ï¿½ï¿½ ï¿½ï¿½ ï¿½Ç°ï¿½
     public void TakeDamage(int damage, Vector2 knockbackDirection)
     {
         currentHp -= damage;
@@ -142,7 +194,7 @@ public class PlayerController : MonoBehaviour
 
         OnHealthChanged?.Invoke(currentHp, maxHp);
 
-        // ÇÇ°İ ½Ã ¹Ğ·Á³²
+        // ï¿½Ç°ï¿½ ï¿½ï¿½ ï¿½Ğ·ï¿½ï¿½ï¿½
         if (!isDashing)
         {
             rb.linearVelocity = Vector2.zero;
@@ -150,15 +202,35 @@ public class PlayerController : MonoBehaviour
         }
 
         if (currentHp <= 0)
+            dashTime -= Time.fixedDeltaTime;
+
+            if (dashTime <= 0)
+            {
+                currentSpeed = moveSpeed;
+            }
+        }
+
+        // ìºë¦­í„° ë°©í–¥ ì „í™˜
+        if (h > 0)
         {
-            Die();
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if (h < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
         }
     }
 
     private void Die()
     {
-        // »ç¸Á Ã³¸®
+        // ì‚¬ë§ ì²˜ë¦¬
         gameObject.SetActive(false);
-        Debug.Log("ÇÃ·¹ÀÌ¾î »ç¸Á");
+        Debug.Log("í”Œë ˆì´ì–´ ì‚¬ë§");
+    }
+
+    void OnDestroy()
+    {
+        if (healthManager != null)
+            healthManager.OnDeath -= Die;
     }
 }
