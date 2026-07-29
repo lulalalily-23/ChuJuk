@@ -433,6 +433,7 @@ GameObject:
   - component: {fileID: 2433835085907058131}
   - component: {fileID: 7794560336870438132}
   - component: {fileID: 394611293633989919}
+  - component: {fileID: 2422005578647310745}
   m_Layer: 6
   m_Name: GolemBoss
   m_TagString: Untagged
@@ -475,6 +476,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossController
   patternManager: {fileID: 7794560336870438132}
+  summonPrefab: {fileID: 5791662706446649829, guid: 576e12fb616513f479c781968f83889b, type: 3}
+  summonWarningDuration: 1.5
 --- !u!114 &2477614671673784937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,13 +573,13 @@ MonoBehaviour:
   coolTime: 6
   targetLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 256
   player: {fileID: 0}
   leftFoot: {fileID: 2398365571415601825}
   rightFoot: {fileID: 7000613022867588483}
   wallLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!114 &3544122445490092962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -600,7 +603,7 @@ MonoBehaviour:
   maxRange: 4
   targetLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 256
   player: {fileID: 0}
   leftArmPivot: {fileID: 7374576805413477664}
   rightArmPivot: {fileID: 8855816659149952134}
@@ -630,7 +633,7 @@ MonoBehaviour:
   maxRange: 8
   targetLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 256
   player: {fileID: 0}
   leftArmPivot: {fileID: 7374576805413477664}
   rightArmPivot: {fileID: 8855816659149952134}
@@ -653,7 +656,7 @@ MonoBehaviour:
   coolTime: 12
   targetLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 256
   headPosition: {fileID: 9106625371761563114}
 --- !u!114 &2433835085907058131
 MonoBehaviour:
@@ -677,7 +680,7 @@ MonoBehaviour:
   warningDuration: 0.5
   targetLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 256
   eyePosition: {fileID: 9106625371761563114}
   eyeSpacing: 0.5
 --- !u!114 &7794560336870438132
@@ -726,6 +729,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &2422005578647310745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5362734951960301543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03994d7344a201a48bc074167c45498b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GolemDeathHandler
 --- !u!1 &5921297677702300645
 GameObject:
   m_ObjectHideFlags: 0

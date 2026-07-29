@@ -46,13 +46,12 @@ public class ItemInstance
         if (!CanUse())
             return;
 
+        float cooldownReduction = PlayerStat.Instance.GetStat(StatType.ActiveCoolDown);
+        float reducedCooldown = data.cooldown * (1f - cooldownReduction);
 
-        currentCooldown = data.cooldown;
+        // 쿨타임이 음수로 내려가지 않도록 최소값 보장 
+        currentCooldown = Mathf.Max(reducedCooldown, 0f);
 
-
-        Debug.Log($"{data.itemName} 사용");
-
-        // 액티브 효과 구현 예정
     }
 
 

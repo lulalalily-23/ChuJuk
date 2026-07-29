@@ -3,12 +3,18 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     [Header("Attack")]
-    public int damage = 20;
     public float attackRange = 1f;
     public LayerMask enemyLayer;
 
     [Header("Attack Point")]
     public Transform attackPoint;
+
+    private ICombatStats myStats;
+
+    void Start()
+    {
+        myStats = GetComponent<ICombatStats>();
+    }
 
     void Update()
     {
@@ -27,14 +33,15 @@ public class PlayerAttack : MonoBehaviour
 
         foreach (Collider2D enemy in enemies)
         {
-
             HealthManager health = enemy.GetComponent<HealthManager>();
+            ICombatStats targetStats = enemy.GetComponent<ICombatStats>();
 
-            if (health != null)
+            if (health != null && targetStats != null)
             {
-                health.TakeDamage(damage);
+                int finalDamage = DamageCalculator.CalculateDamage(myStats, targetStats);
+                Debug.Log($"[전투] Player → {enemy.gameObject.name} | 공격력:{myStats.AttackPower} 방어력:{targetStats.Defense} → 최종 데미지: {finalDamage}");
+                health.TakeDamage(finalDamage);
             }
-
         }
     }
 

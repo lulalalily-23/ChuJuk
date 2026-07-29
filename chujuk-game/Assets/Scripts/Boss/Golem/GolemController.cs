@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 //골렘의 체력에따른 페이즈 관리와 한 패턴 세트가 끝날때마다 5%의 데미지를 입도록 함
 public class GolemController : MonoBehaviour
@@ -17,6 +18,12 @@ public class GolemController : MonoBehaviour
 
     public HealthManager MainHealth => healthManager;
     public GolemPatternManager patternManager;
+    [Header("소환수")]
+    public GameObject summonPrefab;
+    [Tooltip("소환 위치 예고 표시 시간")]
+    public float summonWarningDuration = 1.5f;
+
+    private bool hasSummoned = false;
 
     void Start()
     {
@@ -32,6 +39,10 @@ public class GolemController : MonoBehaviour
         }
         else if (healthPercent <= Phase2Threshold) {
             currentPhase = BossPhase.Phase2;
+            if (!hasSummoned) {
+                hasSummoned = true;   
+                StartCoroutine(SummonRoutine());
+            }
         }
         else {
             currentPhase = BossPhase.Phase1;
@@ -51,5 +62,15 @@ public class GolemController : MonoBehaviour
     {
         int selfDamage = Mathf.RoundToInt(healthManager.data.maxHealth * 0.05f);
         healthManager.TakeDamage(selfDamage);
+    }
+
+    IEnumerator SummonRoutine() //소환수를 소환하는 루틴
+    {
+        Vector2 summonPos = transform.position;   // 골렘 근처 (본체 위치 그대로 사용)
+
+        TelegraphIndicator.Instance.ShowSquare(summonPos, new Vector2(1.5f, 1.5f), summonWarningDuration); //소환수가 소환될 위치를 텔레그래프로 경고
+        yield return new WaitForSeconds(summonWarningDuration);
+
+        Instantiate(summonPrefab, summonPos, Quaternion.identity);
     }
 }

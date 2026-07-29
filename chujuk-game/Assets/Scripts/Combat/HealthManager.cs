@@ -40,8 +40,6 @@ public class HealthManager : MonoBehaviour
             data.maxHealth
         );
 
-        Debug.Log($"데미지 적용: {currentHealth}/{data.maxHealth}");
-
         OnHealthChanged?.Invoke(
             currentHealth,
             data.maxHealth

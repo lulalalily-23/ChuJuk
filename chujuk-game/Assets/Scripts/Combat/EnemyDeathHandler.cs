@@ -13,7 +13,11 @@ public class EnemyDeathHandler : MonoBehaviour
 
     void HandleEnemyDeath()
     {
-        GameManager.Instance.AddSoul(healthManager.data.soulReward); //적의 지급재화량만큼 재화 지급
-        Destroy(gameObject); //Destroy로 삭제됨
+        int baseSoul = healthManager.data.soulReward;
+        float goldGain = PlayerStat.Instance.GetStat(StatType.GoldGain);
+        int finalSoul = Mathf.RoundToInt(baseSoul * (1f + goldGain));
+
+        GameManager.Instance.AddSoul(finalSoul); //적의 지급재화량에 GoldGain 보너스 반영해서 지급
+        Destroy(gameObject);
     }
 }
