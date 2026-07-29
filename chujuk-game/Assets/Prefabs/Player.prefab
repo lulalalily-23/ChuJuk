@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 4264945420691732802}
   - component: {fileID: 9092113457886577951}
   - component: {fileID: 7075801544019833523}
-  - component: {fileID: 8170527636363572325}
-  - component: {fileID: 5391642403279039056}
+  - component: {fileID: -3319070350019745742}
+  - component: {fileID: -2389585221016839939}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -224,15 +224,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8370abfeceb0d634a9b44d32901fb886, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerStat
-  baseAttack: 10
-  baseDefense: 5
-  baseMaxHP: 100
-  baseAttackSpeed: 1
-  baseMoveSpeed: 5
-  baseCriticalChance: 0.1
-  baseCriticalDamage: 1.5
---- !u!114 &5391642403279039056
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDeathHandler
+--- !u!114 &-2389585221016839939
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -241,14 +234,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 945398973208176618}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79d34364b3f65ca40820805321d6d655, type: 3}
+  m_Script: {fileID: 11500000, guid: 61f3f16e5ad3e5d4b8cf8ac8819bba7a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
-  attackRange: 1
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  attackPoint: {fileID: 8555109857360754247}
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterStats
+  data: {fileID: 11400000, guid: f210a5d938ed2124ab7d3f8c52ca8bd5, type: 2}
+  currentAttackPower: 0
+  currentDefense: 0
+  attackMultiplier: 1
+  defenseMultiplier: 1
 --- !u!1 &5009771841921816990
 GameObject:
   m_ObjectHideFlags: 0

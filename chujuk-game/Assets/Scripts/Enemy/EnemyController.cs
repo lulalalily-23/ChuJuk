@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     EnemyAttack attackScript;
     EnemyIdle idleScript;
     private SpriteRenderer sr;
+    private Animator animator;
 
     [Tooltip("player Transform값 참조 변수, 현재는 플레이어 오브젝트와 연결 필요 (나중에 연결구조 수정 가능)")]
     public Transform player; 
@@ -23,6 +24,7 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         chaseScript = GetComponent<EnemyChase>();
         attackScript = GetComponent<EnemyAttack>();
@@ -37,20 +39,13 @@ public class EnemyController : MonoBehaviour
         idleScript.enabled = true;
 
         currentState = EnemyState.Idle;
+        newState = EnemyState.Idle;
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 scale = transform.localScale;
-
-        if (player.position.x > transform.position.x)
-            scale.x = Mathf.Abs(scale.x);
-        else
-            scale.x = -Mathf.Abs(scale.x);
-
-        transform.localScale = scale;
-
         float distance = Vector2.Distance(player.position, transform.position); //몬스터와 플레이어간의 거리
         
         if (currentState == EnemyState.Attack)
@@ -87,13 +82,17 @@ public class EnemyController : MonoBehaviour
             switch(newState){ //현재상태에 따라 각각의 script를 활성화.
                 case EnemyState.Idle:
                     idleScript.enabled = true;
-                break;
+                    animator.SetFloat("Speed", 0);
+                    break;
                 case EnemyState.Chase:
                     chaseScript.enabled = true;
-                break;
+                    animator.SetFloat("Speed", 1);
+                    break;
                 case EnemyState.Attack:
                     attackScript.enabled = true;
-                break;
+                    chaseScript.enabled = false;
+                    animator.SetFloat("Speed", 0);
+                    break;
             }
         }
 
