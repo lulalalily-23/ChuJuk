@@ -8,4 +8,5 @@ public interface ICombatStats
     float DefenseMultiplier { get; }
     float CriticalChance { get; }
     float CriticalDamage { get; }
+    float DamageIncrease { get; }
 }

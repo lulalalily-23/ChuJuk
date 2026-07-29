@@ -6,8 +6,8 @@ public static class DamageCalculator
     public static int CalculateDamage(ICombatStats attacker, ICombatStats defender, float skillMultiplier = 1f)
     //세번째 인자는 기본값 1로 설정(일반적으로는 앞 두인자만 채워도 작동). 나중에 스킬등으로 공격계수를 추가해야할 일을 위해 임시적으로 만듦.
     {
-        float rawDamage = attacker.AttackPower * attacker.AttackMultiplier * skillMultiplier - defender.Defense * defender.DefenseMultiplier;
-        //데미지 공식: {공격자의 현재 공격력 * 공격자의 공격 계수 * 스킬의 공격 계수(추후를 위해 임시구현, 기본값은 1로 설정)} - (방어자의 현재방어력 * 방어자의 방어 계수)
+        float rawDamage = attacker.AttackPower * attacker.AttackMultiplier * skillMultiplier * (1f + attacker.DamageIncrease) - defender.Defense * defender.DefenseMultiplier;
+        //데미지 공식: 공격력 × 공격배율 × 스킬배율 × (1 + DamageIncrease) − 방어력 × 방어배율
         int baseDamage;
         if (rawDamage <= 0) {
             baseDamage = 1;
@@ -24,10 +24,8 @@ public static class DamageCalculator
         if (Random.value < attacker.CriticalChance)
         {
             int critDamage = Mathf.RoundToInt(baseDamage * attacker.CriticalDamage);
-            Debug.Log($"크리티컬 발동! 기본 데미지 {baseDamage} → {critDamage}");
             return critDamage;
         }
-        Debug.Log($"일반 공격, 데미지: {baseDamage}");
         return baseDamage;
     }
 

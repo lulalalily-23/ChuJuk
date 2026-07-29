@@ -39,6 +39,7 @@ public class PlayerAttack : MonoBehaviour
             if (health != null && targetStats != null)
             {
                 int finalDamage = DamageCalculator.CalculateDamage(myStats, targetStats);
+                Debug.Log($"[전투] Player → {enemy.gameObject.name} | 공격력:{myStats.AttackPower} 방어력:{targetStats.Defense} → 최종 데미지: {finalDamage}");
                 health.TakeDamage(finalDamage);
             }
         }

@@ -121,6 +121,7 @@ public class GolemSkill_Laser : MonoBehaviour
         HealthManager targetHealth = hit.GetComponentInParent<HealthManager>();
         if (targetHealth == null) return;
         int damage = DamageCalculator.CalculateDamage(myStats, targetStats);
+        Debug.Log($"[전투] {gameObject.name} → {hit.gameObject.name} | 공격력:{myStats.AttackPower} 방어력:{targetStats.Defense} → 최종 데미지: {damage}");
         targetHealth.TakeDamage(damage);
     }
 }

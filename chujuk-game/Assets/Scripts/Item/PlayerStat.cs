@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 
-public class PlayerStat : MonoBehaviour, ICombatStats //연동을 위한 수정
+public class PlayerStat : MonoBehaviour, ICombatStats
 {
     public static PlayerStat Instance;
 
@@ -17,8 +17,8 @@ public class PlayerStat : MonoBehaviour, ICombatStats //연동을 위한 수정
     public float baseCriticalDamage = 1.5f;
 
 
-    // 아이템 및 버프로 추가되는 능력치
-    private Dictionary<StatType, float> bonusStats = new Dictionary<StatType, float>();
+    private Dictionary<StatType, float> flatBonusStats = new Dictionary<StatType, float>();
+    private Dictionary<StatType, float> percentBonusStats = new Dictionary<StatType, float>();
 
 
 
@@ -38,18 +38,17 @@ public class PlayerStat : MonoBehaviour, ICombatStats //연동을 위한 수정
 
 
 
-    // 초기화
     private void InitializeStats()
     {
         foreach (StatType type in System.Enum.GetValues(typeof(StatType)))
         {
-            bonusStats[type] = 0f;
+            flatBonusStats[type] = 0f;
+            percentBonusStats[type] = 0f;
         }
     }
 
 
 
-    // 최종 능력치 반환
     public float GetStat(StatType type)
     {
         float baseValue = 0;
@@ -61,21 +60,17 @@ public class PlayerStat : MonoBehaviour, ICombatStats //연동을 위한 수정
                 baseValue = baseAttack;
                 break;
 
-
             case StatType.Defense:
                 baseValue = baseDefense;
                 break;
-
 
             case StatType.MaxHP:
                 baseValue = baseMaxHP;
                 break;
 
-
             case StatType.AttackSpeed:
                 baseValue = baseAttackSpeed;
                 break;
-
 
             case StatType.MoveSpeed:
                 baseValue = baseMoveSpeed;
@@ -85,59 +80,77 @@ public class PlayerStat : MonoBehaviour, ICombatStats //연동을 위한 수정
                 baseValue = baseCriticalChance;
                 break;
 
-
             case StatType.CriticalDamage:
                 baseValue = baseCriticalDamage;
                 break;
         }
 
 
-        return baseValue + bonusStats[type];
+        float flat = flatBonusStats.ContainsKey(type) ? flatBonusStats[type] : 0f;
+        float percent = percentBonusStats.ContainsKey(type) ? percentBonusStats[type] : 0f;
+
+        if (type == StatType.DamageIncrease || type == StatType.GoldGain || type == StatType.ActiveCoolDown)
+        {
+            return flat + percent;   
+        }
+
+        return (baseValue + flat) * (1f + percent);
     }
 
 
 
-    // 아이템 능력치 추가
     public void AddStat(StatModifier modifier)
     {
-        if (!bonusStats.ContainsKey(modifier.statType))
+        if (modifier.modifierType == ModifierType.Flat)
         {
-            bonusStats.Add(modifier.statType, 0);
+            if (!flatBonusStats.ContainsKey(modifier.statType))
+                flatBonusStats.Add(modifier.statType, 0f);
+
+            flatBonusStats[modifier.statType] += modifier.value;
+        }
+        else
+        {
+            if (!percentBonusStats.ContainsKey(modifier.statType))
+                percentBonusStats.Add(modifier.statType, 0f);
+
+            percentBonusStats[modifier.statType] += modifier.value;
         }
 
 
-        bonusStats[modifier.statType] += modifier.value;
-
-
-        Debug.Log(
-            $"{modifier.statType} 증가 : {modifier.value}"
-        );
-
-        Debug.Log(
-            $"현재 공격력 : {GetStat(StatType.Attack)}"
-        );
+        Debug.Log($"[아이템 적용] {modifier.statType} {modifier.modifierType} +{modifier.value} → 현재 {modifier.statType}: {GetStat(modifier.statType)}");
     }
 
 
 
-    // 아이템 제거
     public void RemoveStat(StatModifier modifier)
     {
-        if (!bonusStats.ContainsKey(modifier.statType))
-            return;
+        if (modifier.modifierType == ModifierType.Flat)
+        {
+            if (!flatBonusStats.ContainsKey(modifier.statType))
+                return;
 
+            flatBonusStats[modifier.statType] -= modifier.value;
+        }
+        else
+        {
+            if (!percentBonusStats.ContainsKey(modifier.statType))
+                return;
 
-        bonusStats[modifier.statType] -= modifier.value;
+            percentBonusStats[modifier.statType] -= modifier.value;
+        }
     }
 
 
 
-    // 현재 모든 능력치 초기화
     public void ResetStats()
     {
-        foreach (StatType type in bonusStats.Keys)
+        foreach (StatType type in new List<StatType>(flatBonusStats.Keys))
         {
-            bonusStats[type] = 0;
+            flatBonusStats[type] = 0;
+        }
+        foreach (StatType type in new List<StatType>(percentBonusStats.Keys))
+        {
+            percentBonusStats[type] = 0;
         }
     }
 
@@ -147,5 +160,5 @@ public class PlayerStat : MonoBehaviour, ICombatStats //연동을 위한 수정
     public float DefenseMultiplier => 1f;
     public float CriticalChance => GetStat(StatType.CriticalChance);
     public float CriticalDamage => GetStat(StatType.CriticalDamage);
-    // 플레이어 - 적 공격 시스템 연결하기위해 추가 (업데이트)
+    public float DamageIncrease => GetStat(StatType.DamageIncrease); 
 }

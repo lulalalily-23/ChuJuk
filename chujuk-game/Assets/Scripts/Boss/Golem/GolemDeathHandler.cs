@@ -14,6 +14,13 @@ public class GolemDeathHandler : MonoBehaviour
 
     void HandleGolemDeath()
     {
+        // 골렘 처치 재화 지급 (GoldGain 보너스 반영)
+        int baseSoul = healthManager.data.soulReward;
+        float goldGain = PlayerStat.Instance.GetStat(StatType.GoldGain);
+        int finalSoul = Mathf.RoundToInt(baseSoul * (1f + goldGain));
+
+        GameManager.Instance.AddSoul(finalSoul);
+
         patternManager.enabled = false;   // 더 이상 패턴 선택 안 함
         GetComponent<GolemController>().enabled = false;   // 페이즈 계산도 정지
 

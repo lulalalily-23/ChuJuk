@@ -112,6 +112,7 @@ public class GolemSkill_Charge : MonoBehaviour
 
         int damage = DamageCalculator.CalculateDamage(myStats, targetStats);
         targetHealth.TakeDamage(damage);
+        Debug.Log($"[전투] {gameObject.name} → {hit.gameObject.name} | 공격력:{myStats.AttackPower} 방어력:{targetStats.Defense} → 최종 데미지: {damage}");
         return true;
     }
 
