@@ -7,20 +7,36 @@ public class EnemyChase : MonoBehaviour
     [Tooltip("가속도값(moveSpeed값을 목표로 가속함)")]
     public float acceleration; 
     private Transform player;
-    private float currentSpeed = 0f; // 가속 메커니즘 위해 저장하는 현재속도 변수값
+    private Rigidbody2D rb;
+    private float currentSpeed = 0f;
+    private SpriteRenderer sr;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         EnemyController controller = GetComponent<EnemyController>();
         player = controller.player;
+        rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()   
     {
-        Vector2 direction = (player.position - transform.position).normalized; //방향벡터를 정규화식으로 표현
-        currentSpeed = Mathf.Lerp(currentSpeed, moveSpeed, Time.deltaTime * acceleration); //Lerp로 부드럽게 속도 변환
-        transform.Translate(direction * currentSpeed * Time.deltaTime); //플레이어를 향해 몬스터 이동.
+        float distanceX = player.position.x - transform.position.x;
+
+        // 흔들림 수정
+        if (Mathf.Abs(distanceX) < 0.3f)
+        {
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            currentSpeed = 0f;
+            return;
+        }
+        Vector2 direction = new Vector2(player.position.x - transform.position.x, 0f).normalized;
+        if (direction.x != 0)
+        {
+            sr.flipX = direction.x < 0;
+        }
+        currentSpeed = Mathf.Lerp(currentSpeed, moveSpeed, Time.fixedDeltaTime * acceleration);
+
+        rb.linearVelocity = new Vector2(direction.x * currentSpeed, rb.linearVelocity.y);
     }
 }

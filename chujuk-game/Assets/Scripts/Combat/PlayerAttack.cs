@@ -28,12 +28,13 @@ public class PlayerAttack : MonoBehaviour
         foreach (Collider2D enemy in enemies)
         {
 
-            EnemyDeath enemyDeath = enemy.GetComponent<EnemyDeath>();
+            HealthManager health = enemy.GetComponent<HealthManager>();
 
-            if (enemyDeath != null)
+            if (health != null)
             {
-                enemyDeath.TakeDamage(damage);
+                health.TakeDamage(damage);
             }
+
         }
     }
 
