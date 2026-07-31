@@ -7,6 +7,8 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory Instance;
 
+    public bool HasSpace =>
+    items.Count < maxSlots;
 
     [Header("인벤토리 설정")]
     public int maxSlots = 8;
@@ -80,25 +82,24 @@ public class Inventory : MonoBehaviour
 
 
     // 아이템 제거
-    public void RemoveItem(int index)
+    //
+    public bool RemoveItem(int index, out ItemInstance removedItem)
     {
+        removedItem = null;
+
         if (index < 0 || index >= items.Count)
-            return;
+            return false;
 
+        removedItem = items[index];
 
-        ItemInstance item = items[index];
-
-
-        RemoveItemStats(item.data);
-
+        RemoveItemStats(removedItem.data);
 
         items.RemoveAt(index);
 
-
         UpdateSet();
-
-
         OnInventoryChanged?.Invoke();
+
+        return true;
     }
 
 
@@ -181,8 +182,14 @@ public class Inventory : MonoBehaviour
     // 게임 재시작용
     public void ClearInventory()
     {
+        foreach (ItemInstance item in items)
+        {
+            RemoveItemStats(item.data);
+        }
+
         items.Clear();
 
+        UpdateSet();
         OnInventoryChanged?.Invoke();
     }
 }
