@@ -30,4 +30,13 @@ public class ItemData : ScriptableObject
 
     [Header("액티브 설정")]
     public float cooldown;
+    
+    //임의 판매&구매 가격 설정용
+    [Header("판매 가격")]
+    [Min(0)]
+    public int sellPrice = 10;
+
+    [Header("구매 가격")]
+    [Min(0)]
+    public int buyPrice = 30;
 }
