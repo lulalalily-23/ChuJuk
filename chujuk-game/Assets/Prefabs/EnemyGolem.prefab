@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 1469617019082456175}
   - component: {fileID: 5231531825027457863}
   - component: {fileID: 2321256095883015731}
-  - component: {fileID: 8845441033213982277}
   - component: {fileID: 4346579631681891890}
   - component: {fileID: 2767446994963937526}
   - component: {fileID: 3479698584422719016}
@@ -39,7 +38,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 41.2, y: 11.1, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -236,7 +235,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_AngularDamping: 0
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -247,22 +246,8 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &8845441033213982277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1370241414693371764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5ad8bb8575fe3d45b378df899968776, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAutoDie
-  lifeTime: 300
-  roomClearManager: {fileID: 0}
 --- !u!114 &4346579631681891890
 MonoBehaviour:
   m_ObjectHideFlags: 0

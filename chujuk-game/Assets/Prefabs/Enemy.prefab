@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 3106465836935628530}
   - component: {fileID: 4917655797101336999}
   - component: {fileID: 5303030372718063889}
-  - component: {fileID: 4817614713781629523}
   - component: {fileID: 5088955586758045599}
   - component: {fileID: 2766418138500690408}
   - component: {fileID: 3617792196335918737}
@@ -249,20 +248,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &4817614713781629523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6493346545652316017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5ad8bb8575fe3d45b378df899968776, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAutoDie
-  lifeTime: 10
-  roomClearManager: {fileID: 0}
 --- !u!114 &5088955586758045599
 MonoBehaviour:
   m_ObjectHideFlags: 0
