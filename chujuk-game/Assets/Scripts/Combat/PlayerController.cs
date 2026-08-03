@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 4f; // 점프 높이 세팅
     public float dashSpeed = 15f;
     public float moveTime = 0.2f; // 대쉬 지속 시간
+    public float dashCooldown = 1.5f;
 
     [Header("Jump Physics")]
     public float fallMultiplier = 2.5f; // 떨어질 때 가속도
@@ -38,6 +39,16 @@ public class PlayerController : MonoBehaviour
 
     private bool isDashing;
     private float originalGravity;
+    private float nextDashTime = 0f;
+
+    [Header("Combat")]
+    public GameObject bulletPrefab;
+
+    [Header("Camera")]
+    public Camera mainCam;
+
+    [Header("Inventory")]
+    public int currentMoney = 0;
 
     void Start()
     {
@@ -46,6 +57,7 @@ public class PlayerController : MonoBehaviour
         currentHp = maxHp;
         animator = GetComponentInChildren<Animator>();
         animator.SetBool("IsGunMode", IsGunMode);
+        mainCam = FindAnyObjectByType<Camera>();
     }
 
     void Update()
@@ -74,17 +86,36 @@ public class PlayerController : MonoBehaviour
         }
 
         // 대쉬 (Z키 누르면 발동)
-        if (Input.GetKeyDown(KeyCode.Z) && !isDashing)
+        if (Input.GetKeyDown(KeyCode.Z) && !isDashing && Time.time >= nextDashTime)
         {
             isDashing = true;
             dashTime = moveTime;
-            rb.gravityScale = 0f; // 대쉬 시작 시 중력 해제
+            rb.gravityScale = 0f;
+
+            nextDashTime = Time.time + dashCooldown;
         }
 
         // 공격
         if (Input.GetMouseButtonDown(0))
         {
             animator.SetTrigger("Attack");
+
+            Vector3 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+            mousePos.z = 0f;
+
+            if (mousePos.x > transform.position.x)
+                transform.localScale = new Vector3(1, 1, 1);
+            else if (mousePos.x < transform.position.x)
+                transform.localScale = new Vector3(-1, 1, 1);
+
+            if (IsGunMode)
+            {
+                Vector2 shootDirection = (mousePos - transform.position).normalized;
+
+                GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+
+                bullet.GetComponent<Bullet>().Setup(shootDirection);
+            }
         }
 
         // 무기 교체
@@ -168,5 +199,12 @@ public class PlayerController : MonoBehaviour
         // 사망 처리
         gameObject.SetActive(false);
         Debug.Log("플레이어 사망");
+    }
+
+    public void AddMoney(int amount)
+    {
+        currentMoney += amount;
+        Debug.Log($"재화 획득! +{amount} (현재 잔액: {currentMoney})");
+        // UI 텍스트 업데이트 하는 코드
     }
 }
