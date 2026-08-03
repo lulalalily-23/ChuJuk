@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Item_CowBoyHat
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: "\uCE74\uC6B0\uBCF4\uC774 \uBAA8\uC790"
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: dfdcdc561aa8dd445a933f1862a3f570, type: 3}
   description: "\uCE58\uBA85\uD0C0 \uB85C\uC9C1 \uCD94\uAC00 \uD6C4 \uBCC0\uACBD
     \uC608\uC815"
   grade: 1
@@ -24,3 +24,5 @@ MonoBehaviour:
     modifierType: 1
     value: 0.2
   cooldown: 0
+  sellPrice: 10
+  buyPrice: 30

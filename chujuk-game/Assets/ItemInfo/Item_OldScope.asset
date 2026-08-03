@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Item_OldScope
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: "\uC624\uB798\uB41C \uC870\uC900\uACBD"
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 1c41b6654666ef44c9c880971bb699db, type: 3}
   description: 
   grade: 0
   effectType: 1
@@ -23,3 +23,5 @@ MonoBehaviour:
     modifierType: 1
     value: 0.1
   cooldown: 0
+  sellPrice: 10
+  buyPrice: 30

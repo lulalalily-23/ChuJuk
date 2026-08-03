@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Item_WolfFang
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: "\uB291\uB300 \uC1A1\uACF3\uB2C8"
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 163b15a76c72eeb48a487f954c606dfa, type: 3}
   description: 
   grade: 1
   effectType: 1
@@ -26,3 +26,5 @@ MonoBehaviour:
     modifierType: 1
     value: 0.05
   cooldown: 0
+  sellPrice: 10
+  buyPrice: 30

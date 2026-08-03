@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Item_OldVest
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: "\uB0A1\uC740 \uC870\uB07C"
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 70fda71828b577641b5e60895d4df6d4, type: 3}
   description: 
   grade: 0
   effectType: 1
@@ -23,3 +23,5 @@ MonoBehaviour:
     modifierType: 1
     value: 0.05
   cooldown: 0
+  sellPrice: 10
+  buyPrice: 30
