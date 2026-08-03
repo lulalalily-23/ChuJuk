@@ -50,6 +50,7 @@ public class GolemSkill_Laser : MonoBehaviour
     {
         if (isExecuting) return;
         StartCoroutine(LaserRoutine());
+        golemController.PlayLaser();
     }
 
     IEnumerator LaserRoutine()

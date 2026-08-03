@@ -22,12 +22,16 @@ public class GolemController : MonoBehaviour
     public GameObject summonPrefab;
     [Tooltip("소환 위치 예고 표시 시간")]
     public float summonWarningDuration = 1.5f;
-
+    private Animator animator;
     private bool hasSummoned = false;
+    public Transform player;
+    private SpriteRenderer sr;
 
     void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         healthManager = GetComponent<HealthManager>();
+        sr = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -46,6 +50,16 @@ public class GolemController : MonoBehaviour
         }
         else {
             currentPhase = BossPhase.Phase1;
+        }
+
+        float distance = Vector2.Distance(player.position, transform.position);
+        if (player.position.x < transform.position.x)
+        {
+            sr.flipX = false;  // 플레이어가 왼쪽에 있음
+        }
+        else
+        {
+            sr.flipX = true; // 플레이어가 오른쪽에 있음
         }
     }
 
@@ -72,5 +86,35 @@ public class GolemController : MonoBehaviour
         yield return new WaitForSeconds(summonWarningDuration);
 
         Instantiate(summonPrefab, summonPos, Quaternion.identity);
+    }
+
+    public void PlayDash()
+    {
+        animator.SetTrigger("Dash");
+    }
+
+    public void PlayAttack()
+    {
+        animator.SetTrigger("Attack");
+    }
+
+    public void PlayLaser()
+    {
+        animator.SetTrigger("Laser");
+    }
+
+    public void PlayWideAttack()
+    {
+        animator.SetTrigger("WideAttack");
+    }
+
+    public void PlayBrokenArm()
+    {
+        animator.SetTrigger("BrokenArm");
+    }
+
+    public void PlayDie()
+    {
+        animator.SetTrigger("Die");
     }
 }

@@ -59,6 +59,7 @@ public class GolemSkill_Slam : MonoBehaviour
     {
         if (isExecuting) return;
         StartCoroutine(SlamRoutine());
+        golemController.PlayAttack();
     }
 
     IEnumerator SlamRoutine()

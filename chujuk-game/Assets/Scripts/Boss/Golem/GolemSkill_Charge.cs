@@ -55,6 +55,7 @@ public class GolemSkill_Charge : MonoBehaviour
     {
         if (isCharging) return;
         StartCoroutine(ChargeRoutine());
+        golemController.PlayDash();
     }
     
     IEnumerator ChargeRoutine()
