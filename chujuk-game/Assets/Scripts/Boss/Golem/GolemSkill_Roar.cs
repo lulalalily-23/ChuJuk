@@ -39,6 +39,7 @@ public class GolemSkill_Roar : MonoBehaviour
     {
         if (isExecuting) return;
         StartCoroutine(RoarRoutine());
+        golemController.PlayAttack();
     }
 
     IEnumerator RoarRoutine()
