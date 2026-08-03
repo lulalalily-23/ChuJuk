@@ -26,5 +26,6 @@ public class GolemArm : MonoBehaviour
 
     void HandleArmDestroyed() {
         gameObject.SetActive(false);
+        golemController.PlayBrokenArm();
     }
 }

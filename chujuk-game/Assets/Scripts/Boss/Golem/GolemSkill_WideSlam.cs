@@ -65,6 +65,7 @@ public class GolemSkill_WideSlam : MonoBehaviour
     {
         if (isExecuting) return;
         StartCoroutine(WideSlamRoutine());
+        golemController.PlayWideAttack();
     }
 
     IEnumerator WideSlamRoutine()
