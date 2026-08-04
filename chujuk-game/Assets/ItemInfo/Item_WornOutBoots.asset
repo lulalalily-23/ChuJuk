@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Item_WornOutBoots
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: "\uD5E4\uC9C4 \uC7A5\uD654"
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: e1ac8528bfeb41743aad8f5e0f75f1ce, type: 3}
   description: 
   grade: 0
   effectType: 1
@@ -23,3 +23,5 @@ MonoBehaviour:
     modifierType: 1
     value: 0.1
   cooldown: 0
+  sellPrice: 10
+  buyPrice: 30

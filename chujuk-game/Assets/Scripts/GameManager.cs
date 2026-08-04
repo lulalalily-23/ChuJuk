@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        ClearEvents();
+        // ClearEvents();
         OnSoulChanged?.Invoke(Soul);
     }
 

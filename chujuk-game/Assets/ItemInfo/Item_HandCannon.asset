@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Item_HandCannon
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: "\uD578\uB4DC \uCE90\uB17C"
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 8178f67c607405244a5591a913b157a4, type: 3}
   description: 
   grade: 1
   effectType: 1
@@ -26,3 +26,5 @@ MonoBehaviour:
     modifierType: 1
     value: 0.2
   cooldown: 0
+  sellPrice: 10
+  buyPrice: 30
