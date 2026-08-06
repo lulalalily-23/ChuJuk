@@ -21,8 +21,7 @@ GameObject:
   - component: {fileID: 6932684870254996148}
   - component: {fileID: 4798895228384337269}
   - component: {fileID: 1445702212627312956}
-  - component: {fileID: 6819799182970664119}
-  - component: {fileID: 3303262647089017638}
+  - component: {fileID: 7918170499818033730}
   m_Layer: 6
   m_Name: EnemyKnight
   m_TagString: Enemy
@@ -116,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79fb833bc07454d4e8159e3b998bf9c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  player: {fileID: 0}
+  player: {fileID: 6453520504836745643, guid: 3e7e6ab126ae1df469b12948978c2f92, type: 3}
   detectRange: 10
   attackRange: 5
 --- !u!114 &568420070225555491
@@ -276,6 +275,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfef3a6a662aa5a4c89c9a1a592c5997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDeathHandler
+  moneyPrefab: {fileID: 6080307449855402543, guid: 1725f021d13b21641ab43997d9c839f0, type: 3}
+  dropAmount: 10
 --- !u!95 &4798895228384337269
 Animator:
   serializedVersion: 7
@@ -315,7 +316,7 @@ MonoBehaviour:
   currentDefense: 1
   attackMultiplier: 1
   defenseMultiplier: 1
---- !u!114 &6819799182970664119
+--- !u!114 &7918170499818033730
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -324,19 +325,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6319344806776485832}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 976ed36a2a7789644bfa7611b01cd89e, type: 3}
+  m_Script: {fileID: 11500000, guid: a8a9d57c335c6104f91c34e342aa7b06, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyIdentity
-  enemyId: 
---- !u!114 &3303262647089017638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6319344806776485832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7210ae133c24b5642b511305285b7770, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyDeathReporter
+  m_EditorClassIdentifier: Assembly-CSharp::DropItem
+  amount: 10
+  magnetRadius: 3
+  moveSpeed: 10

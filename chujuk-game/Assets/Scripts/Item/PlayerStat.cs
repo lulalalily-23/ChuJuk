@@ -36,6 +36,17 @@ public class PlayerStat : MonoBehaviour, ICombatStats
         InitializeStats();
     }
 
+    // 테스트용 로그
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log($"공격력 : {GetStat(StatType.Attack)}");
+            Debug.Log($"방어력 : {GetStat(StatType.Defense)}");
+            Debug.Log($"최대 체력 : {GetStat(StatType.MaxHP)}");
+            Debug.Log($"공격 속도 : {GetStat(StatType.AttackSpeed)}");
+        }
+    }
 
 
     private void InitializeStats()
