@@ -1,8 +1,6 @@
 using UnityEngine;
 
-// HealthManager를 쓰는 일반 적에 EnemyIdentity와 함께 붙이는 컴포넌트.
-// 스폰(Awake) 시점에 "이미 죽은 것으로 기록되어 있는지" 확인해서 즉시 비활성화하고,
-// 살아있다면 OnDeath 이벤트를 구독해뒀다가 죽는 순간 레지스트리에 등록한다.
+// HealthManager를 쓰는 일반 적이 죽었었는지 여부를 전달하는 스크립트
 [RequireComponent(typeof(HealthManager))]
 public class EnemyDeathReporter : MonoBehaviour
 {
@@ -16,7 +14,6 @@ public class EnemyDeathReporter : MonoBehaviour
 
         if (identity == null || string.IsNullOrEmpty(identity.enemyId))
         {
-            Debug.LogWarning($"[EnemyDeathReporter] {gameObject.name}에 EnemyIdentity가 없거나 enemyId가 비어있습니다. 저장/불러오기에서 제외됩니다.");
             return;
         }
 

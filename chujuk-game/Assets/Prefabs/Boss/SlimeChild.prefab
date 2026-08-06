@@ -225,7 +225,7 @@ MonoBehaviour:
   enrageHealPercent: 0.1
   phase2Threshold: 0.8
   splitThreshold: 0.5
-  player: {fileID: 3540554552297187925, guid: d13496053fed4b5458d86aa1e2b83541, type: 3}
+  player: {fileID: 6453520504836745643, guid: 3e7e6ab126ae1df469b12948978c2f92, type: 3}
   patternManager: {fileID: 7710883533393268416}
 --- !u!114 &7710883533393268416
 MonoBehaviour:
@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdfd797d78549a846b058a888ed74840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlimeSkill_FallAttack
-  player: {fileID: 3540554552297187925, guid: d13496053fed4b5458d86aa1e2b83541, type: 3}
+  player: {fileID: 6453520504836745643, guid: 3e7e6ab126ae1df469b12948978c2f92, type: 3}
   offScreenHeight: 15
   riseSpeed: 20
   waitBeforeFall: 3
@@ -272,6 +272,7 @@ MonoBehaviour:
   summonPrefab: {fileID: 5791662706446649829, guid: b6ce013bf44a79445a67342092724752, type: 3}
   groundSurfaceOffset: 0
   coolTime: 8
+  quickSummonCoolTime: 4
 --- !u!114 &9145489718806440418
 MonoBehaviour:
   m_ObjectHideFlags: 0

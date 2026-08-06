@@ -1,8 +1,6 @@
 using UnityEngine;
 
-// 발사 시점 목표 위치로 직선 이동하는 투사체. 유도 기능 없음 - 플레이어가 피할 수 있음.
-// 프리팹에 Collider2D(Is Trigger 체크) + Rigidbody2D(Body Type: Kinematic)가 있어야 함.
-// (정적인 벽 콜라이더와의 트리거 판정을 받으려면 둘 중 하나는 Rigidbody2D가 필요함)
+// 발사 시점 목표 위치로 직선 이동하는 투사체. 유도 기능 없음.
 public class SlimeProjectile : MonoBehaviour
 {
     public float lifeTime = 5f;

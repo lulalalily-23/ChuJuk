@@ -35,7 +35,6 @@ public class SaveManager : MonoBehaviour
 
         if (player == null)
         {
-            Debug.LogWarning("[SaveManager] PlayerController를 찾을 수 없어 저장을 취소합니다.");
             return;
         }
 
@@ -45,7 +44,7 @@ public class SaveManager : MonoBehaviour
         data.soul = GameManager.Instance != null ? GameManager.Instance.Soul : 0;
 
         data.currentHp = player.currentHp;
-        data.maxHp = player.maxHp;
+        data.maxHp = player.MaxHp;
         data.posX = player.transform.position.x;
         data.posY = player.transform.position.y;
         data.posZ = player.transform.position.z;
@@ -67,16 +66,14 @@ public class SaveManager : MonoBehaviour
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(SavePath, json);
 
-        Debug.Log($"[SaveManager] 저장 완료: {SavePath}");
+        Debug.Log($"SaveManager 저장 완료: {SavePath}");
     }
-
-    // ===================== 불러오기 =====================
 
     public void LoadGame()
     {
         if (!HasSaveFile())
         {
-            Debug.LogWarning("[SaveManager] 세이브 파일이 없습니다.");
+            Debug.LogWarning("세이브 파일이 없음");
             return;
         }
 
@@ -88,13 +85,9 @@ public class SaveManager : MonoBehaviour
 
     private IEnumerator LoadRoutine(SaveData data)
     {
-        // 씬을 다시 불러오기 전에 죽은 적 목록부터 레지스트리에 반영해야
-        // 새로 스폰되는 적들이 자기 Awake 시점에 "나 이미 죽었었나?"를 정확히 판단할 수 있다.
         if (EnemyDeathRegistry.Instance != null)
             EnemyDeathRegistry.Instance.LoadDeadIds(data.deadEnemyIds);
 
-        // 같은 씬이어도 항상 다시 로드한다 - 죽인 적, 상호작용한 오브젝트 등
-        // 씬 자체의 상태를 저장 시점으로 되돌리려면 리로드가 필요하기 때문.
         if (!string.IsNullOrEmpty(data.sceneName))
         {
             AsyncOperation op = SceneManager.LoadSceneAsync(data.sceneName);
@@ -102,7 +95,6 @@ public class SaveManager : MonoBehaviour
                 yield return null;
         }
 
-        // 씬 내 오브젝트들의 Awake/Start가 끝나도록 한 프레임 대기
         yield return null;
 
         ApplyData(data);
@@ -126,7 +118,7 @@ public class SaveManager : MonoBehaviour
                 if (itemData != null)
                     Inventory.Instance.AddItem(itemData);
                 else
-                    Debug.LogWarning($"[SaveManager] '{itemName}' 아이템을 찾지 못해 복원하지 못했습니다.");
+                    Debug.LogWarning($"[SaveManager] '{itemName}' 아이템을 찾지 못해 복원 실패");
             }
         }
 
@@ -134,12 +126,11 @@ public class SaveManager : MonoBehaviour
 
         if (player != null)
         {
-            // Die()로 비활성화된 상태였을 수 있으니 복원 시 다시 활성화
             if (!player.gameObject.activeSelf)
                 player.gameObject.SetActive(true);
 
             player.transform.position = new Vector3(data.posX, data.posY, data.posZ);
-            player.LoadHealth(data.currentHp, data.maxHp);
+            player.LoadHealth(data.currentHp);
         }
 
         Debug.Log("[SaveManager] 불러오기 완료");
@@ -147,13 +138,10 @@ public class SaveManager : MonoBehaviour
 
     private PlayerController FindPlayer()
     {
-        // 씬에 플레이어가 한 명뿐이라는 전제. 추후 구조가 바뀌면 태그/직접 참조로 교체 필요
-        // includeInactive: 사망 처리(Die())로 SetActive(false)된 상태에서도 찾을 수 있어야
-        // 죽은 직후에 로드하는 시나리오가 정상 동작함
         return FindFirstObjectByType<PlayerController>(FindObjectsInactive.Include);
     }
 
-    // 세이브 파일 삭제 (예: "새 게임 시작" 버튼용)
+    // 세이브 파일 삭제
     public void DeleteSaveFile()
     {
         if (HasSaveFile())

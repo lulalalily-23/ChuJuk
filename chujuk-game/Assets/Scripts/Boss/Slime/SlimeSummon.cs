@@ -1,9 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-// 슬라임 낙하공격 시 소환되는 장애물형 소환수.
-// GolemSummon과 동일한 좌우 왕복 + 접촉 데미지 로직이지만,
-// HealthManager를 붙여서 플레이어 공격으로 처치 가능하게 만듦.
+// 슬라임 낙하공격 시 소환되는 장애물형 소환수 - 골렘 소환수 기반이지만 체력 존재
 [RequireComponent(typeof(HealthManager))]
 public class SlimeSummon : MonoBehaviour
 {
@@ -11,11 +9,9 @@ public class SlimeSummon : MonoBehaviour
     public float moveSpeed = 3f;
     [Tooltip("벽에 부딪힌 후 대기하는 시간")]
     public float waitDuration = 1f;
-    [Tooltip("플레이어와 부딪혔을 때 주는 데미지")]
+    [Tooltip("데미지")]
     public int touchDamage = 10;
-    [Tooltip("벽으로 인식할 레이어")]
     public LayerMask wallLayer;
-    [Tooltip("플레이어로 인식할 레이어")]
     public LayerMask playerLayer;
 
     private Rigidbody2D rb;

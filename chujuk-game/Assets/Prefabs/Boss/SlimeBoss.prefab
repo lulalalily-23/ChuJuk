@@ -264,7 +264,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
-  player: {fileID: 3540554552297187925, guid: d13496053fed4b5458d86aa1e2b83541, type: 3}
+  player: {fileID: 6453520504836745643, guid: 3e7e6ab126ae1df469b12948978c2f92, type: 3}
   leftFoot: {fileID: 6578383696999310690}
   rightFoot: {fileID: 6578383696999310690}
   telegraphYOffset: 2
@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlimeSkill_Missile
   missilePrefab: {fileID: 1802482672571801675, guid: 8e83280099f1e0f4eb908f74f236f507, type: 3}
-  player: {fileID: 3540554552297187925, guid: d13496053fed4b5458d86aa1e2b83541, type: 3}
+  player: {fileID: 6453520504836745643, guid: 3e7e6ab126ae1df469b12948978c2f92, type: 3}
   firePoint: {fileID: 0}
   missileSpeed: 6
   coolTime: 4

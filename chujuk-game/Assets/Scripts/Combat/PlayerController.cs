@@ -66,38 +66,21 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        // 세이브 로드 테스트용 임시 코드 - 확인 끝나면 지우기
-
+        // 세이브 로드 테스트용 임시 코드
         if (Input.GetKeyDown(KeyCode.F5))
-
         {
-
-            Debug.Log("F5 눌림");
-
             if (SaveManager.Instance == null)
-
-                Debug.LogError("SaveManager.Instance가 null입니다");
-
+                Debug.LogError("SaveManager.Instance가 null");
             else
-
                 SaveManager.Instance.SaveGame();
-
         }
 
         if (Input.GetKeyDown(KeyCode.F9))
-
         {
-
-            Debug.Log("F9 눌림");
-
             if (SaveManager.Instance == null)
-
-                Debug.LogError("SaveManager.Instance가 null입니다");
-
+                Debug.LogError("SaveManager.Instance가 null");
             else
-
                 SaveManager.Instance.LoadGame();
-
         }
         // 여기까지
 
@@ -139,6 +122,9 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger("Attack");
 
+             if (mainCam == null)   
+            mainCam = FindAnyObjectByType<Camera>();
+            if (mainCam == null) return;
             Vector3 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0f;
 
@@ -253,10 +239,9 @@ public class PlayerController : MonoBehaviour
     }
 
     // 세이브 파일 불러오기 전용 (데미지 계산 없이 절대값 복원)
-    public void LoadHealth(int hp, int max)
+    public void LoadHealth(int hp)
     {
-        maxHp = max;
-        currentHp = Mathf.Clamp(hp, 0, maxHp);
-        OnHealthChanged?.Invoke(currentHp, maxHp);
+        currentHp = Mathf.Clamp(hp, 0, MaxHp);
+        OnHealthChanged?.Invoke(currentHp, MaxHp);
     }
 }

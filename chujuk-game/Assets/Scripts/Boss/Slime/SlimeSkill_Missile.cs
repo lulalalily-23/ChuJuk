@@ -1,8 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-// 원거리 점액 미사일 발사. 발사 시점의 플레이어 위치를 목표로 고정하고
-// 그 이후엔 유도하지 않기 때문에, 플레이어가 이동해서 피할 수 있음.
+// 원거리 미사일 발사. 발사 시점의 플레이어 위치를 목표로 고정함
 public class SlimeSkill_Missile : MonoBehaviour
 {
     public GameObject missilePrefab;
@@ -27,7 +26,7 @@ public class SlimeSkill_Missile : MonoBehaviour
         return Time.time - lastUseTime >= coolTime;
     }
 
-    // missileCount: Phase1은 2발, Phase2는 4발(2배) - 패턴매니저에서 전달
+    // 페이즈1은 4발, 페이즈2는 8발(2배) 
     public void Execute(int missileCount)
     {
         StartCoroutine(MissileRoutine(missileCount));
@@ -43,7 +42,7 @@ public class SlimeSkill_Missile : MonoBehaviour
 
         for (int i = 0; i < missileCount; i++)
         {
-            // 발사 시점 플레이어 위치를 고정 목표로 사용 (유도 아님 - 이동해서 피할 수 있음)
+            // 발사 시점 플레이어 위치를 고정 목표로 사용
             Vector2 targetPos = player.position;
 
             TelegraphIndicator.Instance.ShowCircle(targetPos, telegraphRadius, telegraphDuration);

@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 3479698584422719016}
   - component: {fileID: 4043973587368464624}
   - component: {fileID: 4809154929569587523}
+  - component: {fileID: 4427617321194353618}
+  - component: {fileID: 2051403247356662824}
   m_Layer: 6
   m_Name: EnemyGolem
   m_TagString: Enemy
@@ -331,3 +333,28 @@ MonoBehaviour:
   amount: 10
   magnetRadius: 3
   moveSpeed: 10
+--- !u!114 &4427617321194353618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370241414693371764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7210ae133c24b5642b511305285b7770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDeathReporter
+--- !u!114 &2051403247356662824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370241414693371764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 976ed36a2a7789644bfa7611b01cd89e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyIdentity
+  enemyId: 

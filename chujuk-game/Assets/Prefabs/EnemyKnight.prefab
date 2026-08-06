@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 4798895228384337269}
   - component: {fileID: 1445702212627312956}
   - component: {fileID: 7918170499818033730}
+  - component: {fileID: 5220965792829616836}
+  - component: {fileID: 1481018013798808236}
   m_Layer: 6
   m_Name: EnemyKnight
   m_TagString: Enemy
@@ -331,3 +333,28 @@ MonoBehaviour:
   amount: 10
   magnetRadius: 3
   moveSpeed: 10
+--- !u!114 &5220965792829616836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6319344806776485832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 976ed36a2a7789644bfa7611b01cd89e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyIdentity
+  enemyId: 
+--- !u!114 &1481018013798808236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6319344806776485832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7210ae133c24b5642b511305285b7770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDeathReporter

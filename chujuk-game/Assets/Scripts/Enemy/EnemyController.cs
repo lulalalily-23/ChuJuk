@@ -14,8 +14,8 @@ public class EnemyController : MonoBehaviour
     private SpriteRenderer sr;
     private Animator animator;
 
-    [Tooltip("player Transform값 참조 변수, 현재는 플레이어 오브젝트와 연결 필요 (나중에 연결구조 수정 가능)")]
-    public Transform player; 
+    [Tooltip("비워두거나 씬 편집 중 참조가 끊겨도 자동으로 다시 찾음 (수동 연결 안 해도 됨)")]
+    public Transform player;
     [Tooltip("몬스터가 플레이어를 감지하는 거리. 이 범위 안에 들어오면 Chase 상태로 전환됨")]
     public float detectRange; 
     [Tooltip("플레이어에게 공격을 시작하는 거리. detectRange보다 작은 값이어야 함")]
@@ -30,6 +30,8 @@ public class EnemyController : MonoBehaviour
         attackScript = GetComponent<EnemyAttack>();
         idleScript = GetComponent<EnemyIdle>();
         attackExitRange = attackRange + 0.5f;
+
+        EnsurePlayerReference();
 
         // 씬 시작 시 인스펙터의 enabled 상태와 currentState가 불일치할 수 있으므로,
         // 강제로 모든 행동 스크립트를 끄고 Idle만 켜서 안전하게 수정함.
@@ -46,6 +48,14 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // player가 비어있거나(할당 안 됨) 파괴된 참조라면(씬 편집 중 플레이어를 지웠다 다시 만든 경우 등)
+        // 매 프레임 다시 찾으려 시도하지 않도록, 못 찾은 경우에만 재시도
+        if (player == null)
+        {
+            EnsurePlayerReference();
+            if (player == null) return; // 그래도 못 찾으면 이번 프레임은 스킵
+        }
+
         float distance = Vector2.Distance(player.position, transform.position); //몬스터와 플레이어간의 거리
         
         if (currentState == EnemyState.Attack)
@@ -97,6 +107,17 @@ public class EnemyController : MonoBehaviour
         }
 
         currentState = newState;
+    }
+
+    // player 참조가 비어있거나 파괴된 오브젝트를 가리키고 있을 때 태그로 다시 찾아서 연결.
+    // (Unity에서는 파괴된 오브젝트도 == null 비교 시 true가 되도록 오버로드되어 있어서 안전하게 감지 가능)
+    private void EnsurePlayerReference()
+    {
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            player = playerObj.transform;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

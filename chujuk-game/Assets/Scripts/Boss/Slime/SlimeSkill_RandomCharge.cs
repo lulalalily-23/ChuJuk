@@ -10,10 +10,9 @@ public class SlimeSkill_RandomCharge : MonoBehaviour
     public float coolTime = 5f;
     public GameObject hazardZonePrefab;
     public float hazardDuration = 5f;
-    public float hazardWidth = 1.5f;   // 장판 폭 (돌진 방향의 반대축 두께)
+    public float hazardWidth = 1.5f;  
     public LayerMask wallLayer;
 
-    [Tooltip("예고선(텔레그래프)을 몸통 기준보다 아래로 내릴 거리. 0이면 지금과 동일")]
     public float telegraphYOffset = 0f;
 
     private SlimeController controller;
@@ -50,7 +49,6 @@ public class SlimeSkill_RandomCharge : MonoBehaviour
     {
         lastUseTime = Time.time;
 
-        // 완전 무작위 방향 (상하는 약하게 - 너무 위아래로 튀지 않도록)
         float angle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
         Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) * 0.3f).normalized;
 
@@ -78,8 +76,6 @@ public class SlimeSkill_RandomCharge : MonoBehaviour
         isCharging = false;
         rb.linearVelocity = Vector2.zero;
 
-        // 실제로 이동한 시작점~도착점을 잇는 직사각형 장판 생성
-        // (벽에 막혀 목표 거리보다 일찍 멈췄다면 실제 이동한 거리만큼만 생성됨)
         if (hazardZonePrefab != null)
         {
             Vector2 endPos = transform.position;
