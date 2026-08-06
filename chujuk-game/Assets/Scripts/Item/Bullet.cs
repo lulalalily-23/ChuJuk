@@ -7,8 +7,10 @@ public class Bullet : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    public void Setup(Vector2 direction)
+    public void Setup(Vector2 direction, int damage)
     {
+        this.damage = damage;
+
         rb = GetComponent<Rigidbody2D>();
 
         rb.linearVelocity = direction * speed;
@@ -22,11 +24,21 @@ public class Bullet : MonoBehaviour
     // ¸ó½ºÅÍ¶û ºÎµúÇûÀ» ¶§
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Monster"))
+        if (other.CompareTag("Enemy"))
         {
+            HealthManager health =
+            other.GetComponent<HealthManager>();
+
+
+            if (health != null)
+            {
+                health.TakeDamage(damage);
+            }
+
             // other.GetComponent<Monster>().TakeDamage(damage);
 
             Debug.Log("¸ó½ºÅÍ ¸íÁß!");
+
             Destroy(gameObject);
         }
     }

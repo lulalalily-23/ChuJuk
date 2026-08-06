@@ -76,6 +76,13 @@ public class Inventory : MonoBehaviour
 
         Debug.Log($"{data.itemName} 획득");
 
+        Debug.Log($"현재 아이템 개수: {items.Count}");
+
+        foreach (ItemInstance item in items)
+        {
+            Debug.Log($"보유 아이템 : {item.data.itemName}");
+        }
+
         return true;
     }
 
