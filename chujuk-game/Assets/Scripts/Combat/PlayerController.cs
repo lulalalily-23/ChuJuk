@@ -22,7 +22,10 @@ public class PlayerController : MonoBehaviour
     public float fallMultiplier = 2.5f; // 떨어질 때 가속도
 
     [Header("Health")]
-    public int maxHp = 100;
+    public int MaxHp =>
+    Mathf.RoundToInt(
+        PlayerStat.Instance.GetStat(StatType.MaxHP)
+    );
     public int currentHp;
     public event Action<int, int> OnHealthChanged;
 
@@ -54,7 +57,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         originalGravity = rb.gravityScale; // 시작할 때 원래 중력값 장부에 기록
-        currentHp = maxHp;
+        currentHp = MaxHp;
         animator = GetComponentInChildren<Animator>();
         animator.SetBool("IsGunMode", IsGunMode);
         mainCam = FindAnyObjectByType<Camera>();
@@ -114,7 +117,10 @@ public class PlayerController : MonoBehaviour
 
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
 
-                bullet.GetComponent<Bullet>().Setup(shootDirection);
+                int damage = Mathf.RoundToInt(PlayerStat.Instance.GetStat(StatType.Attack));
+
+
+                bullet.GetComponent<Bullet>().Setup(shootDirection, damage);
             }
         }
 
@@ -151,7 +157,9 @@ public class PlayerController : MonoBehaviour
         }
 
         // 일반 이동
-        rb.linearVelocity = new Vector2(h * moveSpeed, rb.linearVelocity.y);
+        float currentMoveSpeed = PlayerStat.Instance.GetStat(StatType.MoveSpeed);
+
+        rb.linearVelocity = new Vector2(h * currentMoveSpeed, rb.linearVelocity.y);
 
         // 일정 높이 점프
         if (jumpRequested)
@@ -177,9 +185,9 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage, Vector2 knockbackDirection)
     {
         currentHp -= damage;
-        currentHp = Mathf.Clamp(currentHp, 0, maxHp);
+        currentHp = Mathf.Clamp(currentHp, 0, MaxHp);
 
-        OnHealthChanged?.Invoke(currentHp, maxHp);
+        OnHealthChanged?.Invoke(currentHp, MaxHp);
 
         // 피격 시 밀려남
         if (!isDashing)
