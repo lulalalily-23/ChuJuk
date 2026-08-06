@@ -20,7 +20,10 @@ public class GolemSkill_Charge : MonoBehaviour
     public Transform leftFoot;
     public Transform rightFoot;
 
-    private GolemController golemController;
+    [Tooltip("예고선(텔레그래프)을 몸통 기준보다 아래로 내릴 거리. 0이면 지금과 동일")]
+    public float telegraphYOffset = 0f;
+
+    private IPatternUser patternUser;
     private HealthManager selfHealth;
     private ICombatStats myStats;
     private Rigidbody2D rb;
@@ -32,7 +35,7 @@ public class GolemSkill_Charge : MonoBehaviour
 
     void Start()
     {
-        golemController = GetComponent<GolemController>();
+        patternUser = GetComponent<IPatternUser>();
         myStats = GetComponent<ICombatStats>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -55,7 +58,7 @@ public class GolemSkill_Charge : MonoBehaviour
     {
         if (isCharging) return;
         StartCoroutine(ChargeRoutine());
-        golemController.PlayDash();
+        patternUser.PlayDash();
     }
     
     IEnumerator ChargeRoutine()
@@ -65,7 +68,7 @@ public class GolemSkill_Charge : MonoBehaviour
         // 플레이어 방향(좌우) 계산, 그 방향에 해당하는 발을 시작점으로 사용
         Vector2 direction = new Vector2(player.position.x - transform.position.x, 0f).normalized;
         Transform startFoot = direction.x >= 0 ? rightFoot : leftFoot;
-        Vector2 startPos = new Vector2(startFoot.position.x, transform.position.y);
+        Vector2 startPos = new Vector2(startFoot.position.x, transform.position.y - telegraphYOffset);
         Vector2 targetPos = startPos + direction * chargeDistance;
 
         Vector2 telegraphCenter = (startPos + targetPos) / 2f;
@@ -95,7 +98,7 @@ public class GolemSkill_Charge : MonoBehaviour
         hitWall = false;
         isCharging = false;
         rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);   // 돌진 끝나면 멈춤
-        golemController.OnPatternExecuted();
+        patternUser.OnPatternExecuted();
     }
 
     bool CheckHit()

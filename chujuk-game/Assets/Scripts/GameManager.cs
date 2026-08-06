@@ -77,6 +77,13 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
+    //세이브 로드용 재화 설정
+    public void SetSoul(int amount)
+    {
+        Soul = Mathf.Max(amount, 0);
+        OnSoulChanged?.Invoke(Soul);
+    }
+
     // 게임 상태 제어
     public void SetGameOver()
     {
