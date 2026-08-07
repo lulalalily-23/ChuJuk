@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 //골렘의 체력에따른 페이즈 관리와 한 패턴 세트가 끝날때마다 5%의 데미지를 입도록 함
-public class GolemController : MonoBehaviour
+public class GolemController : MonoBehaviour , IPatternUser
 {
     enum BossPhase {Phase1, Phase2, Phase3};
     private HealthManager healthManager;

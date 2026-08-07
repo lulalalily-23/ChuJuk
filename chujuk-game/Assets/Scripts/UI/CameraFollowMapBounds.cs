@@ -8,6 +8,9 @@ public class CameraFollowMapBounds : MonoBehaviour
     [Header("Map Boundary")]
     [SerializeField] private Collider2D mapBoundary;
 
+    [Header("자동 탐색용")]
+    [SerializeField] private string groundObjectName = "Ground";
+
     [Header("Settings")]
     [SerializeField]
     private Vector3 offset =
@@ -18,10 +21,17 @@ public class CameraFollowMapBounds : MonoBehaviour
     private void Awake()
     {
         cam = GetComponent<Camera>();
+        EnsureReferences();
     }
 
     private void LateUpdate()
     {
+        // 씬 리로드 등으로 참조가 끊겼으면 다시 찾기 시도
+        if (target == null || mapBoundary == null)
+        {
+            EnsureReferences();
+        }
+
         if (target == null ||
             mapBoundary == null ||
             cam == null)
@@ -60,5 +70,22 @@ public class CameraFollowMapBounds : MonoBehaviour
             clampedY,
             offset.z
         );
+    }
+
+    private void EnsureReferences()
+    {
+        if (target == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+                target = playerObj.transform;
+        }
+
+        if (mapBoundary == null)
+        {
+            GameObject groundObj = GameObject.Find(groundObjectName);
+            if (groundObj != null)
+                mapBoundary = groundObj.GetComponent<Collider2D>();
+        }
     }
 }
