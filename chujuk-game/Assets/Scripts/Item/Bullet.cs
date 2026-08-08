@@ -26,9 +26,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            HealthManager health =
-            other.GetComponent<HealthManager>();
-
+            HealthManager health = other.GetComponent<HealthManager>();
 
             if (health != null)
             {
@@ -39,6 +37,11 @@ public class Bullet : MonoBehaviour
 
             Debug.Log("몬스터 명중!");
 
+            Destroy(gameObject);
+        }
+        // 땅이나 벽에 닿으면 총알 삭제
+        else if (other.CompareTag("Ground") || other.CompareTag("Wall"))
+        {
             Destroy(gameObject);
         }
     }
