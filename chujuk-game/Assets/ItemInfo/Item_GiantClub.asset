@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6e3da7f55ebff94f9fa16268ec79955, type: 3}
+  m_Name: Item_GiantClub
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemName: "\uAC70\uC778\uC758 \uBABD\uB465\uC774"
+  icon: {fileID: 6359887851628301827, guid: a624e1452ead2f84bbdbff0db0879578, type: 3}
+  description: "\uC124\uBA85: \uC624\uC9C1 \uAD34\uBB3C\uB9CC\uC774 \uD718\uB450\uB97C
+    \uC218 \uC788\uC744 \uAC83 \uAC19\uC740 \uD06C\uAE30\uB2E4.\n\r\n\uD6A8\uACFC:
+    \uACF5\uACA9\uB825 +30%, \uACF5\uACA9\uC2DC \uC801\uC744 \uBC00\uCCD0\uB0B8\uB2E4"
+  grade: 3
+  effectType: 1
+  tags: 0800000002000000
+  modifiers:
+  - statType: 1
+    modifierType: 1
+    value: 0.3
+  cooldown: 0
+  sellPrice: 10
+  buyPrice: 30

@@ -11,7 +11,7 @@ public class WeaponUI : MonoBehaviour
         playerController.OnWeaponChanged += UpdateWeaponUI;
 
         // 시작 시 한 번 표시
-        UpdateWeaponUI(playerController.IsUsingGun);
+        UpdateWeaponUI();
     }
 
     private void OnDestroy()
@@ -20,8 +20,10 @@ public class WeaponUI : MonoBehaviour
             playerController.OnWeaponChanged -= UpdateWeaponUI;
     }
 
-    private void UpdateWeaponUI(bool isGun)
+    private void UpdateWeaponUI()
     {
+        bool isGun = playerController.IsUsingGun;
+
         weaponText.text = isGun ? "Weapon : Gun" : "Weapon : Sword";
     }
 }

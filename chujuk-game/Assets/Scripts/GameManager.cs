@@ -99,10 +99,26 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         State = GameState.Playing;
 
+        // 게임 세션 초기화
         ResetGameSession();
+
+        // 인벤토리 초기화
+        if (Inventory.Instance != null)
+        {
+            Inventory.Instance.ClearInventory();
+        }
+
+        // 런타임 능력치 초기화
+        if (PlayerStat.Instance != null)
+        {
+            PlayerStat.Instance.ResetAllRuntimeStats();
+        }
+
         OnGameRestart?.Invoke();
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(
+            SceneManager.GetActiveScene().name
+        );
     }
 
     public void Pause()
