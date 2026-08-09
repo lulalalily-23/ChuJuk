@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6e3da7f55ebff94f9fa16268ec79955, type: 3}
+  m_Name: iIem_FadedCrown
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemName: "\uBE5B\uBC14\uB79C \uC655\uAD00"
+  icon: {fileID: -3836019666063736706, guid: ff5688307e6d2e3419f8f4516db8edcf, type: 3}
+  description: "\uC601\uB871\uD558\uC9C0\uB9CC \uADF8\uBFD0\uC774\uB2E4.\n\r\n\uC2A4\uD14C\uC774\uC9C0
+    \uC9C4\uC785 \uC2DC \uBCF4\uC720 \uC7AC\uD654 +40%, \uBCF4\uC720\uD55C \uC7AC\uD654\uC5D0
+    \uBE44\uB840\uD558\uC5EC \uACF5\uB825\uB825 +1% (\uCD5C\uB300 30%) "
+  grade: 3
+  effectType: 1
+  tags: 0800000007000000
+  modifiers:
+  - statType: 7
+    modifierType: 1
+    value: 0.4
+  - statType: 1
+    modifierType: 1
+    value: 0.3
+  cooldown: 0
+  sellPrice: 10
+  buyPrice: 30

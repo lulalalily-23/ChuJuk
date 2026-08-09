@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6e3da7f55ebff94f9fa16268ec79955, type: 3}
+  m_Name: Item_SilverKnife
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemName: "\uC740\uBE5B \uB2E8\uAC80"
+  icon: {fileID: -1672988775143089104, guid: 95f72f6168e79c24ea31469e67b92087, type: 3}
+  description: "\uB108\uBB34 \uC608\uB9AC\uD574\uC11C \uB4E4\uACE0\uB2E4\uB2C8\uAE30
+    \uC704\uD5D8\uD558\uB2E4.\n\r\n\uCE58\uBA85\uD0C0 \uB370\uBBF8\uC9C0 +40%, \uD68C\uD53C\uC728
+    +15%"
+  grade: 3
+  effectType: 1
+  tags: 030000000a000000
+  modifiers:
+  - statType: 10
+    modifierType: 1
+    value: 0.4
+  - statType: 12
+    modifierType: 1
+    value: 0.15
+  cooldown: 0
+  sellPrice: 10
+  buyPrice: 30
