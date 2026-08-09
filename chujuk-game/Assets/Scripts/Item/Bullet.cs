@@ -1,48 +1,94 @@
 using UnityEngine;
-
 public class Bullet : MonoBehaviour
 {
-    public float speed = 20f; // ÃÑ¾Ë ³¯¾Æ°¡´Â ¼Óµµ
-    public int damage = 10; // ÃÑ¾Ë µ¥¹ÌÁö
+public float speed = 20f; // ì´ì•Œ ë‚ ì•„ê°€ëŠ” ì†ë„
+public int damage = 10; // ì´ì•Œ ë°ë¯¸ì§€
 
-    private Rigidbody2D rb;
+```
+private Rigidbody2D rb;
 
-    public void Setup(Vector2 direction, int damage)
+public void Setup(Vector2 direction, int damage)
+{
+    this.damage = damage;
+
+    rb = GetComponent<Rigidbody2D>();
+
+    if (rb == null)
     {
-        this.damage = damage;
-
-        rb = GetComponent<Rigidbody2D>();
-
-        rb.linearVelocity = direction * speed;
-
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
-
-        Destroy(gameObject, 2f);
+        Debug.LogError(
+            "[Bullet] Rigidbody2Dë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.",
+            this
+        );
+        return;
     }
 
-    // ¸ó½ºÅÍ¶û ºÎµúÇûÀ» ¶§
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            HealthManager health = other.GetComponent<HealthManager>();
+    rb.linearVelocity = direction * speed;
 
-            if (health != null)
+    float angle =
+        Mathf.Atan2(
+            direction.y,
+            direction.x
+        ) * Mathf.Rad2Deg;
+
+    transform.rotation =
+        Quaternion.Euler(
+            0,
+            0,
+            angle
+        );
+
+    Destroy(gameObject, 2f);
+}
+
+// ëª¬ìŠ¤í„°ë‘ ë¶€ë”ªí˜”ì„ ë•Œ
+void OnTriggerEnter2D(Collider2D other)
+{
+    if (other.CompareTag("Enemy"))
+    {
+        HealthManager health =
+            other.GetComponent<HealthManager>();
+
+        if (health != null)
+        {
+            float finalDamage = damage;
+
+            if (PlayerStat.Instance != null)
             {
-                health.TakeDamage(damage);
+                // ì›ê±°ë¦¬ ê³µê²© ì¶”ê°€ ë°ë¯¸ì§€
+                float rangedDamage =
+                    PlayerStat.Instance.GetStat(
+                        StatType.RangedDamage
+                    );
+
+                finalDamage *=
+                    1f + rangedDamage;
+
+                // ì¶”ê²© ì„¸íŠ¸ ê³µê²© ë°ë¯¸ì§€
+                float chaseDamageBonus =
+                    PlayerStat.Instance.GetChaseDamageBonus();
+
+                finalDamage *=
+                    1f + chaseDamageBonus;
             }
 
-            // other.GetComponent<Monster>().TakeDamage(damage);
+            int result =
+                Mathf.Max(
+                    1,
+                    Mathf.RoundToInt(finalDamage)
+                );
 
-            Debug.Log("¸ó½ºÅÍ ¸íÁß!");
+            health.TakeDamage(result);
+        }
 
-            Destroy(gameObject);
-        }
-        // ¶¥ÀÌ³ª º®¿¡ ´êÀ¸¸é ÃÑ¾Ë »èÁ¦
-        else if (other.CompareTag("Ground") || other.CompareTag("Wall"))
-        {
-            Destroy(gameObject);
-        }
+        // other.GetComponent<Monster>().TakeDamage(damage);
+
+        Debug.Log("ëª¬ìŠ¤í„° ëª…ì¤‘!");
+
+        Destroy(gameObject);
+    }
+    // ë•…ì´ë‚˜ ë²½ì— ë‹¿ìœ¼ë©´ ì´ì•Œ ì‚­ì œ
+    else if (other.CompareTag("Ground") || other.CompareTag("Wall"))
+    {
+        Destroy(gameObject);
     }
 }
