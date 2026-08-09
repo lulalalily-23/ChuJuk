@@ -13,6 +13,8 @@ public class RoomClearManager : MonoBehaviour
         portal.SetActive(false);
     }
 
+    public ChestSpawnManager chestManager;
+
     public void EnemyKilled()
     {
         enemyCount--;
@@ -20,6 +22,8 @@ public class RoomClearManager : MonoBehaviour
         if (enemyCount <= 0)
         {
             portal.SetActive(true);
+
+            if (chestManager != null) chestManager.SpawnChest();
         }
     }
 }
