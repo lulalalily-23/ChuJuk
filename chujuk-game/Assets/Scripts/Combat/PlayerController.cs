@@ -6,8 +6,9 @@ public class PlayerController : MonoBehaviour
 {
     // 애니메이션
     private Animator animator;
+
     // 시작 상태 칼 모드
-    public event Action OnWeaponChanged;  // 외부에서 무기 변경 이벤트 구독 -> UI에서 사용
+    public event Action<bool> OnWeaponChanged;  // 외부에서 무기 변경 이벤트 구독 -> UI에서 사용
 
     private bool IsGunMode = false;
     public bool IsUsingGun => IsGunMode; // 외부에서 총 모드 사용 여부 확인 -> UI에서 사용
@@ -25,9 +26,12 @@ public class PlayerController : MonoBehaviour
 
     [Header("Health")]
     public int MaxHp =>
-        Mathf.RoundToInt(
-            PlayerStat.Instance.GetStat(StatType.MaxHP)
-        );
+        PlayerStat.Instance != null
+            ? Mathf.RoundToInt(
+                PlayerStat.Instance.GetStat(StatType.MaxHP)
+            )
+            : 100;
+
     public int currentHp;
     public event Action<int, int> OnHealthChanged;
 
@@ -45,20 +49,20 @@ public class PlayerController : MonoBehaviour
     private bool isDashing;
     private float originalGravity;
     private float nextDashTime = 0f;
+    private float dashDirection;
 
     [Header("Combat")]
     public GameObject bulletPrefab;
+    public float attackCooldown = 0.5f; // 총알 공격 속도 제한
+    private float nextAttackTime = 0f; // 다음 공격 쿨타임
 
     [Header("Camera")]
     public Camera mainCam;
 
-    [Header("Inventory")]
-    public int currentMoney = 0;
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        originalGravity = rb.gravityScale; // 시작할 때 원래 중력값 장부에 기록
+        originalGravity = rb.gravityScale;
         currentHp = MaxHp;
         animator = GetComponentInChildren<Animator>();
 
@@ -88,10 +92,122 @@ public class PlayerController : MonoBehaviour
             else
                 SaveManager.Instance.LoadGame();
         }
-        // 여기까지
 
-        // 대쉬 중일 때는 방향키 등 다른 행동 무시
-        if (isDashing) return;
+        // 1. 공격
+        if (Input.GetMouseButtonDown(0) &&
+            Time.time >= nextAttackTime)
+        {
+            nextAttackTime =
+                Time.time + attackCooldown; // 쿨타임 돌리기
+
+            if (animator != null)
+            {
+                animator.SetTrigger("Attack");
+            }
+
+            if (mainCam == null)
+                mainCam = FindAnyObjectByType<Camera>();
+
+            if (mainCam != null)
+            {
+                Vector3 mousePos =
+                    mainCam.ScreenToWorldPoint(
+                        Input.mousePosition
+                    );
+
+                mousePos.z = 0f;
+
+                if (mousePos.x > transform.position.x)
+                    transform.localScale =
+                        new Vector3(1, 1, 1);
+                else if (mousePos.x < transform.position.x)
+                    transform.localScale =
+                        new Vector3(-1, 1, 1);
+
+                // 추격 세트 공격 효과
+                if (PlayerStat.Instance != null)
+                {
+                    int maxStack =
+                        PlayerStat.Instance.GetChaseMaxStack();
+
+                    if (maxStack > 0)
+                    {
+                        PlayerStat.Instance.AddChaseStack();
+                        PlayerStat.Instance.AddChaseMoveSpeedOnAttack();
+                    }
+                }
+
+                // 총 모드일 경우 총알 발사
+                if (IsGunMode)
+                {
+                    if (bulletPrefab == null)
+                        return;
+
+                    Vector2 shootDirection =
+                        (mousePos - transform.position).normalized;
+
+                    GameObject bullet =
+                        Instantiate(
+                            bulletPrefab,
+                            transform.position,
+                            Quaternion.identity
+                        );
+
+                    int damage = 0;
+
+                    if (PlayerStat.Instance != null)
+                    {
+                        damage =
+                            Mathf.RoundToInt(
+                                PlayerStat.Instance.GetStat(
+                                    StatType.Attack
+                                )
+                            );
+                    }
+
+                    // 매복 액티브
+                    // 실제 원거리 공격 1회가 발사되는 순간 소비
+                    if (PlayerStat.Instance != null &&
+                        PlayerStat.Instance.IsAmbushActive())
+                    {
+                        PlayerStat.Instance.ConsumeAmbushActive();
+                    }
+
+                    Bullet bulletComponent =
+                        bullet.GetComponent<Bullet>();
+
+                    if (bulletComponent != null)
+                    {
+                        bulletComponent.Setup(
+                            shootDirection,
+                            damage
+                        );
+                    }
+                }
+            }
+        }
+
+        // 2. 무기 교체
+        if (Input.GetMouseButtonDown(1))
+        {
+            IsGunMode = !IsGunMode;
+
+            if (animator != null)
+            {
+                animator.SetBool(
+                    "IsGunMode",
+                    IsGunMode
+                );
+
+                animator.SetTrigger("Change");
+            }
+
+            OnWeaponChanged?.Invoke(IsGunMode);
+        }
+
+        // 대쉬 중일 때는 이동 및 점프 등 다른 행동 무시
+        if (isDashing)
+            return;
 
         h = Input.GetAxisRaw("Horizontal");
 
@@ -105,16 +221,28 @@ public class PlayerController : MonoBehaviour
         {
             if (isGrounded)
             {
-                animator.SetFloat("Speed", Mathf.Abs(h));
+                animator.SetFloat(
+                    "Speed",
+                    Mathf.Abs(h)
+                );
             }
             else
             {
-                animator.SetFloat("Speed", 0f);
+                animator.SetFloat(
+                    "Speed",
+                    0f
+                );
             }
+
+            animator.SetBool(
+                "IsGrounded",
+                isGrounded
+            );
         }
 
         // 점프
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") &&
+            isGrounded)
         {
             jumpRequested = true;
 
@@ -131,6 +259,7 @@ public class PlayerController : MonoBehaviour
         {
             isDashing = true;
             dashTime = moveTime;
+            dashDirection = transform.localScale.x;
             rb.gravityScale = 0f;
 
             float cooldown = dashCooldown;
@@ -143,19 +272,23 @@ public class PlayerController : MonoBehaviour
                     );
             }
 
-            cooldown = Mathf.Max(0f, cooldown);
+            cooldown = Mathf.Max(
+                0f,
+                cooldown
+            );
 
             nextDashTime =
                 Time.time + cooldown;
         }
 
-        // 오른쪽 Shift도 허용
-        if (Input.GetKeyDown(KeyCode.RightShift) &&
+        // 대쉬 (Z키)
+        if (Input.GetKeyDown(KeyCode.Z) &&
             !isDashing &&
             Time.time >= nextDashTime)
         {
             isDashing = true;
             dashTime = moveTime;
+            dashDirection = transform.localScale.x;
             rb.gravityScale = 0f;
 
             float cooldown = dashCooldown;
@@ -168,7 +301,10 @@ public class PlayerController : MonoBehaviour
                     );
             }
 
-            cooldown = Mathf.Max(0f, cooldown);
+            cooldown = Mathf.Max(
+                0f,
+                cooldown
+            );
 
             nextDashTime =
                 Time.time + cooldown;
@@ -201,145 +337,39 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-
-        // 공격
-        if (Input.GetMouseButtonDown(0))
-        {
-            animator.SetTrigger("Attack");
-
-            if (mainCam == null)
-                mainCam = FindAnyObjectByType<Camera>();
-
-            if (mainCam == null)
-                return;
-
-            Vector3 mousePos =
-                mainCam.ScreenToWorldPoint(
-                    Input.mousePosition
-                );
-
-            mousePos.z = 0f;
-
-            if (mousePos.x > transform.position.x)
-                transform.localScale =
-                    new Vector3(1, 1, 1);
-            else if (mousePos.x < transform.position.x)
-                transform.localScale =
-                    new Vector3(-1, 1, 1);
-
-            // 추격 세트 공격 효과
-            if (PlayerStat.Instance != null)
-            {
-                int maxStack =
-                    PlayerStat.Instance.GetChaseMaxStack();
-
-                if (maxStack > 0)
-                {
-                    PlayerStat.Instance.AddChaseStack();
-                    PlayerStat.Instance.AddChaseMoveSpeedOnAttack();
-                }
-            }
-
-            if (IsGunMode)
-            {
-                if (bulletPrefab == null)
-                    return;
-
-                Vector2 shootDirection =
-                    (mousePos - transform.position).normalized;
-
-                GameObject bullet =
-                    Instantiate(
-                        bulletPrefab,
-                        transform.position,
-                        Quaternion.identity
-                    );
-
-                int damage = 0;
-
-                if (PlayerStat.Instance != null)
-                {
-                    damage =
-                        Mathf.RoundToInt(
-                            PlayerStat.Instance.GetStat(
-                                StatType.Attack
-                            )
-                        );
-                }
-
-                // 매복 액티브
-                // 실제 원거리 공격 1회가 발사되는 순간 소비
-                if (PlayerStat.Instance != null &&
-                    PlayerStat.Instance.IsAmbushActive())
-                {
-                    PlayerStat.Instance.ConsumeAmbushActive();
-                }
-
-                Bullet bulletComponent =
-                    bullet.GetComponent<Bullet>();
-
-                if (bulletComponent != null)
-                {
-                    bulletComponent.Setup(
-                        shootDirection,
-                        damage
-                    );
-                }
-            }
-        }
-
-        // 무기 교체
-        if (Input.GetMouseButtonDown(1))
-        {
-            IsGunMode = !IsGunMode;
-
-            if (animator != null)
-            {
-                animator.SetBool("IsGunMode", IsGunMode);
-                animator.SetTrigger("Change");
-            }
-
-            OnWeaponChanged?.Invoke();
-        }
-
-        // 바닥 감지
-        if (animator != null)
-        {
-            animator.SetBool("IsGrounded", isGrounded);
-        }
     }
 
     void FixedUpdate()
     {
-        // 대쉬 상태일 때의 물리 처리
         if (isDashing)
         {
             dashTime -= Time.fixedDeltaTime;
 
-            // 바라보는 방향으로 중력 없이 직진
             rb.linearVelocity =
                 new Vector2(
-                    transform.localScale.x * dashSpeed,
+                    dashDirection * dashSpeed,
                     0f
                 );
 
             if (dashTime <= 0)
             {
                 isDashing = false;
-                rb.gravityScale = originalGravity; // 대쉬 끝나면 중력 복구
+                rb.gravityScale = originalGravity;
             }
 
             return;
         }
 
         // 일반 이동
-        float currentMoveSpeed =
-            PlayerStat.Instance.GetStat(
-                StatType.MoveSpeed
-            );
+        float currentMoveSpeed = moveSpeed;
 
         if (PlayerStat.Instance != null)
         {
+            currentMoveSpeed =
+                PlayerStat.Instance.GetStat(
+                    StatType.MoveSpeed
+                );
+
             float chaseMoveSpeedBonus =
                 PlayerStat.Instance.GetChaseMoveSpeedBonus();
 
@@ -485,13 +515,6 @@ public class PlayerController : MonoBehaviour
         // 사망 처리
         gameObject.SetActive(false);
         Debug.Log("플레이어 사망");
-    }
-
-    public void AddMoney(int amount)
-    {
-        currentMoney += amount;
-        Debug.Log($"재화 획득! +{amount} (현재 잔액: {currentMoney})");
-        // UI 텍스트 업데이트 하는 코드
     }
 
     // 세이브 파일 불러오기 전용 (데미지 계산 없이 절대값 복원)
