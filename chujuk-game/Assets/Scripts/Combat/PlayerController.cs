@@ -53,6 +53,11 @@ public class PlayerController : MonoBehaviour
     [Header("Camera")]
     public Camera mainCam;
 
+    [Header("Cursor")]
+    public Texture2D defaultCursor;      // 기본 커서 (비워두면 OS 기본 커서)
+    public Texture2D crosshairCursor;    // 총 모드용 조준경 커서
+    public Vector2 crosshairHotspot = new Vector2(16, 16); // 크로스헤어 정중앙이 실제 클릭 지점이 되도록
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -61,6 +66,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         animator.SetBool("IsGunMode", IsGunMode);
         mainCam = FindAnyObjectByType<Camera>();
+        UpdateCursor(); 
     }
 
     void Update()
@@ -119,6 +125,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsGunMode", IsGunMode);
             animator.SetTrigger("Change");
             OnWeaponChanged?.Invoke(IsGunMode);
+            UpdateCursor(); 
         }
 
         // 대쉬 중일 때는 이동 및 점프 등 다른 행동 무시 
@@ -232,5 +239,13 @@ public class PlayerController : MonoBehaviour
     {
         currentHp = Mathf.Clamp(hp, 0, MaxHp);
         OnHealthChanged?.Invoke(currentHp, MaxHp);
+    }
+
+    private void UpdateCursor()
+    {   
+        if (IsGunMode && crosshairCursor != null)
+            Cursor.SetCursor(crosshairCursor, crosshairHotspot, CursorMode.Auto);
+        else
+            Cursor.SetCursor(defaultCursor, Vector2.zero, CursorMode.Auto);
     }
 }

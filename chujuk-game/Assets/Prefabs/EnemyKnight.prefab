@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyIdle
   patrolRange: 10
-  moveSpeed: 5
+  moveSpeed: 2
 --- !u!114 &6430760592149397671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec4dbe62eddb0ed47922843631bf7c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyChase
-  moveSpeed: 5
+  moveSpeed: 2
   acceleration: 1
 --- !u!114 &5053882961749192969
 MonoBehaviour:
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41ad1d694aa384f4c81832af018eba44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
-  attackDistance: 5
+  attackDistance: 4
   targetLayer:
     serializedVersion: 2
     m_Bits: 256

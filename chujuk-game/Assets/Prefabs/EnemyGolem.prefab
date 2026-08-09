@@ -119,7 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   player: {fileID: 6453520504836745643, guid: 3e7e6ab126ae1df469b12948978c2f92, type: 3}
   detectRange: 10
-  attackRange: 5
+  attackRange: 1.2
 --- !u!114 &5233894984555884897
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,35 +6,47 @@ public class EnemyFlyChase : EnemyChase
     public float flySpeed = 4f;
     [Tooltip("가속도값")]
     public float flyAcceleration = 3f;
+    [Tooltip("플레이어와 이 거리 이내로는 더 접근하지 않고 멈춤 (0이면 계속 파고듦)")]
+    public float stopDistance = 1.2f;
 
-    private EnemyController controller;
-    private Rigidbody2D rb;
-    private SpriteRenderer sr;
-    private Vector2 currentVelocity;
+    private EnemyController flyController;
+    private Rigidbody2D flyRb;
+    private SpriteRenderer flySr;
+    private Vector2 flyCurrentVelocity;
 
     private void Awake()
     {
-        controller = GetComponent<EnemyController>();
-        rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
+        flyController = GetComponent<EnemyController>();
+        flyRb = GetComponent<Rigidbody2D>();
+        flySr = GetComponent<SpriteRenderer>();
     }
 
     private void OnEnable()
     {
-        if (rb != null)
-            rb.gravityScale = 0f; 
+        if (flyRb != null)
+            flyRb.gravityScale = 0f; 
     }
 
-    private new void FixedUpdate()
+    private void FixedUpdate()
     {
-        if (controller.player == null) return;
+        if (flyController.player == null) return;
 
-        Vector2 direction = ((Vector2)controller.player.position - rb.position).normalized;
+        Vector2 toPlayer = (Vector2)flyController.player.position - flyRb.position;
+        float distance = toPlayer.magnitude;
+
+        if (distance < stopDistance)
+        {
+            flyCurrentVelocity = Vector2.Lerp(flyCurrentVelocity, Vector2.zero, Time.fixedDeltaTime * flyAcceleration);
+            flyRb.MovePosition(flyRb.position + flyCurrentVelocity * Time.fixedDeltaTime);
+            return;
+        }
+
+        Vector2 direction = toPlayer.normalized;
 
         if (direction.x != 0)
-            sr.flipX = direction.x < 0;
+            flySr.flipX = direction.x < 0;
 
-        currentVelocity = Vector2.Lerp(currentVelocity, direction * flySpeed, Time.fixedDeltaTime * flyAcceleration);
-        rb.MovePosition(rb.position + currentVelocity * Time.fixedDeltaTime);
+        flyCurrentVelocity = Vector2.Lerp(flyCurrentVelocity, direction * flySpeed, Time.fixedDeltaTime * flyAcceleration);
+        flyRb.MovePosition(flyRb.position + flyCurrentVelocity * Time.fixedDeltaTime);
     }
 }
