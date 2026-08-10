@@ -37,6 +37,16 @@ public class PlayerController : MonoBehaviour
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
 
+    [Header("발판 내려가기")]
+    [Tooltip("S키로 내려갈 수 있는 발판의 Tag")]
+    public string dropThroughPlatformTag = "Platform";
+
+    [Tooltip("발판을 통과해서 내려가는 시간")]
+    public float dropThroughDuration = 0.25f;
+
+    [Tooltip("발판에서 내려갈 때 아래로 이동시키는 거리")]
+    public float dropThroughDistance = 0.15f;
+
     private float dashTime;
     private Rigidbody2D rb;
     private bool isGrounded;
@@ -48,8 +58,11 @@ public class PlayerController : MonoBehaviour
     private float nextDashTime = 0f;
     private float dashDirection;
 
+    private bool isDroppingThrough;
+
     [Header("Combat")]
     public GameObject bulletPrefab;
+    public Transform bulletSpawnPoint; // 총알 생성 위치
     public float attackCooldown = 0.5f; // 총알 공격 속도 제한
     private float nextAttackTime = 0f; // 다음 공격 쿨타임
 
@@ -80,7 +93,7 @@ public class PlayerController : MonoBehaviour
         }
 
         mainCam = FindAnyObjectByType<Camera>();
-        UpdateCursor(); 
+        UpdateCursor();
     }
 
     void Update()
@@ -158,7 +171,9 @@ public class PlayerController : MonoBehaviour
                     GameObject bullet =
                         Instantiate(
                             bulletPrefab,
-                            transform.position,
+                            bulletSpawnPoint != null
+                                ? bulletSpawnPoint.position
+                                : transform.position,
                             Quaternion.identity
                         );
 
@@ -212,7 +227,7 @@ public class PlayerController : MonoBehaviour
             }
 
             OnWeaponChanged?.Invoke(IsGunMode);
-            UpdateCursor(); 
+            UpdateCursor();
         }
 
         // 대쉬 중일 때는 이동 및 점프 등 다른 행동 무시
@@ -250,9 +265,17 @@ public class PlayerController : MonoBehaviour
             );
         }
 
+        // 발판 아래로 내려가기
+        // S를 누르면 Platform 태그가 붙은 발판을 통과
+        if (Input.GetKeyDown(KeyCode.S) &&
+            isGrounded &&
+            !isDroppingThrough)
+        {
+            TryDropThroughPlatform();
+        }
         // 점프
-        if (Input.GetButtonDown("Jump") &&
-            isGrounded)
+        else if (Input.GetKeyDown(KeyCode.Space) &&
+                 isGrounded)
         {
             jumpRequested = true;
 
@@ -424,6 +447,232 @@ public class PlayerController : MonoBehaviour
                 new Vector3(-1, 1, 1);
     }
 
+    // 발판 아래로 내려가기
+    private void TryDropThroughPlatform()
+    {
+        Collider2D[] playerColliders =
+            GetComponentsInChildren<Collider2D>();
+
+        if (playerColliders == null ||
+            playerColliders.Length == 0)
+        {
+            return;
+        }
+
+        HashSet<Collider2D> platforms =
+            new HashSet<Collider2D>();
+
+        // Ground Check 주변에서 발판 찾기
+        if (groundCheck != null)
+        {
+            Collider2D[] groundObjects =
+                Physics2D.OverlapCircleAll(
+                    groundCheck.position,
+                    groundCheckRadius + 0.25f
+                );
+
+            for (int i = 0; i < groundObjects.Length; i++)
+            {
+                Collider2D collider =
+                    groundObjects[i];
+
+                if (collider == null)
+                    continue;
+
+                if (IsPlatform(collider))
+                {
+                    platforms.Add(collider);
+                }
+            }
+        }
+
+        // 플레이어 Collider 주변에서도 발판 찾기
+        for (int i = 0; i < playerColliders.Length; i++)
+        {
+            Collider2D playerCollider =
+                playerColliders[i];
+
+            if (playerCollider == null)
+                continue;
+
+            Bounds bounds =
+                playerCollider.bounds;
+
+            Vector2 checkPosition =
+                new Vector2(
+                    bounds.center.x,
+                    bounds.min.y
+                );
+
+            Vector2 checkSize =
+                new Vector2(
+                    Mathf.Max(
+                        0.1f,
+                        bounds.size.x * 0.9f
+                    ),
+                    0.25f
+                );
+
+            Collider2D[] nearbyObjects =
+                Physics2D.OverlapBoxAll(
+                    checkPosition,
+                    checkSize,
+                    0f
+                );
+
+            for (int j = 0; j < nearbyObjects.Length; j++)
+            {
+                Collider2D collider =
+                    nearbyObjects[j];
+
+                if (collider == null)
+                    continue;
+
+                if (IsPlatform(collider))
+                {
+                    platforms.Add(collider);
+                }
+            }
+        }
+
+        if (platforms.Count == 0)
+            return;
+
+        List<Collider2D> ignoredPlatforms =
+            new List<Collider2D>();
+
+        foreach (Collider2D platform in platforms)
+        {
+            if (platform == null)
+                continue;
+
+            bool isPlayerCollider = false;
+
+            for (int i = 0; i < playerColliders.Length; i++)
+            {
+                if (platform == playerColliders[i])
+                {
+                    isPlayerCollider = true;
+                    break;
+                }
+            }
+
+            if (isPlayerCollider)
+                continue;
+
+            for (int i = 0; i < playerColliders.Length; i++)
+            {
+                Collider2D playerCollider =
+                    playerColliders[i];
+
+                if (playerCollider == null)
+                    continue;
+
+                Physics2D.IgnoreCollision(
+                    playerCollider,
+                    platform,
+                    true
+                );
+            }
+
+            ignoredPlatforms.Add(platform);
+        }
+
+        if (ignoredPlatforms.Count == 0)
+            return;
+
+        isDroppingThrough = true;
+
+        // 발판에 걸리지 않도록 살짝 아래로 이동
+        rb.position +=
+            Vector2.down *
+            dropThroughDistance;
+
+        // 아래로 떨어지는 속도를 줌
+        rb.linearVelocity =
+            new Vector2(
+                rb.linearVelocity.x,
+                -2f
+            );
+
+        StartCoroutine(
+            RestorePlatformCollisions(
+                playerColliders,
+                ignoredPlatforms
+            )
+        );
+    }
+
+    private bool IsPlatform(
+        Collider2D collider)
+    {
+        if (collider == null)
+            return false;
+
+        // Collider가 붙은 오브젝트 자체 확인
+        if (collider.CompareTag(
+            dropThroughPlatformTag))
+        {
+            return true;
+        }
+
+        // Collider가 자식에 있고
+        // 부모 오브젝트에 Platform Tag가 붙어있는 경우 확인
+        Transform parent =
+            collider.transform.parent;
+
+        while (parent != null)
+        {
+            if (parent.CompareTag(
+                dropThroughPlatformTag))
+            {
+                return true;
+            }
+
+            parent = parent.parent;
+        }
+
+        return false;
+    }
+
+    private System.Collections.IEnumerator RestorePlatformCollisions(
+        Collider2D[] playerColliders,
+        List<Collider2D> platforms)
+    {
+        yield return new WaitForSeconds(
+            dropThroughDuration
+        );
+
+        if (playerColliders != null)
+        {
+            for (int i = 0; i < platforms.Count; i++)
+            {
+                Collider2D platform =
+                    platforms[i];
+
+                if (platform == null)
+                    continue;
+
+                for (int j = 0; j < playerColliders.Length; j++)
+                {
+                    Collider2D playerCollider =
+                        playerColliders[j];
+
+                    if (playerCollider == null)
+                        continue;
+
+                    Physics2D.IgnoreCollision(
+                        playerCollider,
+                        platform,
+                        false
+                    );
+                }
+            }
+        }
+
+        isDroppingThrough = false;
+    }
+
     // 체력 및 피격
     public void TakeDamage(
         int damage,
@@ -544,10 +793,18 @@ public class PlayerController : MonoBehaviour
     }
 
     private void UpdateCursor()
-    {   
+    {
         if (IsGunMode && crosshairCursor != null)
-            Cursor.SetCursor(crosshairCursor, crosshairHotspot, CursorMode.Auto);
+            Cursor.SetCursor(
+                crosshairCursor,
+                crosshairHotspot,
+                CursorMode.Auto
+            );
         else
-            Cursor.SetCursor(defaultCursor, Vector2.zero, CursorMode.Auto);
+            Cursor.SetCursor(
+                defaultCursor,
+                Vector2.zero,
+                CursorMode.Auto
+            );
     }
 }

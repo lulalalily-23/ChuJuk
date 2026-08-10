@@ -14,6 +14,10 @@ public class ShopItemDisplay : MonoBehaviour
     [SerializeField]
     private TMP_Text itemNameText;
 
+    [Header("아이템 설명창")]
+    [SerializeField]
+    private ItemDescriptionUI descriptionUI;
+
     [SerializeField]
     private TMP_Text tierText;
 
@@ -166,6 +170,11 @@ public class ShopItemDisplay : MonoBehaviour
             soldOutObject.SetActive(true);
         }
 
+        if (descriptionUI != null)
+        {
+            descriptionUI.Hide();
+        }
+
         UpdateInteractionHint();
     }
 
@@ -204,14 +213,32 @@ public class ShopItemDisplay : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(
-        Collider2D other)
+    Collider2D other)
     {
+        Debug.Log(
+            $"[ShopItemDisplay] Trigger 진입: {other.name}",
+            this
+        );
+
         ShopInteractor interactor =
             other.GetComponentInParent<
                 ShopInteractor>();
 
         if (interactor == null)
+        {
+            Debug.LogWarning(
+                $"[ShopItemDisplay] {other.name}에서 " +
+                "ShopInteractor를 찾지 못했습니다.",
+                this
+            );
+
             return;
+        }
+
+        Debug.Log(
+            "[ShopItemDisplay] ShopInteractor 발견",
+            this
+        );
 
         playerColliders.Add(other);
 
@@ -220,6 +247,44 @@ public class ShopItemDisplay : MonoBehaviour
         interactor.RegisterShopItem(this);
 
         UpdateInteractionHint();
+
+        if (descriptionUI == null)
+        {
+            Debug.LogError(
+                "[ShopItemDisplay] Description UI가 없습니다.",
+                this
+            );
+
+            return;
+        }
+
+        if (currentItem == null)
+        {
+            Debug.LogError(
+                "[ShopItemDisplay] Current Item이 없습니다.",
+                this
+            );
+
+            return;
+        }
+
+        if (isSoldOut)
+        {
+            Debug.Log(
+                "[ShopItemDisplay] 이미 판매된 아이템입니다.",
+                this
+            );
+
+            return;
+        }
+
+        Debug.Log(
+            $"[ShopItemDisplay] 설명창 표시: " +
+            $"{currentItem.itemName}",
+            this
+        );
+
+        descriptionUI.Show(currentItem);
     }
 
     private void OnTriggerExit2D(
@@ -236,6 +301,11 @@ public class ShopItemDisplay : MonoBehaviour
 
         if (playerColliders.Count > 0)
             return;
+
+        if (descriptionUI != null)
+        {
+            descriptionUI.Hide();
+        }
 
         interactor.UnregisterShopItem(this);
 

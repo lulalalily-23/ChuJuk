@@ -2,9 +2,9 @@ using UnityEngine;
 using System.Collections;
 
 //골렘의 체력에따른 페이즈 관리와 한 패턴 세트가 끝날때마다 5%의 데미지를 입도록 함
-public class GolemController : MonoBehaviour , IPatternUser
+public class GolemController : MonoBehaviour, IPatternUser
 {
-    enum BossPhase {Phase1, Phase2, Phase3};
+    enum BossPhase { Phase1, Phase2, Phase3 };
     private HealthManager healthManager;
     BossPhase currentPhase = BossPhase.Phase1;
     float healthPercent;
@@ -32,24 +32,52 @@ public class GolemController : MonoBehaviour , IPatternUser
         animator = GetComponentInChildren<Animator>();
         healthManager = GetComponent<HealthManager>();
         sr = GetComponentInChildren<SpriteRenderer>();
+
+        if (player == null)
+        {
+            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+
+            if (playerObject != null)
+            {
+                player = playerObject.transform;
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         healthPercent = (float)healthManager.currentHealth / (float)healthManager.data.maxHealth;
-        if (healthPercent <= Phase3Threshold) {
+        if (healthPercent <= Phase3Threshold)
+        {
             currentPhase = BossPhase.Phase3;
         }
-        else if (healthPercent <= Phase2Threshold) {
+        else if (healthPercent <= Phase2Threshold)
+        {
             currentPhase = BossPhase.Phase2;
-            if (!hasSummoned) {
-                hasSummoned = true;   
+            if (!hasSummoned)
+            {
+                hasSummoned = true;
                 StartCoroutine(SummonRoutine());
             }
         }
-        else {
+        else
+        {
             currentPhase = BossPhase.Phase1;
+        }
+
+        if (player == null)
+        {
+            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+
+            if (playerObject != null)
+            {
+                player = playerObject.transform;
+            }
+            else
+            {
+                return;
+            }
         }
 
         float distance = Vector2.Distance(player.position, transform.position);
