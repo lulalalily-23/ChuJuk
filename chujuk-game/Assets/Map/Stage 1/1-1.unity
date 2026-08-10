@@ -11210,7 +11210,7 @@ GameObject:
   - component: {fileID: 1052747524}
   m_Layer: 3
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50578,6 +50578,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4249846580173446879, guid: d86000e217aa1784a96a6f53d9ed972e, type: 3}
+      propertyPath: jumpForce
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249846580173446879, guid: d86000e217aa1784a96a6f53d9ed972e, type: 3}
+      propertyPath: fallMultiplier
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6453520504836745643, guid: d86000e217aa1784a96a6f53d9ed972e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -50617,6 +50625,10 @@ PrefabInstance:
     - target: {fileID: 6453520504836745643, guid: d86000e217aa1784a96a6f53d9ed972e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369840186885847379, guid: d86000e217aa1784a96a6f53d9ed972e, type: 3}
+      propertyPath: m_GravityScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
