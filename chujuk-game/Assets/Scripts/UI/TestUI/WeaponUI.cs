@@ -47,7 +47,7 @@ public class WeaponUI : MonoBehaviour
         }
     }
 
-    private void UpdateWeaponUI(bool isGun)
+    private void UpdateWeaponUI(bool isGun)   
     {
         weaponImage.sprite = isGun ? gunSprite : swordSprite;
     }

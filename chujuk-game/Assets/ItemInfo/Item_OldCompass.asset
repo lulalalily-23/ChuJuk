@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6e3da7f55ebff94f9fa16268ec79955, type: 3}
+  m_Name: Item_OldCompass
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemName: "\uC624\uB798\uB41C \uB098\uCE68\uBC18"
+  icon: {fileID: 8634146799183045616, guid: a6c6329e493dde94a8a086c5a583641d, type: 3}
+  description: "\uB098\uAC00\uB294 \uAE38\uC744 \uC54C\uB824\uC8FC\uC9C4 \uBABB\uD560\uB4EF
+    \uD558\uB2E4.\n\r\n\uACF5\uACA9\uB825 +15%, \uC561\uD2F0\uBE0C \uC2A4\uD0AC \uC0AC\uC6A9
+    \uC2DC, \uAC00\uC7A5 \uAC00\uAE4C\uC6B4 \uC801\uC5D0\uAC8C \uD0C4\uD658 \uBC1C\uC0AC"
+  grade: 2
+  effectType: 2
+  tags: 0800000005000000
+  modifiers:
+  - statType: 1
+    modifierType: 1
+    value: 0.15
+  cooldown: 0
+  sellPrice: 10
+  buyPrice: 30

@@ -16979,6 +16979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomClearManager
   portal: {fileID: 1673507777}
+  chestManager: {fileID: 546817674}
 --- !u!4 &546817672
 Transform:
   m_ObjectHideFlags: 0

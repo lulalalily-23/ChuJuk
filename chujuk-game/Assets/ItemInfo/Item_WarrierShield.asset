@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6e3da7f55ebff94f9fa16268ec79955, type: 3}
+  m_Name: Item_WarrierShield
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemName: "\uC804\uC0AC\uC758 \uBC29\uD328"
+  icon: {fileID: -5991938275793099713, guid: f04dfecec78e7284fbd09f3714fefe64, type: 3}
+  description: "\uB9CE\uC740 \uC804\uD22C\uC758 \uD754\uC801\uC774 \uB0A8\uC544\uC788\uB294
+    \uBC29\uD328.\n\r\n\uCD5C\uB300 \uCCB4\uB825 +30%, \uBC29\uC5B4\uB825 +30%, \uCCB4\uB825\uC774
+    50% \uC774\uD558\uC77C \uB54C \uC774\uB3D9 \uC18D\uB3C4 +20%, \uACF5\uACA9 \uC18D\uB3C4
+    +30%"
+  grade: 3
+  effectType: 1
+  tags: 0100000002000000
+  modifiers:
+  - statType: 3
+    modifierType: 1
+    value: 0.3
+  - statType: 2
+    modifierType: 1
+    value: 0.3
+  cooldown: 0
+  sellPrice: 10
+  buyPrice: 30

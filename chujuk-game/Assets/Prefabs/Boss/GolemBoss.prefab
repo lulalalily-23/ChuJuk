@@ -585,7 +585,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
-  player: {fileID: 0}
+  player: {fileID: 3540554552297187925, guid: d13496053fed4b5458d86aa1e2b83541, type: 3}
   leftFoot: {fileID: 2398365571415601825}
   rightFoot: {fileID: 7000613022867588483}
   wallLayer:
@@ -615,7 +615,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
-  player: {fileID: 0}
+  player: {fileID: 3540554552297187925, guid: d13496053fed4b5458d86aa1e2b83541, type: 3}
   leftArmPivot: {fileID: 7374576805413477664}
   rightArmPivot: {fileID: 8855816659149952134}
   groundReference: {fileID: 2398365571415601825}
@@ -645,7 +645,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
-  player: {fileID: 0}
+  player: {fileID: 3540554552297187925, guid: d13496053fed4b5458d86aa1e2b83541, type: 3}
   leftArmPivot: {fileID: 7374576805413477664}
   rightArmPivot: {fileID: 8855816659149952134}
   groundReference: {fileID: 2398365571415601825}
