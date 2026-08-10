@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c1a7516d4ba8442b8cc7d8d1d27d97, type: 3}
   m_Name: GolemBody
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
-  maxHealth: 300
+  maxHealth: 1200
   attackPower: 20
   defense: 8
   soulReward: 100
