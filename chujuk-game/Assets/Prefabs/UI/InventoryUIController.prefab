@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5226518616416691742}
   m_Layer: 0
   m_Name: InventoryUIController
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd4013a4652f336459d55b4af80634c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryUIController
-  inventoryPanel: {fileID: 0}
-  slotParent: {fileID: 0}
+  inventoryPanel: {fileID: 994178517041614096, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
+  slotParent: {fileID: 689227022881272472, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
   itemDropSpawner: {fileID: 0}
   holdDuration: 2
+  itemDescriptionUI: {fileID: 0}

@@ -395,7 +395,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1429590721075628138, guid: fc3d63037433a0a49bf7153bf7666f90, type: 3}
         m_TargetAssemblyTypeName: PauseUI, Assembly-CSharp
         m_MethodName: RestartGame
         m_Mode: 1
@@ -528,7 +528,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1429590721075628138, guid: fc3d63037433a0a49bf7153bf7666f90, type: 3}
         m_TargetAssemblyTypeName: PauseUI, Assembly-CSharp
         m_MethodName: SaveAndQuitToTitle
         m_Mode: 1
@@ -870,7 +870,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1429590721075628138, guid: fc3d63037433a0a49bf7153bf7666f90, type: 3}
         m_TargetAssemblyTypeName: PauseUI, Assembly-CSharp
         m_MethodName: ResumeGame
         m_Mode: 1
@@ -895,7 +895,7 @@ GameObject:
   - component: {fileID: 7758408295669412365}
   m_Layer: 5
   m_Name: PausePanel
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
