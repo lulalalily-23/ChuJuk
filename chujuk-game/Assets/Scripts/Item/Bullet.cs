@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
     public int damage = 10; // 총알 데미지
 
     private Rigidbody2D rb;
+    public LayerMask wallLayer;
 
     public void Setup(Vector2 direction, int damage)
     {
@@ -87,7 +88,7 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
         // 땅이나 벽에 닿으면 총알 삭제
-        else if (other.CompareTag("Ground") || other.CompareTag("Wall"))
+        else if (((1 << other.gameObject.layer) & wallLayer) != 0)
         {
             Destroy(gameObject);
         }

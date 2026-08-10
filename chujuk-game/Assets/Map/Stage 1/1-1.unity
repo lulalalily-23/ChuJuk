@@ -6111,12 +6111,24 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4249846580173446879, guid: 3e7e6ab126ae1df469b12948978c2f92, type: 3}
+      propertyPath: jumpForce
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249846580173446879, guid: 3e7e6ab126ae1df469b12948978c2f92, type: 3}
       propertyPath: moveSpeed
-      value: 10
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249846580173446879, guid: 3e7e6ab126ae1df469b12948978c2f92, type: 3}
+      propertyPath: fallMultiplier
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4249846580173446879, guid: 3e7e6ab126ae1df469b12948978c2f92, type: 3}
       propertyPath: groundCheckRadius
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249846580173446879, guid: 3e7e6ab126ae1df469b12948978c2f92, type: 3}
+      propertyPath: gravityTransitionSpeed
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6453520504836745643, guid: 3e7e6ab126ae1df469b12948978c2f92, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8306,6 +8318,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 333790eb82931634da17da2e13a558cb, type: 2}
   - {fileID: 11400000, guid: 8ba5cc89ad641e5449ee9fcefccac852, type: 2}
   - {fileID: 11400000, guid: 8e6ff53a88b472c438779a54615ee4a6, type: 2}
+  - {fileID: 11400000, guid: 2fa0ed7ada326954a8bc1ffd6553e081, type: 2}
+  - {fileID: 11400000, guid: 1b180afc3b31a7c4996883c2184c136f, type: 2}
+  - {fileID: 11400000, guid: 56d0616cc027c8a4baeb14261f1fea04, type: 2}
+  - {fileID: 11400000, guid: 378c432abfc42f047b58db1f788f8720, type: 2}
+  - {fileID: 11400000, guid: 189de5eea9f187046b90c52f5ef74c21, type: 2}
+  - {fileID: 11400000, guid: 0f15564112802e9498f1f826001fb07b, type: 2}
+  - {fileID: 11400000, guid: 0b49ee0c0ab26494f81d85d14e3de25d, type: 2}
+  - {fileID: 11400000, guid: 932dfd0e132725647b746ef86ccf12a7, type: 2}
+  - {fileID: 11400000, guid: 26d567052f105684b88d4cf8d0dcb82c, type: 2}
+  - {fileID: 11400000, guid: 593394360033792419823a45a0c94824, type: 2}
 --- !u!114 &546817675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8343,7 +8365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChestSpawnManager
   roomClearManager: {fileID: 546817670}
-  chest: {fileID: 820286300}
+  chest: {fileID: 0}
 --- !u!1001 &558143494
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59327,4 +59349,3 @@ SceneRoots:
   - {fileID: 28967813}
   - {fileID: 213536998}
   - {fileID: 469662335}
-  - {fileID: 820286299}

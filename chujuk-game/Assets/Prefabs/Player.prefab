@@ -293,24 +293,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ef0a45319639434b9b4e4d0c369e535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 5
-  jumpForce: 12
-  dashSpeed: 15
+  moveSpeed: 18
+  jumpForce: 20
+  dashSpeed: 18
   moveTime: 0.5
-  dashCooldown: 1.5
-  fallMultiplier: 2.5
+  dashCooldown: 1
   currentHp: 50
   groundCheck: {fileID: 7783720256164261829}
-  groundCheckRadius: 1
+  groundCheckRadius: 1.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
   bulletPrefab: {fileID: 5369742892947930665, guid: a2a33532c45e40d4eaed4499c203be2a, type: 3}
   attackCooldown: 0.5
   mainCam: {fileID: 4044136654745427074}
-  defaultCursor: {fileID: 0}
+  defaultCursor: {fileID: 2800000, guid: 798f0e783c414f14bbe37834246ef5a4, type: 3}
   crosshairCursor: {fileID: 2800000, guid: 798f0e783c414f14bbe37834246ef5a4, type: 3}
   crosshairHotspot: {x: 16, y: 16}
+  fallMultiplier: 3
+  gravityTransitionSpeed: 12
 --- !u!114 &1259584122986321718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,6 +326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthManager
   data: {fileID: 11400000, guid: f210a5d938ed2124ab7d3f8c52ca8bd5, type: 2}
   currentHealth: 50
+  baseInvincibilityDuration: 0.15
 --- !u!114 &9090134054839787199
 MonoBehaviour:
   m_ObjectHideFlags: 0
