@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 2164491806224441243}
   - component: {fileID: 6368001128760993025}
   - component: {fileID: 5278782289404310194}
+  - component: {fileID: 8481902569806329359}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -325,6 +326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthManager
   data: {fileID: 11400000, guid: f210a5d938ed2124ab7d3f8c52ca8bd5, type: 2}
   currentHealth: 50
+  baseInvincibilityDuration: 0.15
 --- !u!114 &9090134054839787199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,6 +432,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Inventory
   maxSlots: 8
+--- !u!114 &8481902569806329359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3141107847032401428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebc48fbf4a17d4d4493cc1fb00f74fb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopInteractor
+  inventoryPanel: {fileID: 0}
 --- !u!1 &5073835119758093757
 GameObject:
   m_ObjectHideFlags: 0

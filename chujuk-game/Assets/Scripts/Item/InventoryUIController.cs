@@ -27,6 +27,10 @@ public class InventoryUIController : MonoBehaviour
     [SerializeField]
     private float holdDuration = 2f;
 
+    [Header("아이템 설명창")]
+    [SerializeField]
+    private ItemDescriptionUI itemDescriptionUI;
+
     private InventorySlotUI[] slotUIs;
     private Inventory boundInventory;
 
@@ -184,6 +188,12 @@ public class InventoryUIController : MonoBehaviour
         {
             hoveredSlot = null;
             ResetHold();
+
+            // 인벤토리를 닫으면 아이템 설명창도 숨김
+            if (itemDescriptionUI != null)
+            {
+                itemDescriptionUI.Hide();
+            }
         }
     }
 
@@ -193,20 +203,41 @@ public class InventoryUIController : MonoBehaviour
     }
 
     public void SetHoveredSlot(
-        InventorySlotUI slot)
+    InventorySlotUI slot)
     {
         hoveredSlot = slot;
         ResetHold();
+
+        if (itemDescriptionUI == null)
+            return;
+
+        if (slot != null &&
+            slot.HasItem)
+        {
+            itemDescriptionUI.Show(
+                slot.CurrentItem
+            );
+        }
+        else
+        {
+            itemDescriptionUI.Hide();
+        }
     }
 
     public void ClearHoveredSlot(
-        InventorySlotUI slot)
+    InventorySlotUI slot)
     {
         if (hoveredSlot != slot)
             return;
 
         hoveredSlot = null;
+
         ResetHold();
+
+        if (itemDescriptionUI != null)
+        {
+            itemDescriptionUI.Hide();
+        }
     }
 
     private void RefreshUI()
