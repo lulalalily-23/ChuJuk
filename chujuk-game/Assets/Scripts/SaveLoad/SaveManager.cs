@@ -147,4 +147,39 @@ public class SaveManager : MonoBehaviour
         if (HasSaveFile())
             File.Delete(SavePath);
     }
+    public void StartNewGame(string firstSceneName)
+    {
+        // 혹시 이전 화면에서 게임이 멈춰 있었다면 해제
+        Time.timeScale = 1f;
+
+        // 기존 세이브 파일 삭제
+        DeleteSaveFile();
+
+        // 기존에 죽었던 적 기록 삭제
+        if (EnemyDeathRegistry.Instance != null)
+        {
+            EnemyDeathRegistry.Instance.ClearAll();
+        }
+
+        // 이전 인벤토리 데이터가 메모리에 남아 있다면 초기화
+        if (Inventory.Instance != null)
+        {
+            Inventory.Instance.ClearInventory();
+        }
+
+        // 이전 Soul이 메모리에 남아 있다면 초기화
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SetSoul(0);
+        }
+
+        // 런타임 능력치 초기화
+        if (PlayerStat.Instance != null)
+        {
+            PlayerStat.Instance.ResetAllRuntimeStats();
+        }
+
+        // 첫 번째 게임 씬으로 이동
+        SceneManager.LoadScene(firstSceneName);
+    }
 }
