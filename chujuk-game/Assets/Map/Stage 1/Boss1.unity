@@ -10153,7 +10153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323e9aa47f5a3de4fa65386f1aea8bef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
-  nextSceneName: Shop1
+  nextSceneName: 2-1
 --- !u!1 &1903785979
 GameObject:
   m_ObjectHideFlags: 0
