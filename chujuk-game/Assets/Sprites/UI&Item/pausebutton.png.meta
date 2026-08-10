@@ -1,0 +1,507 @@
+fileFormatVersion: 2
+guid: d59dcb9a751f4a349981c5b89815222f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2150871330291307017
+    second: pausebutton_0
+  - first:
+      213: -2977586698391791320
+    second: pausebutton_1
+  - first:
+      213: -8065621690718377016
+    second: pausebutton_2
+  - first:
+      213: 6723466680537327469
+    second: pausebutton_3
+  - first:
+      213: -4197344360966917088
+    second: pausebutton_4
+  - first:
+      213: 8049946976582089039
+    second: pausebutton_5
+  - first:
+      213: 8282696680616869040
+    second: pausebutton_6
+  - first:
+      213: 7794925701363234796
+    second: pausebutton_7
+  - first:
+      213: 532351114156607128
+    second: pausebutton_8
+  - first:
+      213: -5652498440760706836
+    second: pausebutton_9
+  - first:
+      213: 1438760295738898843
+    second: pausebutton_10
+  - first:
+      213: 1161519490055318566
+    second: pausebutton_11
+  - first:
+      213: 5490630865489005845
+    second: pausebutton_12
+  - first:
+      213: -1646072940004520578
+    second: pausebutton_13
+  - first:
+      213: 658162639613467748
+    second: pausebutton_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: pausebutton_0
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 41
+        width: 1439
+        height: 855
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 902d59f341e69dd10800000000000000
+      internalID: 2150871330291307017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pausebutton_1
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 247
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 829dd6a7cac7da6d0800000000000000
+      internalID: -2977586698391791320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pausebutton_2
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 255
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cbab084ec7211090800000000000000
+      internalID: -8065621690718377016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pausebutton_3
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 270
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d672a90d25d8e4d50800000000000000
+      internalID: 6723466680537327469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pausebutton_4
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 225
+        width: 45
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 024f39cca8900c5c0800000000000000
+      internalID: -4197344360966917088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pausebutton_5
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 223
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f49b7efef1827bf60800000000000000
+      internalID: 8049946976582089039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pausebutton_6
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 255
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bcb9765fbc02f270800000000000000
+      internalID: 8282696680616869040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pausebutton_7
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 255
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce7715840a32d2c60800000000000000
+      internalID: 7794925701363234796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pausebutton_8
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 152
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 896861f848a436700800000000000000
+      internalID: 532351114156607128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pausebutton_9
+      rect:
+        serializedVersion: 2
+        x: 954
+        y: 242
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce83209cd9a4e81b0800000000000000
+      internalID: -5652498440760706836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pausebutton_10
+      rect:
+        serializedVersion: 2
+        x: 958
+        y: 240
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b99f378bdd087f310800000000000000
+      internalID: 1438760295738898843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pausebutton_11
+      rect:
+        serializedVersion: 2
+        x: 968
+        y: 239
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62ca07c72db8e1010800000000000000
+      internalID: 1161519490055318566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pausebutton_12
+      rect:
+        serializedVersion: 2
+        x: 1214
+        y: 254
+        width: 25
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51d844a7ea3a23c40800000000000000
+      internalID: 5490630865489005845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pausebutton_13
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 254
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7dc5a0e169f729e0800000000000000
+      internalID: -1646072940004520578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pausebutton_14
+      rect:
+        serializedVersion: 2
+        x: 1264
+        y: 241
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46c18920f63422900800000000000000
+      internalID: 658162639613467748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      pausebutton_0: 2150871330291307017
+      pausebutton_1: -2977586698391791320
+      pausebutton_10: 1438760295738898843
+      pausebutton_11: 1161519490055318566
+      pausebutton_12: 5490630865489005845
+      pausebutton_13: -1646072940004520578
+      pausebutton_14: 658162639613467748
+      pausebutton_2: -8065621690718377016
+      pausebutton_3: 6723466680537327469
+      pausebutton_4: -4197344360966917088
+      pausebutton_5: 8049946976582089039
+      pausebutton_6: 8282696680616869040
+      pausebutton_7: 7794925701363234796
+      pausebutton_8: 532351114156607128
+      pausebutton_9: -5652498440760706836
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
