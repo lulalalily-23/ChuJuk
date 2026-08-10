@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 745dc19c4350ac64d8ff6949236a7ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GolemSkill_Charge
-  chargeDistance: 8
+  chargeDistance: 25
   chargeSpeed: 15
   telegraphDuration: 1
   coolTime: 6
@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7895dd4aec4694c87b64fee2c1151e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlimeSkill_RandomCharge
-  chargeDistance: 6
+  chargeDistance: 20
   chargeSpeed: 12
   telegraphDuration: 0.8
   coolTime: 5

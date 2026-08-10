@@ -432,6 +432,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2433835085907058131, guid: 6b599b2795edecc41943a9ff136c0731, type: 3}
+      propertyPath: laserLength
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2706183758700332615, guid: 6b599b2795edecc41943a9ff136c0731, type: 3}
       propertyPath: currentHealth
       value: 0
@@ -451,7 +455,7 @@ PrefabInstance:
     - target: {fileID: 3544122445490092962, guid: 6b599b2795edecc41943a9ff136c0731, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 101183949}
     - target: {fileID: 5362734951960301543, guid: 6b599b2795edecc41943a9ff136c0731, type: 3}
       propertyPath: m_Name
       value: GolemBoss
@@ -583,7 +587,7 @@ PrefabInstance:
     - target: {fileID: 8271390122388512934, guid: 6b599b2795edecc41943a9ff136c0731, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 101183949}
     - target: {fileID: 8434645902884840959, guid: 6b599b2795edecc41943a9ff136c0731, type: 3}
       propertyPath: m_TagString
       value: Enemy
@@ -7652,7 +7656,7 @@ PlatformEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 447
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
@@ -10196,7 +10200,7 @@ PlatformEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 447
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
@@ -10871,7 +10875,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 100}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1253019768}

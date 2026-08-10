@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8370abfeceb0d634a9b44d32901fb886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDeathHandler
-  baseAttack: 20
+  baseAttack: 18
   baseDefense: 5
   baseMaxHP: 100
   baseAttackSpeed: 1
