@@ -7621,7 +7621,7 @@ GameObject:
   - component: {fileID: 1092878601}
   m_Layer: 3
   m_Name: Platform L
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9690,7 +9690,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1513526841}
   m_Layer: 0
-  m_Name: Spawnpoint
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10165,7 +10165,7 @@ GameObject:
   - component: {fileID: 1903785981}
   m_Layer: 3
   m_Name: Platform R
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
