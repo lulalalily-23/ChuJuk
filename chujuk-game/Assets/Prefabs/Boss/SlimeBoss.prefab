@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 3503546668718772808}
   - component: {fileID: 1228163470518821575}
   - component: {fileID: 1332202076754841774}
+  - component: {fileID: 1091346517560056485}
   m_Layer: 6
   m_Name: SlimeBoss
   m_TagString: Enemy
@@ -315,3 +316,25 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   telegraphYOffset: 2
+--- !u!95 &1091346517560056485
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8304722157443163774}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2833ea68722e1524bbeca70914fd39af, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
