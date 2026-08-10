@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Collections; // 코루틴 사용을 위해 추가
 
 public class PlayerController : MonoBehaviour
 {
@@ -60,6 +61,8 @@ public class PlayerController : MonoBehaviour
 
     private bool isDroppingThrough;
 
+    private bool isInitialized = false;
+
     [Header("Combat")]
     public GameObject bulletPrefab;
     public Transform bulletSpawnPoint; // 총알 생성 위치
@@ -76,9 +79,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Jump Physics")]
     public float fallMultiplier = 2.5f;
-    public float gravityTransitionSpeed = 8f; 
+    public float gravityTransitionSpeed = 8f;
 
-    private float currentGravityMultiplier = 1f;   
+    private float currentGravityMultiplier = 1f;
 
     void Start()
     {
@@ -94,10 +97,30 @@ public class PlayerController : MonoBehaviour
 
         mainCam = FindAnyObjectByType<Camera>();
         UpdateCursor();
+
+        // 게임 시작 직후 물리 안정이 될 때까지 중력을 끄고 대기
+        StartCoroutine(InitializePlayerRoutine());
+    }
+
+    IEnumerator InitializePlayerRoutine()
+    {
+        float tempGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        rb.linearVelocity = Vector2.zero;
+
+        // 빌드 환경 첫 프레임 로딩 렉이 지나갈 때까지 대기
+        yield return new WaitForSeconds(0.15f);
+
+        rb.gravityScale = tempGravity;
+        isInitialized = true; // 이때부터 정상 움직임 시작
     }
 
     void Update()
     {
+        // 아직 초기화 중이면 조작을 받지 않음 (발판 뚫림 방지)
+        if (!isInitialized)
+            return;
+
         // 세이브 로드 테스트용 임시 코드
         if (Input.GetKeyDown(KeyCode.F5))
         {
@@ -290,28 +313,7 @@ public class PlayerController : MonoBehaviour
             !isDashing &&
             Time.time >= nextDashTime)
         {
-            isDashing = true;
-            dashTime = moveTime;
-            dashDirection = transform.localScale.x;
-            rb.gravityScale = 0f;
-
-            float cooldown = dashCooldown;
-
-            if (PlayerStat.Instance != null)
-            {
-                cooldown -=
-                    PlayerStat.Instance.GetStat(
-                        StatType.DashCoolDown
-                    );
-            }
-
-            cooldown = Mathf.Max(
-                0f,
-                cooldown
-            );
-
-            nextDashTime =
-                Time.time + cooldown;
+            TriggerDash();
         }
 
         // 대쉬 (Z키)
@@ -319,28 +321,7 @@ public class PlayerController : MonoBehaviour
             !isDashing &&
             Time.time >= nextDashTime)
         {
-            isDashing = true;
-            dashTime = moveTime;
-            dashDirection = transform.localScale.x;
-            rb.gravityScale = 0f;
-
-            float cooldown = dashCooldown;
-
-            if (PlayerStat.Instance != null)
-            {
-                cooldown -=
-                    PlayerStat.Instance.GetStat(
-                        StatType.DashCoolDown
-                    );
-            }
-
-            cooldown = Mathf.Max(
-                0f,
-                cooldown
-            );
-
-            nextDashTime =
-                Time.time + cooldown;
+            TriggerDash();
         }
 
         // 액티브 스킬 (Q)
@@ -372,8 +353,37 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void TriggerDash()
+    {
+        isDashing = true;
+        dashTime = moveTime;
+        dashDirection = transform.localScale.x;
+        rb.gravityScale = 0f;
+
+        float cooldown = dashCooldown;
+
+        if (PlayerStat.Instance != null)
+        {
+            cooldown -=
+                PlayerStat.Instance.GetStat(
+                    StatType.DashCoolDown
+                );
+        }
+
+        cooldown = Mathf.Max(
+            0f,
+            cooldown
+        );
+
+        nextDashTime =
+            Time.time + cooldown;
+    }
+
     void FixedUpdate()
     {
+        if (!isInitialized)
+            return;
+
         if (isDashing)
         {
             dashTime -= Time.fixedDeltaTime;
@@ -429,7 +439,6 @@ public class PlayerController : MonoBehaviour
         }
 
         // 떨어질 때 중력 가속도 추가
-        
         float targetMultiplier = rb.linearVelocity.y < 0 ? fallMultiplier : 1f;
         currentGravityMultiplier = Mathf.MoveTowards(currentGravityMultiplier, targetMultiplier, gravityTransitionSpeed * Time.fixedDeltaTime);
 
