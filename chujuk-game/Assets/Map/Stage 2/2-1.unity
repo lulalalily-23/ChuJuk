@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 37368068}
   m_Layer: 0
-  m_Name: Spawnpoint
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59145,7 +59145,7 @@ GameObject:
   - component: {fileID: 551613714}
   m_Layer: 3
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67309,7 +67309,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.28, y: -39.24, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.11, y: 1.11, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1098408176}
