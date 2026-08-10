@@ -365,6 +365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollowMapBounds
   target: {fileID: 2146481776}
   mapBoundary: {fileID: 358442386}
+  groundObjectName: Ground
   offset: {x: 0, y: 0, z: -10}
 --- !u!114 &86547356
 MonoBehaviour:
@@ -48571,6 +48572,8 @@ GameObject:
   - component: {fileID: 1613697044}
   - component: {fileID: 1613697046}
   - component: {fileID: 1613697045}
+  - component: {fileID: 1613697048}
+  - component: {fileID: 1613697047}
   m_Layer: 0
   m_Name: Secret
   m_TagString: Untagged
@@ -48640,7 +48643,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -52923,6 +52926,58 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1613697047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613697043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcb71431be293b34798f493f493173c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SecretRoomFade
+  fadeDuration: 0.5
+  hiddenAlpha: 0
+--- !u!19719996 &1613697048
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613697043}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0
+  m_UseDelaunayMesh: 0
 --- !u!1 &1637812773
 GameObject:
   m_ObjectHideFlags: 0
@@ -53901,7 +53956,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9092113457886577951, guid: d13496053fed4b5458d86aa1e2b83541, type: 3}
   m_PrefabInstance: {fileID: 1352423797}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2146481764}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 091139f3075758246a0113ce507fc533, type: 3}
@@ -53912,7 +53967,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4264945420691732802, guid: d13496053fed4b5458d86aa1e2b83541, type: 3}
   m_PrefabInstance: {fileID: 1352423797}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2146481764}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ef0a45319639434b9b4e4d0c369e535, type: 3}

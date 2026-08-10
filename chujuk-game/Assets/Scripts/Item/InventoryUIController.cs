@@ -103,8 +103,28 @@ public class InventoryUIController : MonoBehaviour
         if (boundInventory == null)
             BindInventory();
 
-        if (Keyboard.current.iKey
-            .wasPressedThisFrame)
+        // GameManager가 없으면 인벤토리 입력 금지
+        if (GameManager.Instance == null)
+        {
+            if (IsOpen)
+                CloseInventory();
+
+            return;
+        }
+
+        // Playing 상태가 아니면 인벤토리를 사용할 수 없음
+        if (GameManager.Instance.State != GameManager.GameState.Playing)
+        {
+            // GameOver나 Pause로 넘어갔는데
+            // 인벤토리가 열려 있었다면 자동으로 닫기
+            if (IsOpen)
+                CloseInventory();
+
+            return;
+        }
+
+        // Playing 상태에서만 I키 사용 가능
+        if (Keyboard.current.iKey.wasPressedThisFrame)
         {
             SetInventoryOpen(!IsOpen);
         }
@@ -165,6 +185,11 @@ public class InventoryUIController : MonoBehaviour
             hoveredSlot = null;
             ResetHold();
         }
+    }
+
+    public void CloseInventory()
+    {
+        SetInventoryOpen(false);
     }
 
     public void SetHoveredSlot(

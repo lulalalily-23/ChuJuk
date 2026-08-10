@@ -1,12 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PauseUI : MonoBehaviour
 {
     [Header("Pause UI")]
-    [SerializeField] private GameObject pausePanel;
+    [SerializeField]
+    private GameObject pausePanel;
 
-    private bool isPaused;
+    [Header("Other UI")]
+    [SerializeField]
+    private InventoryUIController inventoryUI;
 
     private void Awake()
     {
@@ -21,29 +25,45 @@ public class PauseUI : MonoBehaviour
         }
 
         pausePanel.SetActive(false);
-        isPaused = false;
     }
 
     private void Update()
     {
         if (Keyboard.current == null)
+            return;
+
+        if (!Keyboard.current.escapeKey.wasPressedThisFrame)
+            return;
+
+        if (GameManager.Instance == null)
+            return;
+
+        // GameOver에서는 ESC 무시
+        if (GameManager.Instance.State ==
+            GameManager.GameState.GameOver)
         {
             return;
         }
 
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        // 1순위 : 인벤토리 닫기
+        if (inventoryUI != null &&
+            inventoryUI.IsOpen)
         {
-            TogglePause();
+            inventoryUI.CloseInventory();
+            return;
         }
-    }
 
-    private void TogglePause()
-    {
-        if (isPaused)
+        // 2순위 : Pause가 열려 있으면 닫기
+        if (GameManager.Instance.State ==
+            GameManager.GameState.Paused)
         {
             ResumeGame();
+            return;
         }
-        else
+
+        // 3순위 : 일반 상태에서 Pause 열기
+        if (GameManager.Instance.State ==
+            GameManager.GameState.Playing)
         {
             PauseGame();
         }
@@ -51,29 +71,46 @@ public class PauseUI : MonoBehaviour
 
     public void PauseGame()
     {
-        isPaused = true;
+        if (GameManager.Instance == null)
+            return;
+
+        // Playing 상태에서만 일시정지 가능
+        if (GameManager.Instance.State !=
+            GameManager.GameState.Playing)
+        {
+            return;
+        }
+
+        // 혹시 인벤토리가 열려 있으면 먼저 닫음
+        if (inventoryUI != null &&
+            inventoryUI.IsOpen)
+        {
+            inventoryUI.CloseInventory();
+        }
+
+        GameManager.Instance.Pause();
 
         pausePanel.SetActive(true);
-
-        Time.timeScale = 0f;
     }
 
     public void ResumeGame()
     {
-        isPaused = false;
+        if (GameManager.Instance == null)
+            return;
+
+        if (GameManager.Instance.State !=
+            GameManager.GameState.Paused)
+        {
+            return;
+        }
 
         pausePanel.SetActive(false);
 
-        Time.timeScale = 1f;
+        GameManager.Instance.Resume();
     }
 
     public void RestartGame()
     {
-        // 일시정지 상태에서 씬 이동하기 전에 시간 복구
-        Time.timeScale = 1f;
-
-        isPaused = false;
-
         if (GameManager.Instance == null)
         {
             Debug.LogError(
@@ -83,6 +120,41 @@ public class PauseUI : MonoBehaviour
             return;
         }
 
+        pausePanel.SetActive(false);
+
         GameManager.Instance.RestartGame();
+    }
+
+    // 저장 후 메인 타이틀로 이동
+    public void SaveAndQuitToTitle()
+    {
+        if (SaveManager.Instance == null)
+        {
+            Debug.LogError(
+                "[PauseUI] SaveManager를 찾을 수 없습니다."
+            );
+
+            return;
+        }
+
+        // 현재 플레이 기록 저장
+        SaveManager.Instance.SaveGame();
+
+        // 일시정지 상태 해제
+        if (GameManager.Instance != null &&
+            GameManager.Instance.State ==
+            GameManager.GameState.Paused)
+        {
+            GameManager.Instance.Resume();
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+
+        pausePanel.SetActive(false);
+
+        // 메인 타이틀 이동
+        SceneManager.LoadScene("MainTitle");
     }
 }
