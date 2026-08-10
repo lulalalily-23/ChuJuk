@@ -306,8 +306,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   bulletPrefab: {fileID: 5369742892947930665, guid: a2a33532c45e40d4eaed4499c203be2a, type: 3}
+  attackCooldown: 0.5
   mainCam: {fileID: 4044136654745427074}
-  currentMoney: 0
+  defaultCursor: {fileID: 0}
+  crosshairCursor: {fileID: 2800000, guid: 798f0e783c414f14bbe37834246ef5a4, type: 3}
+  crosshairHotspot: {x: 16, y: 16}
 --- !u!114 &1259584122986321718
 MonoBehaviour:
   m_ObjectHideFlags: 0

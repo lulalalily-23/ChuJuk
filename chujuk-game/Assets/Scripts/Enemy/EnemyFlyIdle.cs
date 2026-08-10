@@ -7,26 +7,26 @@ public class EnemyFlyIdle : EnemyIdle
     [Tooltip("흔들리는 속도")]
     public float hoverSpeed = 2f;
 
-    private Rigidbody2D rb;
-    private Vector2 basePoint;
+    private Rigidbody2D flyRb;
+    private Vector2 flyBasePoint;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        flyRb = GetComponent<Rigidbody2D>();
     }
 
-    private new void OnEnable()
+    private void OnEnable()
     {
-        if (rb != null)
-            rb.gravityScale = 0f; 
+        if (flyRb != null)
+            flyRb.gravityScale = 0f; 
 
-        basePoint = transform.position;
+        flyBasePoint = transform.position;
     }
 
-    private new void FixedUpdate()
+    private void FixedUpdate()
     {
         float offsetY = Mathf.Sin(Time.time * hoverSpeed) * hoverAmplitude;
-        Vector2 targetPos = new Vector2(basePoint.x, basePoint.y + offsetY);
-        rb.MovePosition(targetPos);
+        Vector2 targetPos = new Vector2(flyBasePoint.x, flyBasePoint.y + offsetY);
+        flyRb.MovePosition(targetPos);
     }
 }
