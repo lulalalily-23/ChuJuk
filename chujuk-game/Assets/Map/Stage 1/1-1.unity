@@ -50692,7 +50692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323e9aa47f5a3de4fa65386f1aea8bef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
-  nextSceneName: Shop1-1
+  nextSceneName: 1-2
 --- !u!58 &1482958356
 CircleCollider2D:
   m_ObjectHideFlags: 0
