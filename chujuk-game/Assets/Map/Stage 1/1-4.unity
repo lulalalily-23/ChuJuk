@@ -3348,6 +3348,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: 7f95d9ccfefba9d4884e88fad935b845, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: 7f95d9ccfefba9d4884e88fad935b845, type: 3}
       propertyPath: enemyId
       value: d8c0aa71-9c83-43ff-acdd-3cf86d63b84e
@@ -3356,6 +3360,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyWolfbat (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: 7f95d9ccfefba9d4884e88fad935b845, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3414,6 +3422,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: 7f95d9ccfefba9d4884e88fad935b845, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: 7f95d9ccfefba9d4884e88fad935b845, type: 3}
       propertyPath: enemyId
       value: 438ec98b-871d-434f-a772-2abec2db433a
@@ -3422,6 +3434,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyWolfbat (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: 7f95d9ccfefba9d4884e88fad935b845, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3480,6 +3496,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: 7f95d9ccfefba9d4884e88fad935b845, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: 7f95d9ccfefba9d4884e88fad935b845, type: 3}
       propertyPath: enemyId
       value: c367a70c-a7c3-419a-b599-f9cf0b581fa8
@@ -3488,6 +3508,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyWolfbat
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: 7f95d9ccfefba9d4884e88fad935b845, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3684,6 +3708,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
       propertyPath: enemyId
       value: 17a05097-6f3d-4dd1-a955-90b1c311c152
@@ -3692,6 +3720,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyKnight (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -49396,6 +49428,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
       propertyPath: enemyId
       value: d5d131bc-ce93-4f4b-b2e8-541e9b3038c1
@@ -49404,6 +49440,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyKnight (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -49462,6 +49502,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
       propertyPath: enemyId
       value: 42012dda-17e0-4766-8161-df277cf1054e
@@ -49470,6 +49514,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyKnight (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -49528,6 +49576,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: ab98193e226ead14ea35176a1e588068, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: ab98193e226ead14ea35176a1e588068, type: 3}
       propertyPath: enemyId
       value: 15bc88dc-2d88-4b97-bc53-db13dc4ddb78
@@ -49536,6 +49588,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyAssassin (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: ab98193e226ead14ea35176a1e588068, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -51123,6 +51179,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
       propertyPath: enemyId
       value: b216926a-b8b5-4a04-9196-63131a9340a7
@@ -51131,6 +51191,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyKnight (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -51189,6 +51253,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
       propertyPath: enemyId
       value: eb0ae4e4-8ca2-449d-b899-193ae5998fe0
@@ -51197,6 +51265,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyKnight (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -51219,6 +51291,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyGolem
       objectReference: {fileID: 0}
+    - target: {fileID: 1469617019082456175, guid: e20fc422d652fdd41baf14de328cf04f, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
+    - target: {fileID: 1501238503052977084, guid: e20fc422d652fdd41baf14de328cf04f, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     - target: {fileID: 2051403247356662824, guid: e20fc422d652fdd41baf14de328cf04f, type: 3}
       propertyPath: enemyId
       value: 04375955-0fc4-41ea-8a88-089da098672a
@@ -51321,6 +51401,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
       propertyPath: enemyId
       value: da5e294b-2c3b-447f-92f8-a54e65e0227d
@@ -51329,6 +51413,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyKnight (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -51351,6 +51439,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyGolem (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1469617019082456175, guid: e20fc422d652fdd41baf14de328cf04f, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
+    - target: {fileID: 1501238503052977084, guid: e20fc422d652fdd41baf14de328cf04f, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     - target: {fileID: 2051403247356662824, guid: e20fc422d652fdd41baf14de328cf04f, type: 3}
       propertyPath: enemyId
       value: 634afae6-7d9c-4228-91aa-d35b855606f5
@@ -51417,6 +51513,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyGolem (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1469617019082456175, guid: e20fc422d652fdd41baf14de328cf04f, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
+    - target: {fileID: 1501238503052977084, guid: e20fc422d652fdd41baf14de328cf04f, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     - target: {fileID: 2051403247356662824, guid: e20fc422d652fdd41baf14de328cf04f, type: 3}
       propertyPath: enemyId
       value: 49505039-ee71-4e47-b984-b59f01f6a393
@@ -51479,6 +51583,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 221843700247820394, guid: 9236140a25840dd469072bb88b2eb0c3, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1755153765}
+    - target: {fileID: 434619406203506026, guid: 9236140a25840dd469072bb88b2eb0c3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 434619406203506026, guid: 9236140a25840dd469072bb88b2eb0c3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 434619406203506026, guid: 9236140a25840dd469072bb88b2eb0c3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 434619406203506026, guid: 9236140a25840dd469072bb88b2eb0c3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213248194346003529, guid: 9236140a25840dd469072bb88b2eb0c3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213248194346003529, guid: 9236140a25840dd469072bb88b2eb0c3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419696006158672905, guid: 9236140a25840dd469072bb88b2eb0c3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 973774400}
+    - target: {fileID: 3419696006158672905, guid: 9236140a25840dd469072bb88b2eb0c3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SaveAndQuitToTitle
+      objectReference: {fileID: 0}
     - target: {fileID: 4871126821844778168, guid: 9236140a25840dd469072bb88b2eb0c3, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -51559,15 +51699,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6828642156409292226, guid: 9236140a25840dd469072bb88b2eb0c3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828642156409292226, guid: 9236140a25840dd469072bb88b2eb0c3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828642156409292226, guid: 9236140a25840dd469072bb88b2eb0c3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828642156409292226, guid: 9236140a25840dd469072bb88b2eb0c3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7271664271565067677, guid: 9236140a25840dd469072bb88b2eb0c3, type: 3}
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8904579639833038974, guid: 9236140a25840dd469072bb88b2eb0c3, type: 3}
+      propertyPath: itemDropSpawner
+      value: 
+      objectReference: {fileID: 1755153764}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9236140a25840dd469072bb88b2eb0c3, type: 3}
+--- !u!114 &973774400 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6049157024850745743, guid: 9236140a25840dd469072bb88b2eb0c3, type: 3}
+  m_PrefabInstance: {fileID: 973774399}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8489d578bd862b446985b4714309bed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseUI
 --- !u!1001 &981847325
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51616,6 +51787,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: ab98193e226ead14ea35176a1e588068, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: ab98193e226ead14ea35176a1e588068, type: 3}
       propertyPath: enemyId
       value: c1763fbb-4e93-438b-8593-10dbcbabb4d0
@@ -51624,6 +51799,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyAssassin (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: ab98193e226ead14ea35176a1e588068, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -51682,6 +51861,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: ab98193e226ead14ea35176a1e588068, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: ab98193e226ead14ea35176a1e588068, type: 3}
       propertyPath: enemyId
       value: 1c0b6039-eded-45a5-b2b0-800ce26ef527
@@ -51690,6 +51873,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyAssassin
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: ab98193e226ead14ea35176a1e588068, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -51748,6 +51935,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: ab98193e226ead14ea35176a1e588068, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: ab98193e226ead14ea35176a1e588068, type: 3}
       propertyPath: enemyId
       value: a96cd16d-1eb7-4a1e-9524-26422dca0c0a
@@ -51756,6 +51947,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyAssassin
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: ab98193e226ead14ea35176a1e588068, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -51778,6 +51973,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyGolem (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1469617019082456175, guid: e20fc422d652fdd41baf14de328cf04f, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
+    - target: {fileID: 1501238503052977084, guid: e20fc422d652fdd41baf14de328cf04f, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     - target: {fileID: 2051403247356662824, guid: e20fc422d652fdd41baf14de328cf04f, type: 3}
       propertyPath: enemyId
       value: 7d8e0020-ee59-4b8f-8362-5bd791cef0bc
@@ -51832,6 +52035,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8346772731185941941, guid: e20fc422d652fdd41baf14de328cf04f, type: 3}
   m_PrefabInstance: {fileID: 1261189276}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1282623354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1282623355}
+  m_Layer: 0
+  m_Name: Spawnpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1282623355
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282623354}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.8, y: 67.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1315744372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51998,6 +52232,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: 7f95d9ccfefba9d4884e88fad935b845, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: 7f95d9ccfefba9d4884e88fad935b845, type: 3}
       propertyPath: enemyId
       value: d8f216bc-1a9f-4848-8da5-5882f14a6827
@@ -52006,6 +52244,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyWolfbat (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: 7f95d9ccfefba9d4884e88fad935b845, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -52064,6 +52306,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
       propertyPath: enemyId
       value: 883290b8-8f78-4e9c-bdf4-b6b1b047c8bc
@@ -52072,6 +52318,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyKnight (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -52209,6 +52459,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
       propertyPath: enemyId
       value: dafceaae-a4a7-4c03-8c2e-a3afbaf327df
@@ -52217,6 +52471,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyKnight
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -52571,6 +52829,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: 7f95d9ccfefba9d4884e88fad935b845, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: 7f95d9ccfefba9d4884e88fad935b845, type: 3}
       propertyPath: enemyId
       value: e551f73d-e49f-4cb5-a1a1-5b5dcb597f40
@@ -52579,6 +52841,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyWolfbat (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: 7f95d9ccfefba9d4884e88fad935b845, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -52601,6 +52867,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyGolem
       objectReference: {fileID: 0}
+    - target: {fileID: 1469617019082456175, guid: e20fc422d652fdd41baf14de328cf04f, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
+    - target: {fileID: 1501238503052977084, guid: e20fc422d652fdd41baf14de328cf04f, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     - target: {fileID: 2051403247356662824, guid: e20fc422d652fdd41baf14de328cf04f, type: 3}
       propertyPath: enemyId
       value: 33d9edc8-7f20-419e-a330-2f53ef3227c5
@@ -52712,6 +52986,33 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d86000e217aa1784a96a6f53d9ed972e, type: 3}
+--- !u!114 &1755153764 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2274581289897807456, guid: d86000e217aa1784a96a6f53d9ed972e, type: 3}
+  m_PrefabInstance: {fileID: 1755153763}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5d0c1227844a934dbd1b2566665ef0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDropSpawner
+--- !u!114 &1755153765 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4249846580173446879, guid: d86000e217aa1784a96a6f53d9ed972e, type: 3}
+  m_PrefabInstance: {fileID: 1755153763}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ef0a45319639434b9b4e4d0c369e535, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+--- !u!4 &1755153766 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6453520504836745643, guid: d86000e217aa1784a96a6f53d9ed972e, type: 3}
+  m_PrefabInstance: {fileID: 1755153763}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1773294466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52760,6 +53061,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: ab98193e226ead14ea35176a1e588068, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: ab98193e226ead14ea35176a1e588068, type: 3}
       propertyPath: enemyId
       value: c85f8116-8c86-4edf-baab-43e9306a419b
@@ -52768,6 +53073,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyAssassin (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: ab98193e226ead14ea35176a1e588068, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -52826,6 +53135,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
       propertyPath: enemyId
       value: 196ad13e-c496-4ef3-8a47-ff74a6306cbc
@@ -52834,6 +53147,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyKnight (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -52892,6 +53209,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
       propertyPath: enemyId
       value: bf8635af-5f6f-43cf-b8c8-7ecbe3f376e3
@@ -52900,6 +53221,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyKnight
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -52922,6 +53247,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyGolem (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1469617019082456175, guid: e20fc422d652fdd41baf14de328cf04f, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
+    - target: {fileID: 1501238503052977084, guid: e20fc422d652fdd41baf14de328cf04f, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     - target: {fileID: 2051403247356662824, guid: e20fc422d652fdd41baf14de328cf04f, type: 3}
       propertyPath: enemyId
       value: ec95c170-ca26-4094-8fee-482d3a5e14a2
@@ -53024,6 +53357,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: ab98193e226ead14ea35176a1e588068, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: ab98193e226ead14ea35176a1e588068, type: 3}
       propertyPath: enemyId
       value: 44dea9d6-67a1-4fc9-80f7-696176699cdf
@@ -53032,6 +53369,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyAssassin (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: ab98193e226ead14ea35176a1e588068, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -53090,6 +53431,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
       propertyPath: enemyId
       value: 3572bb91-d123-418b-b069-540536e40180
@@ -53098,6 +53443,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyKnight (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: e4e6112c9254bb5449f8fde95ed2c9f7, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -53156,6 +53505,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: ab98193e226ead14ea35176a1e588068, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: ab98193e226ead14ea35176a1e588068, type: 3}
       propertyPath: enemyId
       value: 8e0dd6ed-cb3b-4a7b-b921-d5818c03e27e
@@ -53164,6 +53517,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyAssassin (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: ab98193e226ead14ea35176a1e588068, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -53222,6 +53579,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4851073434639317283, guid: ab98193e226ead14ea35176a1e588068, type: 3}
+      propertyPath: roomClearManager
+      value: 
+      objectReference: {fileID: 546817670}
     - target: {fileID: 5220965792829616836, guid: ab98193e226ead14ea35176a1e588068, type: 3}
       propertyPath: enemyId
       value: ae1a20ae-5abc-4b21-8f2b-3bcbd3f869b3
@@ -53230,6 +53591,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyAssassin (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 9092482700508542282, guid: ab98193e226ead14ea35176a1e588068, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1755153766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -53240,103 +53605,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3020087287175399022, guid: ab98193e226ead14ea35176a1e588068, type: 3}
   m_PrefabInstance: {fileID: 2085060699}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &2147082143
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 689227022881272472, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 689227022881272472, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 689227022881272472, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 689227022881272472, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 689227022881272472, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 689227022881272472, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 689227022881272472, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 800
-      objectReference: {fileID: 0}
-    - target: {fileID: 689227022881272472, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 689227022881272472, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 689227022881272472, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 689227022881272472, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 689227022881272472, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 689227022881272472, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 689227022881272472, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 689227022881272472, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 689227022881272472, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 689227022881272472, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 689227022881272472, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 689227022881272472, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 689227022881272472, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 994178517041614096, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
-      propertyPath: m_Name
-      value: InventoryPanel
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
 --- !u!1 &2147109376
 GameObject:
   m_ObjectHideFlags: 0
@@ -53493,5 +53761,5 @@ SceneRoots:
   - {fileID: 1329987373}
   - {fileID: 1755153763}
   - {fileID: 1315744372}
-  - {fileID: 2147082143}
   - {fileID: 973774399}
+  - {fileID: 1282623355}
