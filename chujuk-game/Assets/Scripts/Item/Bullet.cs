@@ -87,7 +87,7 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
         // 땅이나 벽에 닿으면 총알 삭제
-        else if (other.CompareTag("Ground") || other.CompareTag("Wall"))
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             Destroy(gameObject);
         }
