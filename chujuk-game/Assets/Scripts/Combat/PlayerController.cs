@@ -21,9 +21,6 @@ public class PlayerController : MonoBehaviour
     public float moveTime = 0.2f; // 대쉬 지속 시간
     public float dashCooldown = 1.5f;
 
-    [Header("Jump Physics")]
-    public float fallMultiplier = 2.5f; // 떨어질 때 가속도
-
     [Header("Health")]
     public int MaxHp =>
         PlayerStat.Instance != null
@@ -76,6 +73,12 @@ public class PlayerController : MonoBehaviour
     public Texture2D defaultCursor;      // 기본 커서 (비워두면 OS 기본 커서)
     public Texture2D crosshairCursor;    // 총 모드용 조준경 커서
     public Vector2 crosshairHotspot = new Vector2(16, 16); // 크로스헤어 정중앙이 실제 클릭 지점이 되도록
+
+    [Header("Jump Physics")]
+    public float fallMultiplier = 2.5f;
+    public float gravityTransitionSpeed = 8f; 
+
+    private float currentGravityMultiplier = 1f;   
 
     void Start()
     {
@@ -426,13 +429,13 @@ public class PlayerController : MonoBehaviour
         }
 
         // 떨어질 때 중력 가속도 추가
-        if (rb.linearVelocity.y < 0)
+        
+        float targetMultiplier = rb.linearVelocity.y < 0 ? fallMultiplier : 1f;
+        currentGravityMultiplier = Mathf.MoveTowards(currentGravityMultiplier, targetMultiplier, gravityTransitionSpeed * Time.fixedDeltaTime);
+
+        if (currentGravityMultiplier > 1f)
         {
-            rb.linearVelocity +=
-                Vector2.up *
-                Physics2D.gravity.y *
-                (fallMultiplier - 1) *
-                Time.fixedDeltaTime;
+            rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (currentGravityMultiplier - 1f) * Time.fixedDeltaTime;
         }
 
         // 캐릭터 방향 전환
