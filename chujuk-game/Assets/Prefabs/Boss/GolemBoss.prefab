@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7700541279094495201}
   m_Layer: 6
   m_Name: GolemRightFoot
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 3057220461929320325}
   m_Layer: 6
   m_Name: GolemHead
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: -3923180982321594229}
   m_Layer: 6
   m_Name: GolemBoss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -549,6 +549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthManager
   data: {fileID: 11400000, guid: 222dd09540577ae4197bc67d1a0a4311, type: 2}
   currentHealth: 0
+  baseInvincibilityDuration: 0.15
 --- !u!114 &7690345414052883150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,6 +589,7 @@ MonoBehaviour:
   player: {fileID: 3540554552297187925, guid: d13496053fed4b5458d86aa1e2b83541, type: 3}
   leftFoot: {fileID: 2398365571415601825}
   rightFoot: {fileID: 7000613022867588483}
+  telegraphYOffset: 0
   wallLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -846,7 +848,7 @@ GameObject:
   - component: {fileID: 4204122370257795379}
   m_Layer: 6
   m_Name: GolemLeftArm
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -880,6 +882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthManager
   data: {fileID: 11400000, guid: 02713d5795c78294ba4f38aeec7908b0, type: 2}
   currentHealth: 0
+  baseInvincibilityDuration: 0.15
 --- !u!114 &4204122370257795379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -904,7 +907,7 @@ GameObject:
   - component: {fileID: 3150175644302065315}
   m_Layer: 6
   m_Name: GolemBody
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1229,7 +1232,7 @@ GameObject:
   - component: {fileID: 6027949623859926320}
   m_Layer: 6
   m_Name: GolemLeftFoot
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1321,7 +1324,7 @@ GameObject:
   - component: {fileID: 8570609592120798463}
   m_Layer: 6
   m_Name: GolemRightArm
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1355,6 +1358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthManager
   data: {fileID: 11400000, guid: 02713d5795c78294ba4f38aeec7908b0, type: 2}
   currentHealth: 0
+  baseInvincibilityDuration: 0.15
 --- !u!114 &8570609592120798463
 MonoBehaviour:
   m_ObjectHideFlags: 0
