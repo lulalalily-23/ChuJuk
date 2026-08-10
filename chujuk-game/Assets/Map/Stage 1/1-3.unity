@@ -2531,7 +2531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1291147859}
   m_Layer: 0
-  m_Name: Spawnpoint
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27677,6 +27677,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5171513409085683669, guid: bcce7351e1f3e004d9484baae9a467f2, type: 3}
       propertyPath: m_Name
+      value: Platform
+      objectReference: {fileID: 0}
+    - target: {fileID: 5171513409085683669, guid: bcce7351e1f3e004d9484baae9a467f2, type: 3}
+      propertyPath: m_TagString
       value: Platform
       objectReference: {fileID: 0}
     m_RemovedComponents: []

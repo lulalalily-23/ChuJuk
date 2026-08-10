@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 6368001128760993025}
   - component: {fileID: 5278782289404310194}
   - component: {fileID: 8481902569806329359}
+  - component: {fileID: 6807637985289428283}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -357,7 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8370abfeceb0d634a9b44d32901fb886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDeathHandler
-  baseAttack: 20
+  baseAttack: 18
   baseDefense: 5
   baseMaxHP: 100
   baseAttackSpeed: 1
@@ -408,8 +409,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterStats
   data: {fileID: 11400000, guid: f210a5d938ed2124ab7d3f8c52ca8bd5, type: 2}
-  currentAttackPower: 0
-  currentDefense: 0
+  currentAttackPower: 1
+  currentDefense: 1
   attackMultiplier: 1
   defenseMultiplier: 1
 --- !u!114 &6368001128760993025
@@ -451,6 +452,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopInteractor
   inventoryPanel: {fileID: 994178517041614096, guid: c90dd562b5a286e4dabda312ebd28d19, type: 3}
+--- !u!114 &6807637985289428283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3141107847032401428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 372f3702c8fe48b49a4bf41476284551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerFallHandler
+  healthManager: {fileID: 1259584122986321718}
+  playerRigidbody: {fileID: 8369840186885847379}
+  groundCheck: {fileID: 6453520504836745643}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  groundCheckRadius: 0.2
+  saveInterval: 0.2
+  respawnYOffset: 0.1
+  recoveryTime: 0.3
 --- !u!1 &4290583472703648206
 GameObject:
   m_ObjectHideFlags: 0
